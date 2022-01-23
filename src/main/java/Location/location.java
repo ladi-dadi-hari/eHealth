@@ -16,6 +16,32 @@ import java.util.Scanner;
 
 public class location {
 
+    public static void main(String[] args) throws IOException, InterruptedException, ApiException {
+        int radius;
+        String address;
+
+        Scanner scan = new Scanner(System.in);
+        location loc = new location();
+        List<Float> lat_lng;
+
+
+
+        System.out.println("Bitte geben sie ihre Adresse ein.");
+        address = loc.checkUmlaut();
+        lat_lng = loc.getLocInfo(address);
+
+        System.out.println("Lat = " + lat_lng.get(0) + "\n" + "Lng = " + lat_lng.get(1));
+
+        System.out.println("Bitte geben sie den Radius (in km) ein in dem sie suchen wollen");
+        radius = scan.nextInt();
+
+        System.out.println("Bitte geben sie die Art des Doctors ein nach der sie suchen wollen");
+        String doc_art = loc.checkUmlaut();
+
+        String neu = loc.getDoc(radius, lat_lng.get(0), lat_lng.get(1), doc_art);
+
+        System.out.println(loc.createDoc(neu));
+    }
 
     final private String key = "AIzaSyBVcFqOaiopJLsNjMUnLYhMxuAEoWXu9hg";
     Scanner scan = new Scanner(System.in);
