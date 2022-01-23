@@ -17,12 +17,13 @@ import java.util.Scanner;
 public class location {
 
     public static void main(String[] args) throws IOException, InterruptedException, ApiException {
-        int radius;
         String address;
+        int radius;
 
         Scanner scan = new Scanner(System.in);
         location loc = new location();
         List<Float> lat_lng;
+        List<Float> doc_lat_lng;
 
 
 
@@ -38,9 +39,20 @@ public class location {
         System.out.println("Bitte geben sie die Art des Doctors ein nach der sie suchen wollen");
         String doc_art = loc.checkUmlaut();
 
-        String neu = loc.getDoc(radius, lat_lng.get(0), lat_lng.get(1), doc_art);
+        System.out.println("Bitte geben sie die Adresse des Doctors ein");
+        String doc_adresse = loc.checkUmlaut();
+        doc_lat_lng = loc.getLocInfo(doc_adresse);
 
-        System.out.println(loc.createDoc(neu));
+        float distance = loc.getDistance(lat_lng.get(0), lat_lng.get(1), doc_lat_lng.get(0), doc_lat_lng.get(1));
+
+        System.out.println(distance);
+
+        /*if(distance <= radius)
+        {
+
+        }*/
+
+
     }
 
     final private String key = "AIzaSyBVcFqOaiopJLsNjMUnLYhMxuAEoWXu9hg";
@@ -78,61 +90,23 @@ public class location {
 
 
 
-    public String getDoc(int rad, float lat, float lng, String doc_art) throws IOException
+    public float getDistance(float lat, float lng, float doc_lat, float doc_lng)
     {
-        int radius = rad * 1000;
+        final int earth_radius = 6371;
 
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
-        Request doc = new Request.Builder()
-                .url("https://maps.googleapis.com/maps/api/place/nearbysearch/json?" +
-                        "location="+ lat +"%2C" + lng +
-                        "&radius="+ radius +
-                        "&type=Location.doctor" +
-                        "&keyword=" + doc_art +
-                        "&key=" + key)
-                .method("GET", null)
-                .build();
+        double distance_lat = Math.toRadians(doc_lat - lat);
+        double distance_lng = Math.toRadians(doc_lng - lng);
+        double a = Math.sin(distance_lat / 2) * Math.sin(distance_lat / 2)
+                + Math.cos(Math.toRadians(lat)) * Math.cos(Math.toRadians(doc_lat))
+                * Math.sin(distance_lng / 2) * Math.sin(distance_lng / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double distance = earth_radius * c; // convert to meters
 
-        //call response
-        Response doc_response = client.newCall(doc).execute();
 
-        //safe response (JSON) as string
-        String doc_data = Objects.requireNonNull(doc_response.body().string());
+        distance = Math.pow(distance, 2);
 
-        doc_response.close();
-
-        /*-------------------------------------------------------------------------------*/
-
-        System.out.println(doc_data);
-
-        return doc_data;
+        return (float) Math.sqrt(distance);
+    }
     }
 
-    public List<String> createDoc(String doc_data)
-    {
-        List<String> namemitAdresse = new ArrayList<>();
 
-
-        String[] split = doc_data.split("business_status");
-
-
-        for(int y = 0; y <= split.length; y++) {
-            int i = split[y+1].indexOf("name");
-            int x = split[y+1].indexOf("\"opening_hours");
-            String a = split[y+1].substring(i, x);
-
-            a = a.replace("name\" : \"", "")
-                    .replace("\",\n", "");
-
-            namemitAdresse.add(a);
-        }
-        /* namemitAdresse.add(a); */
-
-        /*return namemitAdresse[]*/
-
-
-        return namemitAdresse;
-
-    }
-
-}
