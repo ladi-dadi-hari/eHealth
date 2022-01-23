@@ -1,4 +1,4 @@
 package Users;
 
-public class Doctor {
+public class Doctor extends Users.User {
 }
