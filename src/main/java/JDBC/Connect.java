@@ -8,7 +8,7 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="rootadmin";
+    static final String AUTH_STRING ="****";
 
 
 
@@ -137,7 +137,43 @@ public class Connect {
         return false;
     }
 
+    public static void insertAppointment(Time _time, Date _date, String _patientMail, String _doctorMail) throws Exception {
+        //Time time = Time.valueOf(LocalTime)
+        String location = "Dort";
+        String healthprob = "Corona-rona";
+        Time time = _time;
+        Date date = _date;
+        String patMail = _patientMail;
+        String docMail = _doctorMail;
+        String sql_insert = "INSERT INTO appointment (date, time, patientMail, doctorMail, location, healthproblem) VALUES (?, ?, ?, ?, ?, ?)";
+
+        Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
 
 
+        PreparedStatement insertApp = con.prepareStatement(sql_insert);
+        insertApp.setDate(1, date);
+        insertApp.setTime(2, time);
+        insertApp.setString(3, patMail);
+        insertApp.setString(4, docMail);
+        insertApp.setString(5, location);
+        insertApp.setString(6, healthprob);
+
+        insertApp.executeUpdate();
+
+        System.out.println("Appoint insert successfull!");
+    }
+
+    public static void createTableAppointment() throws Exception{
+
+        try {
+            Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS appointment(ID int NOT NULL AUTO_INCREMENT, date DATE, time TIME, patientMail VARCHAR(255), doctorMail VARCHAR(255), location VARCHAR(255), healthproblem VARCHAR(255), PRIMARY KEY (ID))");
+            create.executeUpdate();
+
+        }catch(Exception e) {System.out.println(e);
+        }
+        finally {System.out.println("Table appointment created");
+        }
+    }
 
 }
