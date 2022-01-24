@@ -1,8 +1,20 @@
 package JDBC;
 
+
 import Hashing.Hashing;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.temporal.ChronoField;
+/**
+ * <h1>Connect Class</h1>
+ * This class contains all methods required to communicate with the MySQL Database, using the JDBC driver.
+ * To run these methods properly on a local machine, the String "AUTH_STRING" needs to be set to the individual
+ * password of the local database.
+ *
+ * @author: Harris Nuhanovic, Max Endres
+ */
 
 public class Connect {
 
@@ -137,6 +149,17 @@ public class Connect {
         return false;
     }
 
+    /**
+     * This method inserts the created appointment into the table "appointment".
+     * The parameter values are provided by the user over the GUI.
+     * @param _time
+     * @param _date
+     * @param _patientMail
+     * @param _doctorMail
+     * @throws Exception
+     *
+     * @author: Max Endres
+     */
     public static void insertAppointment(Time _time, Date _date, String _patientMail, String _doctorMail) throws Exception {
         //Time time = Time.valueOf(LocalTime)
         String location = "Dort";
@@ -163,6 +186,13 @@ public class Connect {
         System.out.println("Appoint insert successfull!");
     }
 
+    /**
+     * This method creates the table "appointment" where all information regarding appointments are stored.
+     * It is called every time a new appointment is created to check if the table exists.
+     * @throws Exception
+     *
+     * @author: Max Endres
+     */
     public static void createTableAppointment() throws Exception{
 
         try {
@@ -176,4 +206,184 @@ public class Connect {
         }
     }
 
+    /**
+     * This method is called when a new doctor registers in our system.
+     * It takes the parameter values from the GUI and passes them to an SQL statement.
+     * This statement then stores the data in the database and returns the latest created ID Key to this object.
+     * @param _fName
+     * @param _lName
+     * @param _mailAdd
+     * @param _loc
+     * @param _specF
+     * @return id Int
+     * @throws Exception
+     *
+     * @author: Max Endres
+     */
+    public static int insertNewDoc(String _fName, String _lName, String _mailAdd, String _loc, String _specF) throws Exception{
+        String fName = _fName;
+        String lName = _lName;
+        String mailAdd = _mailAdd;
+        String loc = _loc;
+        String specF = _specF;
+
+        String sql_Insert = "INSERT INTO Users.doctor (firstName, lastName, mailAddress, location, specF, healthproblem, is_doc, is_patient) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+
+        Connection conn = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+
+
+        PreparedStatement insertDoc = conn.prepareStatement(sql_Insert, Statement.RETURN_GENERATED_KEYS);
+        insertDoc.setString(1, fName);
+        insertDoc.setString(2,  lName);
+        insertDoc.setString(3, mailAdd);
+        insertDoc.setString(4, loc);
+        insertDoc.setString(5, specF);
+        insertDoc.setString(6, null);
+        insertDoc.setBoolean(7, true);
+        insertDoc.setBoolean(8, false);
+
+
+        insertDoc.executeUpdate();
+        ResultSet rs = insertDoc.getGeneratedKeys();
+        rs.first();
+
+        int id = rs.getInt(1);
+        System.out.println("ID: " + id);
+        return id;
+
+    }
+
+    /**
+     * This method is called in the constructor of Doctor. It checks, wether a table "doctor" already exists in the database.
+     * If it doesn't exist, it will be created with all the columns.
+     * @throws Exception
+     *
+     * @author: Max Endres
+     */
+    public static void createTableDoctor() throws Exception{
+
+        try {
+            Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS user(ID int NOT NULL AUTO_INCREMENT, firstName VARCHAR(255), lastName VARCHAR(255), mailAddress VARCHAR(255), location VARCHAR(255), specF VARCHAR(255), healthproblem VARCHAR(255), is_doc TINYINT, is_patient TINYINT,  PRIMARY KEY (ID))");
+            create.executeUpdate();
+
+        }catch(Exception e) {System.out.println(e);
+        }
+        finally {System.out.println("Table user created");
+        }
+    }
+
+
+    /**
+     * This method creates 12 tables, one for each month.
+     * The amount of time slots is calculated by using the opening and closing time the specific doctor. Each time slot has the length of 30 minutes.
+     * @throws Exception
+     *
+     * @author: Max Endres
+     */
+    public void createTableTimeslot(int closingHour, int openingHour) throws Exception{
+        //Connection con = Connect.getConnection();
+        Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+        LocalDate heute = LocalDate.now();
+        int a = heute.get(ChronoField.MONTH_OF_YEAR);
+        //int end = 13-heute.get(ChronoField.DAY_OF_MONTH);
+        for(int i = a ; i <= 12; i++) {
+
+            String month = null;
+            if(i == 1) {
+                month = "januar";
+            }
+            else if (i == 2) {
+                month = "februar";
+            }
+            else if (i == 3){
+                month = "march";
+            }
+            else if (i==4) {
+                month = "april";
+            }
+            else if (i == 5) {
+                month = "may";
+            }
+            else if (i == 6) {
+                month = "june";
+            }
+            else if (i == 7) {
+                month = "july";
+            }
+            else if (i == 8) {
+                month = "august";
+            }
+            else if (i == 9) {
+                month = "september";
+            }
+            else if (i == 10) {
+                month = "october";
+            }
+            else if (i == 11) {
+                month = "november";
+            }
+            else if (i == 12) {
+                month = "dezember";
+            }
+
+
+            int clHour = closingHour;
+            int opHour = openingHour;
+
+
+            try {
+
+                PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS "+month+"(slot_ID int NOT NULL AUTO_INCREMENT, date DATE, timeslot TIME,  PRIMARY KEY (slot_ID))");
+                create.executeUpdate();
+
+                //set heute to first day of the current month
+                heute = heute.withDayOfMonth(1);
+
+                //iterate through every day of current month
+                for (int j = 0; j< heute.lengthOfMonth(); j++) {
+
+
+                    //Set start time to opHour
+                    LocalTime start = LocalTime.of(opHour, 00);
+
+                    //Iterate through time slots, size 30 minutes
+                    for(int z = 1; z <= (clHour - opHour)*2; z++) {
+                        Date date = Date.valueOf(heute);
+                        Time time = Time.valueOf(start);
+
+                        //this String will be executet as SQL-Statement
+                        String sql_Statement = "INSERT INTO "+month+" (date, timeslot) VALUES (?,?)";
+                        PreparedStatement post = con.prepareStatement(sql_Statement);
+                        post.setDate(1, date);
+                        post.setTime(2, time);
+
+                        post.executeUpdate();
+
+
+                        //Erhöhe Uhrzeit um 30 Minuten
+                        start = start.plusMinutes(30);
+
+                    }
+                    LocalDate end = heute.withDayOfMonth(heute.lengthOfMonth());
+
+                    //check if heute reached end of month
+                    if(heute.getDayOfMonth()== end.get(ChronoField.DAY_OF_MONTH)) {
+                        continue;
+                    }
+                    else {
+                        heute = heute.plusDays(1);
+                    }
+                }
+
+            }catch(Exception e) {System.out.println(e);
+            }
+            finally {System.out.println("Table \""+month+"\" created");
+            }
+
+            //increase month of heute with 1
+            heute = heute.plusMonths(1);
+        }
+    }
 }
