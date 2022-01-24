@@ -1,3 +1,6 @@
+package eHealth_GUI;
+
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -71,10 +74,10 @@ public class Healthcare_Searchresults extends JFrame {
 				if (confirm_question == JOptionPane.YES_OPTION)
 				{
 					//TODO:
-					//An dieser Stelle Kalenderfunktion einfügen:
-					//Neues Frame öffnen
-					//Termin auswählen
-					//Wenn Termin ausgewählt:
+					//An dieser Stelle Kalenderfunktion einfï¿½gen:
+					//Neues Frame ï¿½ffnen
+					//Termin auswï¿½hlen
+					//Wenn Termin ausgewï¿½hlt:
 					
 					JOptionPane.showMessageDialog(frame, "Appointment confirmed!");
 				}

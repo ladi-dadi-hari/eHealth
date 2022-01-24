@@ -1,3 +1,4 @@
+package eHealth_GUI;
 //import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -59,7 +60,7 @@ public class Healthcare_Entry extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//Öffne Eingangsfenster
+				//ï¿½ffne Eingangsfenster
 				Healthcare_Search_Doc second= new Healthcare_Search_Doc();
 				second.setVisible(true);
 
