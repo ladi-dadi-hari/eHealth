@@ -17,7 +17,10 @@ import java.time.temporal.ChronoField;
  */
 
 public class Connect {
-
+    public static void main(String [] args) throws Exception {
+        createTableAppointment();
+        createTableDoctor();
+    }
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
     static final String AUTH_STRING ="****";
@@ -265,12 +268,12 @@ public class Connect {
 
         try {
             Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
-            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS user(ID int NOT NULL AUTO_INCREMENT, firstName VARCHAR(255), lastName VARCHAR(255), mailAddress VARCHAR(255), location VARCHAR(255), specF VARCHAR(255), healthproblem VARCHAR(255), is_doc TINYINT, is_patient TINYINT,  PRIMARY KEY (ID))");
+            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS doctor(ID int NOT NULL AUTO_INCREMENT, firstName VARCHAR(255), lastName VARCHAR(255), mailAddress VARCHAR(255), location VARCHAR(255), specF VARCHAR(255), healthproblem VARCHAR(255), is_doc TINYINT, is_patient TINYINT,  PRIMARY KEY (ID))");
             create.executeUpdate();
 
         }catch(Exception e) {System.out.println(e);
         }
-        finally {System.out.println("Table user created");
+        finally {System.out.println("Table doctor created");
         }
     }
 

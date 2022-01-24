@@ -23,7 +23,7 @@ public class Doctor extends Users.User {
 
         //Constructor calls methods "Connect.insertNewDoc" and "createTableTimeslot"
         //Values like 'name' should be passed in from GUI
-        Doctor a = new Doctor("Doc19", "NachName113", "mail5@Mailing.con", "München", Specialfield.General, 10, 16);
+        Doctor a = new Doctor("Doc123", "NachName113", "mail5@Mailing.con", "München", Specialfield.General, 10, 16);
 
     }
 
@@ -54,7 +54,7 @@ public class Doctor extends Users.User {
             this.mailAdress = mailAdd;
             this.location = loc;
             this.specF = sF;
-            this.is_doc = true;
+            this.isDoc = true;
             this.openingHour = opHour;
             this.closingHour = clHour;
             String specString  = this.specF.toString();
@@ -129,7 +129,7 @@ public class Doctor extends Users.User {
     private String lastName = null;
     private String mailAdress = null;
     private String location = null;
-    private boolean is_doc = true;
+    private boolean isDoc = true;
     private String[] specString = new String[5];
     private int id;
     private int closingHour;
