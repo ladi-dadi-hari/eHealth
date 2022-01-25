@@ -7,7 +7,7 @@ public class User {
     protected String location = null;
     protected String mailAddress = null; // Check for mail format? Class?
     protected String pw = null;
-    protected boolean isDoc = false;
+    protected int isDoc = 0;
 
 
 
@@ -59,46 +59,6 @@ public class User {
 
     // Getters and Setters
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-
-    public String getPw() {
-        return pw;
-    }
-
-    public void setPw(String pw) {
-        this.pw = pw;
-    }
-
-    public boolean isDoc() {
-        return isDoc;
-    }
-
-    public void setDoc(boolean doc) {
-        isDoc = doc;
-    }
 
 
     //public ArrayList<String> getHealth_info1() {

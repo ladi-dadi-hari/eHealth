@@ -25,7 +25,7 @@ public class Connect {
 
 
 
-    public static void insertNewPatient(String _firstName, String _lastName, String _adress, String _birthday, String _healthInfo, String _mailAdress, String _salt, String _pw, String _insurance, String _insuranceType, boolean _isDoc){
+    public static void insertNewPatient(String _firstName, String _lastName, String _adress, String _birthday, String _healthInfo, String _mailAdress, String _salt, String _pw, String _insurance, String _insuranceType, int _isDoc){
 
 
         String firstName = _firstName;
@@ -38,7 +38,7 @@ public class Connect {
         String pw = _pw;
         String insurance = _insurance;
         String insuranceType = _insuranceType;
-        boolean isDoc = _isDoc;
+        int isDoc = _isDoc;
 
 
         String sql_Insert = "INSERT INTO Users.Patient (firstName, lastName, adress, birthday, healthInfo, mailAdress, salt, pw_hash, insurance, insuranceType, isDoc) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -61,7 +61,7 @@ public class Connect {
             createNewUser.setString(8, pw);
             createNewUser.setString(9, insurance);
             createNewUser.setString(10, insuranceType);
-            createNewUser.setBoolean(11, isDoc);
+            createNewUser.setInt(11, isDoc);
 
             createNewUser.executeUpdate();
 
@@ -305,7 +305,7 @@ public class Connect {
      *
      * @author: Max Endres
      */
-    public static int insertNewDoc(String _fName, String _lName, String _mailAdd,String _salt, String _pw, String _loc, String _specF, int _opHour, int _clHour) throws Exception{
+    public static int insertNewDoc(String _fName, String _lName, String _mailAdd,String _salt, String _pw, String _loc, String _specF, String _healtproblem, int _isDoc, int _opHour, int _clHour) throws Exception{
         String fName = _fName;
         String lName = _lName;
         String mailAdd = _mailAdd;
@@ -313,6 +313,8 @@ public class Connect {
         String pw = _pw;
         String loc = _loc;
         String specF = _specF;
+        String healtproblem = _healtproblem;
+        int isDoc = _isDoc;
         int opHour = _opHour;
         int clHour = _clHour;
 

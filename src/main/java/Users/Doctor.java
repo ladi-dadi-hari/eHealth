@@ -1,5 +1,6 @@
 package Users;
 
+import Hashing.Hashing;
 import JDBC.Connect;
 import java.sql.Connection;
 import java.sql.Date;
@@ -23,7 +24,7 @@ public class Doctor extends Users.User {
 
         //Constructor calls methods "Connect.insertNewDoc" and "createTableTimeslot"
         //Values like 'name' should be passed in from GUI
-        Doctor a = new Doctor("Doc123", "NachName113", "mail5@Mailing.con", "München", Specialfield.General, 10, 16);
+        //Doctor a = new Doctor("Doc19", "NachName113", "mail5@Mailing.con","1234567", "München", Specialfield.General, 10, 16);
 
     }
 
@@ -46,22 +47,26 @@ public class Doctor extends Users.User {
      * @param opHour Int opening hour of the doctor
      * @param clHour Int closing hour of the doctor
      */
-    Doctor(String fName, String lName, String mailAdd, String loc, Specialfield sF, int opHour, int clHour)
+    Doctor(String fName, String lName, String mailAdd, String pw, String loc, Specialfield sF, String healtproblem, int opHour, int clHour)
     {
         try {
+            String salt = Hashing.getSalt();
+
             this.firstName = fName;
             this.lastName  = lName;
             this.mailAdress = mailAdd;
+            this.pw = Hashing.doHashing(pw, salt);
             this.location = loc;
             this.specF = sF;
-            this.isDoc = true;
+            this.healthproblem = healthproblem;
+            this.isDoc = 1;
             this.openingHour = opHour;
             this.closingHour = clHour;
             String specString  = this.specF.toString();
 
 
             //this.createTableTimeslot();
-            // this.id = Connect.insertNewDoc(this.firstName, this.lastName, this.mailAdress, this.location, specString);
+            this.id = Connect.insertNewDoc(this.firstName, this.lastName, this.mailAdress,salt, this.pw, this.location, specString,this.healthproblem, this.isDoc, this.openingHour, this.closingHour);
             //System.out.println("Account created. ID = " + id);
 
 
@@ -129,8 +134,9 @@ public class Doctor extends Users.User {
     private String lastName = null;
     private String mailAdress = null;
     private String location = null;
-    private boolean isDoc = true;
+    private int isDoc = 1;
     private String[] specString = new String[5];
+    private String healthproblem = null;
     private int id;
     private int closingHour;
     private int openingHour;
