@@ -5,17 +5,30 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * <h1>TXT create class</h1>
+ * Takes String as input and writes it into a TXT file
+ *
+ * @author Can Dechert
+ */
 public class TXT_Functionality
 {
 
     public static void CreateTXT(String _text) throws IOException
     {
-        File file = new File("C:\\HealthInformation.txt"); // PFAD ANPASSEN!
-        FileWriter Fwriter = new FileWriter(file, true); // Boolean = true -> Es wird nix überschrieben, false -> Datei wird mit jedem Aufruf gewiped und nur der neue Text reingemacht
-        PrintWriter Pwriter = new PrintWriter(Fwriter);
 
+        //  Initialize path information
+        File file = new File("C:\\HealthInformation.txt"); // change path accordingly
+
+        //  Initialize Filewriter
+
+        FileWriter Fwriter = new FileWriter(file, false); // Boolean = true -> nothing gets overwritten, new text added in the back
+        PrintWriter Pwriter = new PrintWriter(Fwriter);          //           false -> document gets wiped and the new text is inserted
+
+        //  Writing document text
         Pwriter.println(_text);
 
+        //  Close file to finish
         Pwriter.close();
     }
 }
