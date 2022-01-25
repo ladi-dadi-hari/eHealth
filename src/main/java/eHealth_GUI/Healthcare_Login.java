@@ -1,3 +1,5 @@
+package eHealth_GUI;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -87,7 +89,7 @@ public class Healthcare_Login {
 				{
 					JOptionPane.showMessageDialog(frame, "Login erfolgreich");
 					
-					//Öffne Eingangsfenster
+					//ï¿½ffne Eingangsfenster
 					Healthcare_Entry second= new Healthcare_Entry();
 					second.setVisible(true);
 					frame.dispose();
