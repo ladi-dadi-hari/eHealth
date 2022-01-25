@@ -1,7 +1,7 @@
 package JDBC;
 
 
-import Hashing.Hashing;
+import Hashing.*;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -17,18 +17,15 @@ import java.time.temporal.ChronoField;
  */
 
 public class Connect {
-    public static void main(String [] args) throws Exception {
-        createTableAppointment();
-        createTableDoctor();
-    }
+
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="****";
+    static final String AUTH_STRING ="rootadmin";
 
 
 
 
-    public static void create_user (String _firstName, String _lastName, String _adress, String _birthday, String _healthInfo, String _mailAdress, String _salt, String _pw, String _insurance, String _insuranceType, boolean _isDoc){
+    public static void insertNewPatient(String _firstName, String _lastName, String _adress, String _birthday, String _healthInfo, String _mailAdress, String _salt, String _pw, String _insurance, String _insuranceType, boolean _isDoc){
 
 
         String firstName = _firstName;
@@ -44,7 +41,7 @@ public class Connect {
         boolean isDoc = _isDoc;
 
 
-        String sql_Insert = "INSERT INTO Users.Users (firstName, lastName, adress, birthday, healthInfo, mailAdress, salt, pw_hash, insurance, insuranceType, isDoc) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql_Insert = "INSERT INTO Users.Patient (firstName, lastName, adress, birthday, healthInfo, mailAdress, salt, pw_hash, insurance, insuranceType, isDoc) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
         try {
@@ -85,54 +82,91 @@ public class Connect {
 
     public static boolean validateData (String mailAdress, String password) throws SQLException {
 
+        Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+        int isDoc = 0;
+
+        try {
+
+            String sqlFetchisDoc = "SELECT isDoc FROM Users.Patient WHERE mailAdress=?";
+
+            PreparedStatement stIsDoc = con.prepareStatement(sqlFetchisDoc);
+
+            stIsDoc.setString(1, mailAdress);
+
+            ResultSet rsIsDoc = stIsDoc.executeQuery();
+
+
+            if (rsIsDoc.next()) {
+
+                String isDoc_ = rsIsDoc.getString("isDoc");
+                int _isDoc_ = Integer.parseInt(isDoc_);
+                isDoc = _isDoc_;
+
+            }
+        }
+
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+
         String inputPassword = password;
 
         String passwordHash = null;
         String salt = null;
 
-        String sqlFetchHash = "SELECT pw_hash FROM Users.Users WHERE mailAdress=?";
-        String sqlFetchSalt = "SELECT salt FROM Users.Users WHERE mailAdress=?";
 
-        try {
-
-            Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
-
-            PreparedStatement stHash = con.prepareStatement(sqlFetchHash);
-            PreparedStatement stSalt = con.prepareStatement(sqlFetchSalt);
-
-            stHash.setString(1, mailAdress);
-            stSalt.setString(1, mailAdress);
+        if (isDoc == 0) {
 
 
-            ResultSet rs = stHash.executeQuery();
+            String sqlFetchHash = "SELECT pw_hash FROM Users.Patient WHERE mailAdress=?";
+            String sqlFetchSalt = "SELECT salt FROM Users.Patient WHERE mailAdress=?";
 
-            if (rs.next()) {
+            try {
 
-                String pw = rs.getString("pw_hash");
-                passwordHash = pw;
+                PreparedStatement stHash = con.prepareStatement(sqlFetchHash);
+                PreparedStatement stSalt = con.prepareStatement(sqlFetchSalt);
+
+                stHash.setString(1, mailAdress);
+                stSalt.setString(1, mailAdress);
+
+
+                ResultSet rs = stHash.executeQuery();
+
+                if (rs.next()) {
+
+                    String pw = rs.getString("pw_hash");
+                    passwordHash = pw;
+
+                }
+
+                ResultSet rs1 = stSalt.executeQuery();
+
+                if (rs1.next()) {
+
+                    salt = rs1.getString("salt");
+
+                }
+
+                inputPassword = Hashing.doHashing(inputPassword, salt);
+
+                System.out.println(inputPassword);
+                System.out.println(passwordHash);
+
+                if (passwordHash.equals(inputPassword)) {
+
+                    return true;
+
+                } else return false;
 
             }
 
-            ResultSet rs1 = stSalt.executeQuery();
 
-            if (rs1.next()) {
-
-                salt = rs1.getString("salt");
-
+            catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
 
-            inputPassword = Hashing.doHashing(inputPassword, salt);
-
-            System.out.println(inputPassword);
-            System.out.println(passwordHash);
-
-            if (passwordHash.equals(inputPassword)) {
-
-                return true;
-
-            }
-
-            else return false;
 
 
             /**
@@ -145,11 +179,59 @@ public class Connect {
 
         }
 
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
+        else {
+
+            String sqlFetchHash = "SELECT pw_hash FROM Users.Doctor WHERE mailAdress=?";
+            String sqlFetchSalt = "SELECT salt FROM Users.Doctor WHERE mailAdress=?";
+
+            try {
+
+                PreparedStatement stHash = con.prepareStatement(sqlFetchHash);
+                PreparedStatement stSalt = con.prepareStatement(sqlFetchSalt);
+
+                stHash.setString(1, mailAdress);
+                stSalt.setString(1, mailAdress);
+
+
+                ResultSet rs = stHash.executeQuery();
+
+                if (rs.next()) {
+
+                    String pw = rs.getString("pw_hash");
+                    passwordHash = pw;
+
+                }
+
+                ResultSet rs1 = stSalt.executeQuery();
+
+                if (rs1.next()) {
+
+                    salt = rs1.getString("salt");
+
+                }
+
+                inputPassword = Hashing.doHashing(inputPassword, salt);
+
+                System.out.println(inputPassword);
+                System.out.println(passwordHash);
+
+                if (passwordHash.equals(inputPassword)) {
+
+                    return true;
+
+                } else return false;
+
+            }
+
+
+            catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
         }
 
         return false;
+
     }
 
     /**
@@ -223,14 +305,18 @@ public class Connect {
      *
      * @author: Max Endres
      */
-    public static int insertNewDoc(String _fName, String _lName, String _mailAdd, String _loc, String _specF) throws Exception{
+    public static int insertNewDoc(String _fName, String _lName, String _mailAdd,String _salt, String _pw, String _loc, String _specF, int _opHour, int _clHour) throws Exception{
         String fName = _fName;
         String lName = _lName;
         String mailAdd = _mailAdd;
+        String salt = _salt;
+        String pw = _pw;
         String loc = _loc;
         String specF = _specF;
+        int opHour = _opHour;
+        int clHour = _clHour;
 
-        String sql_Insert = "INSERT INTO Users.doctor (firstName, lastName, mailAddress, location, specF, healthproblem, is_doc, is_patient) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql_Insert = "INSERT INTO Users.doctor (firstName, lastName, mailAddress, salt, pw, location, specF, healthproblem, isDoc, opHour, clHour) VALUES (?,?,?, ?, ?, ?, ?, ?, ?, ?,?,?)";
 
 
         Connection conn = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
@@ -240,11 +326,14 @@ public class Connect {
         insertDoc.setString(1, fName);
         insertDoc.setString(2,  lName);
         insertDoc.setString(3, mailAdd);
-        insertDoc.setString(4, loc);
-        insertDoc.setString(5, specF);
-        insertDoc.setString(6, null);
-        insertDoc.setBoolean(7, true);
-        insertDoc.setBoolean(8, false);
+        insertDoc.setString(4, salt);
+        insertDoc.setString(5, pw);
+        insertDoc.setString(6, loc);
+        insertDoc.setString(7, specF);
+        insertDoc.setString(8, null);
+        insertDoc.setBoolean(9, true);
+        insertDoc.setInt(10, opHour);
+        insertDoc.setInt(11, clHour);
 
 
         insertDoc.executeUpdate();
@@ -268,12 +357,12 @@ public class Connect {
 
         try {
             Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
-            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS doctor(ID int NOT NULL AUTO_INCREMENT, firstName VARCHAR(255), lastName VARCHAR(255), mailAddress VARCHAR(255), location VARCHAR(255), specF VARCHAR(255), healthproblem VARCHAR(255), is_doc TINYINT, is_patient TINYINT,  PRIMARY KEY (ID))");
+            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS Doctor(ID int NOT NULL AUTO_INCREMENT, firstName VARCHAR(255), lastName VARCHAR(255), mailAddress VARCHAR(255),pwHash VARCHAR(550), salt VARCHAR(255), location VARCHAR(255), specF VARCHAR(255), healthproblem VARCHAR(255), isDoc TINYINT, opHour INT(100), clHour(100), PRIMARY KEY (ID))");
             create.executeUpdate();
 
         }catch(Exception e) {System.out.println(e);
         }
-        finally {System.out.println("Table doctor created");
+        finally {System.out.println("Table Users.Doctor created");
         }
     }
 
