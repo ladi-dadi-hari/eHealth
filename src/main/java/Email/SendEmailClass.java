@@ -5,8 +5,12 @@ import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
 
-public class SendEmailClass
-{
+public class SendEmailClass{
+    public static void main(String[] args) throws MessagingException {
+
+    }
+
+
     public static void SendEmail(String receiver,
                                  String subject,
                                  String text) throws MessagingException

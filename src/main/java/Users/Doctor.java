@@ -50,6 +50,7 @@ public class Doctor extends Users.User {
     Doctor(String fName, String lName, String mailAdd, String pw, String loc, Specialfield sF, String healtproblem, int opHour, int clHour)
     {
         try {
+            JDBC.Connect.createTableDoctor();
             String salt = Hashing.getSalt();
 
             this.firstName = fName;
@@ -147,11 +148,13 @@ public class Doctor extends Users.User {
  *
  */
     enum Specialfield {
-    Children,
+    Pediatrician,
     General,
-    Heart,
-    Lung,
-    Teeth;
+    Cardiologist,
+    Pulmonologist,
+    Orthopedist,
+    Dentist,
+    Physiotherapist;
 }
     private Specialfield specF = null;
 }
