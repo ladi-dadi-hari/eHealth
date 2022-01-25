@@ -11,6 +11,7 @@ public class Patient extends Users.User {
     private String healthInfo = null;
     private String insurance = null; // Enum?
     private String insuranceType = null; // Enum?
+    private int isDoc = 0;
 
     public Patient(String firstName, String lastName, String location, String birthday, String healthInfo, String mailAddress, String pw, String insurance, String insuranceType) {
 

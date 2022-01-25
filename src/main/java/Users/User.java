@@ -7,7 +7,6 @@ public class User {
     protected String location = null;
     protected String mailAddress = null; // Check for mail format? Class?
     protected String pw = null;
-    protected int isDoc = 0;
 
 
 
