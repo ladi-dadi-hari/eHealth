@@ -20,11 +20,11 @@ public class Doctor extends Users.User {
 
     public static void main(String[] args) throws Exception {
         //creates the table 'user'
-        Connect.createTableDoctor();
+        //Connect.createTableDoctor();
 
         //Constructor calls methods "Connect.insertNewDoc" and "createTableTimeslot"
         //Values like 'name' should be passed in from GUI
-        //Doctor a = new Doctor("Doc19", "NachName113", "mail5@Mailing.con","1234567", "München", Specialfield.General, 10, 16);
+        Doctor a = new Doctor("Doc14", "NachName11213", "mail5@Mailing.con","1234567", "München", Specialfield.General,"Headache", 10, 16);
 
     }
 

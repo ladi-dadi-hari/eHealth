@@ -318,7 +318,7 @@ public class Connect {
         int opHour = _opHour;
         int clHour = _clHour;
 
-        String sql_Insert = "INSERT INTO Users.doctor (firstName, lastName, mailAddress, salt, pw, location, specF, healthproblem, isDoc, opHour, clHour) VALUES (?,?,?, ?, ?, ?, ?, ?, ?, ?,?,?)";
+        String sql_Insert = "INSERT INTO Users.doctor (firstName, lastName, mailAddress, salt, pwHash, location, specF, healthproblem, isDoc, opHour, clHour) VALUES (?,?,?, ?, ?, ?, ?, ?, ?, ?,?)";
 
 
         Connection conn = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
@@ -333,7 +333,7 @@ public class Connect {
         insertDoc.setString(6, loc);
         insertDoc.setString(7, specF);
         insertDoc.setString(8, null);
-        insertDoc.setBoolean(9, true);
+        insertDoc.setInt(9, 1);
         insertDoc.setInt(10, opHour);
         insertDoc.setInt(11, clHour);
 
@@ -359,10 +359,11 @@ public class Connect {
 
         try {
             Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
-            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS Doctor(ID int NOT NULL AUTO_INCREMENT, firstName VARCHAR(255), lastName VARCHAR(255), mailAddress VARCHAR(255),pwHash VARCHAR(550), salt VARCHAR(255), location VARCHAR(255), specF VARCHAR(255), healthproblem VARCHAR(255), isDoc TINYINT, opHour INT(100), clHour(100), PRIMARY KEY (ID))");
+            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS Doctor(ID int NOT NULL AUTO_INCREMENT, firstName VARCHAR(255), lastName VARCHAR(255), mailAddress VARCHAR(255), pwHash VARCHAR(550), salt VARCHAR(255), location VARCHAR(255), specF VARCHAR(255), healthproblem VARCHAR(255), isDoc TINYINT, opHour INT(100), clHour INT (100), PRIMARY KEY (`ID`));");
             create.executeUpdate();
 
         }catch(Exception e) {System.out.println(e);
+
         }
         finally {System.out.println("Table Users.Doctor created");
         }
