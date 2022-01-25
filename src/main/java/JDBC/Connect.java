@@ -242,7 +242,7 @@ public class Connect {
     public static ResultSet getAppointments(String docMail) throws SQLException {
 
         //Descending sql syntax?
-        String sql_statement = "SELECT FROM Users.Appointment WHERE doctorMail =? ";
+        String sql_statement = "SELECT * FROM Users.Appointment WHERE doctorMail =? ";
         Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
 
         PreparedStatement select_app = con.prepareStatement(sql_statement);
