@@ -38,6 +38,7 @@ public class Healthcare_Entry extends JFrame {
 	 * Create the frame.
 	 */
 	public Healthcare_Entry(String usermail) {
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 699, 431);
 		contentPane = new JPanel();
