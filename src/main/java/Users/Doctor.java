@@ -24,8 +24,10 @@ public class Doctor extends Users.User {
 
         //Constructor calls methods "Connect.insertNewDoc" and "createTableTimeslot"
         //Values like 'name' should be passed in from GUI
-        Doctor a = new Doctor("Doc14", "NachName11213", "mail5@Mailing.con","1234567", "München", Specialfield.General,"Headache", 10, 16);
-
+        //Doctor a = new Doctor("Doc14", "NachName11213", "mail5@Mailing.con","1234567", "München", Specialfield.General,"Headache", 10, 16);
+        Doctor a = new Doctor();
+        a.setfName("Hallo");
+        System.out.println(a.getfName());
     }
 
 

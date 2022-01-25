@@ -373,6 +373,7 @@ public class Connect {
     /**
      * This method creates 12 tables, one for each month.
      * The amount of time slots is calculated by using the opening and closing time the specific doctor. Each time slot has the length of 30 minutes.
+     * Not used in our application because we decided for a different software design.
      * @throws Exception
      *
      * @author: Max Endres
