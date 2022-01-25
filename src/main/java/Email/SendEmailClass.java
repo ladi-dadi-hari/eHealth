@@ -7,7 +7,7 @@ import javax.mail.internet.*;
 
 /**
  * <h1>Email sending class</h1>
- * Sends an email using the javax.mail api
+ * Sends an email using the javax.mail library
  *
  * @author Can Dechert
  */
