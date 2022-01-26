@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 
 /**
  * <h1>TXT create class</h1>
- * Takes String as input and writes it into a TXT file
+ * Takes String as input and writes it into a TXT file at a specified path location.
  *
  * @author Can Dechert
  */
