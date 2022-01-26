@@ -12,7 +12,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 /**
  * <h1>PDF create class</h1>
  * Takes String as input and writes it into a PDF file at a specified path location.
- * Uses the itext library
+ * Uses the itext library.
  *
  * @author Can Dechert
  */
