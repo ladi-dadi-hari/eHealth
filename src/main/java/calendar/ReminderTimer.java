@@ -11,12 +11,11 @@ public class ReminderTimer extends TimerTask{
 
     }
 
-    public void run() {
+    public void run () {
 
-        System.out.println("Appointment Reminder!");
+        System.out.println("Reminder");
 
 
         this.cancel();
     }
-
 }

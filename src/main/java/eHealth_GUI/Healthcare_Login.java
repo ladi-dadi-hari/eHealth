@@ -10,6 +10,7 @@ import javax.swing.JPasswordField;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -35,6 +36,8 @@ public class Healthcare_Login {
 			}
 		});
 	}
+
+
 
 	/**
 	 * Create the application.
@@ -82,6 +85,8 @@ public class Healthcare_Login {
 			{
 				// An der Stelle Daten aus der Datenbank ziehen
 				// Beispiel Werte:
+
+
 				String u_name= username.getText();
 				String u_pwd= password_field.getText();
 				
@@ -90,7 +95,7 @@ public class Healthcare_Login {
 					JOptionPane.showMessageDialog(frame, "Login erfolgreich");
 					
 					//�ffne Eingangsfenster
-					Healthcare_Entry second= new Healthcare_Entry();
+					Healthcare_Entry second= new Healthcare_Entry(username.getText());
 					second.setVisible(true);
 					frame.dispose();
 	
@@ -101,6 +106,7 @@ public class Healthcare_Login {
 				{
 					JOptionPane.showMessageDialog(frame, "Login fehlgeschlagen");
 				}
+
 			}
 		});
 	}

@@ -13,6 +13,7 @@ import java.io.PrintWriter;
  */
 public class TXT_Functionality
 {
+
     public static void CreateTXT(String _text) throws IOException
     {
 

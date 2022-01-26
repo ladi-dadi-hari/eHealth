@@ -2,13 +2,13 @@ package Users;
 
 import Hashing.Hashing;
 import JDBC.Connect;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.Time;
+
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoField;
+
+
 /**
  * <h1> Doctor Account</h1>
  * This class has functionality to insert a new registered Doctor into the database with all required informations (mail, specialField, PW ...).
@@ -24,8 +24,10 @@ public class Doctor extends Users.User {
 
         //Constructor calls methods "Connect.insertNewDoc" and "createTableTimeslot"
         //Values like 'name' should be passed in from GUI
-        Doctor a = new Doctor("Doc14", "NachName11213", "mail5@Mailing.con","1234567", "München", Specialfield.General,"Headache", 10, 16);
-
+        //Doctor a = new Doctor("Doc14", "NachName11213", "mail5@Mailing.con","1234567", "München", Specialfield.General,"Headache", 10, 16);
+        Doctor a = new Doctor();
+        a.setfName("Hallo");
+        System.out.println(a.getfName());
     }
 
 
@@ -73,7 +75,6 @@ public class Doctor extends Users.User {
 
         }catch(Exception e) {System.out.println(e);}
     }
-
 
 
     //Methods

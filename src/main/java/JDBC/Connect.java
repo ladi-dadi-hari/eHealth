@@ -234,6 +234,24 @@ public class Connect {
 
     }
 
+
+    /**
+     * pro Zeile Patient: (sortiert?)Datum&Uhrzeit, fName/lName, HealthInfo/Beschwerde, Bestätigt Ja/Nein,
+     * @return
+     */
+    public static ResultSet getAppointments(String docMail) throws SQLException {
+
+        //Descending sql syntax?
+        String sql_statement = "SELECT * FROM Users.Appointment WHERE doctorMail =? ";
+        Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+
+        PreparedStatement select_app = con.prepareStatement(sql_statement);
+        select_app.setString(1, docMail);
+
+        ResultSet rs = select_app.executeQuery();
+
+        return rs;
+    }
     /**
      * This method inserts the created appointment into the table "appointment".
      * The parameter values are provided by the user over the GUI.
@@ -373,6 +391,7 @@ public class Connect {
     /**
      * This method creates 12 tables, one for each month.
      * The amount of time slots is calculated by using the opening and closing time the specific doctor. Each time slot has the length of 30 minutes.
+     * Not used in our application because we decided for a different software design.
      * @throws Exception
      *
      * @author: Max Endres
