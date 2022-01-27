@@ -134,15 +134,15 @@ public class Connect {
 
     }
 
-    public static boolean validateData_patient (String mailAdress, String password) throws SQLException {
+    public static boolean validateData (String mailAdress, String password, String _sqlFetchHash, String _sqlFetchSalt) throws SQLException {
 
         String inputPassword = password;
 
         String passwordHash = null;
         String salt = null;
 
-        String sqlFetchHash = "SELECT password FROM Users.patient WHERE patient_mailAddress=?";
-        String sqlFetchSalt = "SELECT salt FROM Users.patient WHERE patient_mailAddress=?";
+        String sqlFetchHash = _sqlFetchHash;
+        String sqlFetchSalt = _sqlFetchSalt;
 
 
         try {

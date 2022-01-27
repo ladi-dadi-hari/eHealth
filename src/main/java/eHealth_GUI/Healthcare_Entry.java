@@ -11,6 +11,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import Users.Patient;
+
 
 @SuppressWarnings("serial")
 public class Healthcare_Entry extends JFrame {

@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
-@SuppressWarnings("serial")
+
 
 public class Healthcare_Search_Doc extends JFrame {
 

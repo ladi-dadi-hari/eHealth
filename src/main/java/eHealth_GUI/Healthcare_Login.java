@@ -20,7 +20,7 @@ import javax.swing.JButton;
 public class Healthcare_Login {
 
 	private JFrame frame;
-	private JTextField eMail;
+	private JTextField username;
 	private JTextField password_field;
 
 	/**
@@ -58,7 +58,7 @@ public class Healthcare_Login {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("eMail-Address");
+		JLabel lblNewLabel = new JLabel("Username:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setBounds(109, 132, 81, 52);
 		frame.getContentPane().add(lblNewLabel);
@@ -68,10 +68,10 @@ public class Healthcare_Login {
 		lblPasswort.setBounds(109, 195, 89, 52);
 		frame.getContentPane().add(lblPasswort);
 		
-		eMail = new JTextField();
-		eMail.setBounds(200, 132, 152, 34);
-		frame.getContentPane().add(eMail);
-		eMail.setColumns(10);
+		username = new JTextField();
+		username.setBounds(200, 132, 152, 34);
+		frame.getContentPane().add(username);
+		username.setColumns(10);
 		
 		password_field = new JPasswordField();
 		password_field.setColumns(10);
@@ -93,21 +93,28 @@ public class Healthcare_Login {
 			{
 				// An der Stelle Daten aus der Datenbank ziehen
 				// Beispiel Werte:
-				String u_eMail= eMail.getText();
+				String u_username= username.getText();
 				String u_pwd= password_field.getText();
 				boolean exists_patient = false;
 				boolean exists_doc = false;
 
+				final String sqlFetchHash_patient = "SELECT password FROM Users.patient WHERE patient_username=?";
+				final String sqlFetchSalt_patient = "SELECT salt FROM Users.patient WHERE patient_username=?";
+
+
+				final String sqlFetchHash_doc = "SELECT password FROM Users.doctor WHERE doctor_username=?";
+				final String sqlFetchSalt_doc = "SELECT salt FROM Users.doctor WHERE doctor_username=?";
+
 				try
 				{
-					exists_patient = Connect.validateData_patient(u_eMail, u_pwd);
+					exists_patient = Connect.validateData(u_username, u_pwd, sqlFetchHash_patient, sqlFetchSalt_patient);
 				}
 				catch (SQLException ex)
 				{
 					ex.printStackTrace();
 				}
 				try {
-					exists_doc = Connect.validateData_doc(u_eMail, u_pwd);
+					exists_doc = Connect.validateData(u_username, u_pwd, sqlFetchHash_doc, sqlFetchSalt_doc);
 				}
 				catch (SQLException e)
 				{
@@ -143,7 +150,7 @@ public class Healthcare_Login {
 		registerButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Healthcare_Register third = new Healthcare_Register();
+				Healthcare_Registration third = new Healthcare_Registration();
 				third.frame_register.setVisible(true);
 			}
 		});

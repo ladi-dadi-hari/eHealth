@@ -8,8 +8,16 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 
+/**
+ * <h1>Registration GUI</h1>
+ * This class provides the registration interface for our patients, aswell as our doctors.
+ *
+ *
+ *
+ */
 
-public class Healthcare_Register extends JFrame
+
+public class Healthcare_Registration extends JFrame
 {
 
     JFrame frame_register = new JFrame();
@@ -44,7 +52,7 @@ public class Healthcare_Register extends JFrame
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Healthcare_Register window = new Healthcare_Register();
+                    Healthcare_Registration window = new Healthcare_Registration();
                     window.frame_register.setVisible(true);
 
 
@@ -55,7 +63,7 @@ public class Healthcare_Register extends JFrame
         });
     }
 
-    public Healthcare_Register()
+    public Healthcare_Registration()
     {
         initilaize();
     }
