@@ -10,13 +10,12 @@ public class ReminderTimer extends TimerTask{
     public static void main (String []args ) {
 
     }
+    @Override
+    public void run () {
 
-    public void run() {
-
-        System.out.println("Appointment Reminder!");
+        System.out.println("Reminder");
 
 
         this.cancel();
     }
-
 }

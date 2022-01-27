@@ -10,7 +10,7 @@ import JDBC.Connect;
 
 /**
  * <h1>Appointment </h1>
- * The "Appointment"-Class implements the funcionality to store an appointment inside the applications database and creating a reminder for that appointment.
+ * The "Appointment"-Class implements the functionality to store an appointment inside the applications database and creating a reminder for that appointment.
  * @author Max Endres
  * @version 1.0
  *
@@ -32,9 +32,9 @@ public class Appointment {
     }
 
     /**
-     * This method is used to set a reminder. After calculations have been processed, it starts a Timer with a TimerTask, defined in an other class.
+     * This method is used to set a reminder. After calculations have been processed, it starts a Timer with a TimerTask, defined in another class.
      * @param appDate_ This is the date from which the reminder will be calculated. Type: LocalDateTime
-     * @param index_ This integer defines when the reminder should be sent, taken from the drop down menu.
+     * @param index_ This integer defines when the reminder should be sent, taken from the dropdown menu.
      * @return nothing
      */
 
