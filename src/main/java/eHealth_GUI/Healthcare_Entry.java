@@ -56,44 +56,57 @@ public class Healthcare_Entry extends JFrame {
 		lblNewJgoodiesLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewJgoodiesLabel_1.setBounds(113, 226, 513, 58);
 		contentPane.add(lblNewJgoodiesLabel_1);
-		
-		JButton btnNewButton = new JButton("Start searching");
-		btnNewButton.addActionListener(new ActionListener() {
+
+		JButton startSearchingBtn = new JButton("Start searching");
+		startSearchingBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				//�ffne Eingangsfenster
+
+				//Öffne Eingangsfenster
 				Healthcare_Search_Doc second= new Healthcare_Search_Doc();
 				second.setVisible(true);
 
-				
+
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton.setBounds(219, 295, 237, 45);
-		contentPane.add(btnNewButton);
-		
+		startSearchingBtn.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		startSearchingBtn.setBounds(220, 320, 237, 45);
+		contentPane.add(startSearchingBtn);
+
 		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("How can we help you?");
 		lblNewJgoodiesLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewJgoodiesLabel.setBounds(268, 42, 164, 58);
 		contentPane.add(lblNewJgoodiesLabel);
-		
-		JButton btnNewButton_1 = new JButton("Logout");
-		btnNewButton_1.setBounds(587, 11, 88, 30);
-		contentPane.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("My Profile");
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton_2.setBounds(50, 143, 143, 39);
-		contentPane.add(btnNewButton_2);
-		
-		JButton btnNewButton_2_1 = new JButton("Our Services");
-		btnNewButton_2_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton_2_1.setBounds(268, 143, 143, 39);
-		contentPane.add(btnNewButton_2_1);
-		
-		JButton btnNewButton_2_2 = new JButton("Contact Us");
-		btnNewButton_2_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton_2_2.setBounds(483, 143, 143, 39);
-		contentPane.add(btnNewButton_2_2);
+
+		JButton logoutBtn = new JButton("Logout");
+		logoutBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		logoutBtn.setBounds(23, 22, 88, 30);
+		contentPane.add(logoutBtn);
+
+		JButton myProfileBtn = new JButton("My Profile");
+		myProfileBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				//Oeffne User- Profile page
+				Healthcare_User_Profile userprofile= new Healthcare_User_Profile();
+				userprofile.setVisible(true);
+
+			}
+		});
+		myProfileBtn.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		myProfileBtn.setBounds(52, 143, 143, 39);
+		contentPane.add(myProfileBtn);
+
+		JButton ourServicesBtn = new JButton("Our Services");
+		ourServicesBtn.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		ourServicesBtn.setBounds(271, 143, 143, 39);
+		contentPane.add(ourServicesBtn);
+
+		JButton ContactUsBtn = new JButton("Contact Us");
+		ContactUsBtn.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		ContactUsBtn.setBounds(483, 143, 143, 39);
+		contentPane.add(ContactUsBtn);
 	}
 }
