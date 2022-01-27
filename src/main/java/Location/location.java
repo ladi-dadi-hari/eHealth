@@ -4,14 +4,12 @@ import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.GeocodingResult;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+
 
 import java.io.IOException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class location {
@@ -27,9 +25,10 @@ public class location {
 
 
 
+
         System.out.println("Bitte geben sie ihre Adresse ein.");
-        address = loc.checkUmlaut();
-        lat_lng = loc.getLocInfo(address);
+
+        lat_lng = loc.getLocInfo(loc.checkUmlaut(loc.getAddress()));
 
         System.out.println("Lat = " + lat_lng.get(0) + "\n" + "Lng = " + lat_lng.get(1));
 
@@ -37,11 +36,9 @@ public class location {
         radius = scan.nextInt();
 
         System.out.println("Bitte geben sie die Art des Doctors ein nach der sie suchen wollen");
-        String doc_art = loc.checkUmlaut();
+       // String doc_art = loc.checkUmlaut();
 
-        System.out.println("Bitte geben sie die Adresse des Doctors ein");
-        String doc_adresse = loc.checkUmlaut();
-        doc_lat_lng = loc.getLocInfo(doc_adresse);
+        doc_lat_lng = loc.getLocInfo(loc.checkUmlaut(loc.getAddress()));
 
         float distance = loc.getDistance(lat_lng.get(0), lat_lng.get(1), doc_lat_lng.get(0), doc_lat_lng.get(1));
 
@@ -55,13 +52,39 @@ public class location {
 
     }
 
-    final private String key = "AIzaSyBVcFqOaiopJLsNjMUnLYhMxuAEoWXu9hg";
+
+    static final String DB_URL = "jdbc:mysql://localhost:3306/users";
+    static final String USER = "root";
+    static final String AUTH_STRING ="TokyoGhoul^^123";
+    final private String key = "AIzaSyCuFtEOQhiW5_JlW0J2IE3YX6_sh3LwCbw";
     Scanner scan = new Scanner(System.in);
 
-    public String checkUmlaut()
+    public String getAddress()
     {
-        String address = scan.nextLine();
-        String new_address = address.replace("ß", "ss")
+        String loc = "";
+        try
+        {
+            Connection connect = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+            String sql_statement = "SELECT address FROM Users.doctor";
+            PreparedStatement getAddress = connect.prepareStatement(sql_statement);
+            ResultSet rs = getAddress.executeQuery();
+
+            while(rs.next())
+            {
+                loc = rs.getString("address");
+            }
+        }
+
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return loc;
+    }
+
+    public String checkUmlaut(String addresse)
+    {
+
+        String new_address = addresse.replace("ß", "ss")
                 .replace("ü", "ue")
                 .replace("ä", "ae")
                 .replace("ö", "oe");
@@ -106,7 +129,10 @@ public class location {
         distance = Math.pow(distance, 2);
 
         return (float) Math.sqrt(distance);
+
     }
+
+
     }
 
 

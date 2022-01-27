@@ -67,7 +67,7 @@ public class Doctor extends Users.User {
 
 
             //this.createTableTimeslot();
-            this.id = Connect.insertNewDoc(this.firstName, this.lastName, this.mailAdress,salt, this.pw, this.location, specString,this.healthproblem, this.isDoc, this.openingHour, this.closingHour);
+           // this.id = Connect.insertNewDoc(this.firstName, this.lastName, this.mailAdress,salt, this.pw, this.location, specString,this.healthproblem, this.isDoc, this.openingHour, this.closingHour);
             //System.out.println("Account created. ID = " + id);
 
 

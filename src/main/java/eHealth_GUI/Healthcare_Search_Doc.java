@@ -5,9 +5,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
+import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -19,6 +21,7 @@ public class Healthcare_Search_Doc extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	int distance;
 
 	/**
 	 * Launch the application.
@@ -56,31 +59,7 @@ public class Healthcare_Search_Doc extends JFrame {
 		lblNewJgoodiesLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewJgoodiesLabel.setBounds(236, 61, 216, 39);
 		contentPane.add(lblNewJgoodiesLabel);
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Public");
-		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnNewRadioButton.setBounds(47, 153, 61, 25);
-		contentPane.add(rdbtnNewRadioButton);
-		
-		JLabel lblNewLabel = new JLabel("Your insurance type:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(37, 129, 140, 17);
-		contentPane.add(lblNewLabel);
-		
-		JRadioButton rdbtnPrivats = new JRadioButton("Private");
-		rdbtnPrivats.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnPrivats.setBounds(127, 153, 67, 25);
-		contentPane.add(rdbtnPrivats);
-		
-		textField = new JTextField();
-		textField.setBounds(37, 226, 130, 25);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblTheNameOf = new JLabel("Name of your Insurance:");
-		lblTheNameOf.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblTheNameOf.setBounds(37, 198, 216, 17);
-		contentPane.add(lblTheNameOf);
+
 		
 		JLabel lblYourHealthProblems = new JLabel("You need consultations for:");
 		lblYourHealthProblems.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -117,7 +96,7 @@ public class Healthcare_Search_Doc extends JFrame {
 		lblDistanceOfSearch.setBounds(374, 129, 140, 17);
 		contentPane.add(lblDistanceOfSearch);
 		
-		String ChooseDistance[] = {"5km", "10km", "15km", "20km"};
+		String ChooseDistance[] = {"1km", "2km", "5km", "10km", "15km", "20km"};
 		
 		@SuppressWarnings({"unchecked", "rawtypes"})
 		JComboBox comboBox = new JComboBox(ChooseDistance);
@@ -148,5 +127,36 @@ public class Healthcare_Search_Doc extends JFrame {
 		rdbtnInjuries.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rdbtnInjuries.setBounds(169, 390, 130, 25);
 		contentPane.add(rdbtnInjuries);
+
+		comboBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				if(comboBox.getSelectedItem().toString().equals("1km"))
+				{
+					distance = 1;
+				}
+				else if(comboBox.getSelectedItem().toString().equals("2km"))
+				{
+					distance = 2;
+				}
+				else if(comboBox.getSelectedItem().toString().equals("5km"))
+				{
+					distance = 5;
+				}
+				else if(comboBox.getSelectedItem().toString().equals("10km"))
+				{
+					distance = 10;
+				}
+				else if(comboBox.getSelectedItem().toString().equals("15km"))
+				{
+					distance = 15;
+				}
+				else if(comboBox.getSelectedItem().toString().equals("20km"))
+				{
+					distance = 20;
+				}
+			}
+		});
 	}
 }

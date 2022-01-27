@@ -1,7 +1,6 @@
-package eHealth_GUI;
-//import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
+package eHealth_GUI;//import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -17,6 +16,8 @@ import java.awt.event.ActionEvent;
 public class Healthcare_Entry extends JFrame {
 
 	private JPanel contentPane;
+
+	String username;
 
 	/**
 	 * Launch the application.
@@ -61,7 +62,7 @@ public class Healthcare_Entry extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				//�ffne Eingangsfenster
-				Healthcare_Search_Doc second= new Healthcare_Search_Doc();
+				Healthcare_Search_Doc second = new Healthcare_Search_Doc();
 				second.setVisible(true);
 
 				
@@ -75,6 +76,11 @@ public class Healthcare_Entry extends JFrame {
 		lblNewJgoodiesLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewJgoodiesLabel.setBounds(268, 42, 164, 58);
 		contentPane.add(lblNewJgoodiesLabel);
+
+		JLabel lbluser = new JLabel("Sie sind eigeloggt als" + username);
+		lbluser.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lbluser.setBounds(268, 42, 164, 58);
+		contentPane.add(lbluser);
 		
 		JButton btnNewButton_1 = new JButton("Logout");
 		btnNewButton_1.setBounds(587, 11, 88, 30);
