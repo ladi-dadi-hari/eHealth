@@ -14,6 +14,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import javax.swing.JTextArea;
 
 
 
@@ -49,7 +50,8 @@ public class Healthcare_Search_Doc extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
+		/*Introduction*/
 		JLabel lblNewJgoodiesTitle = DefaultComponentFactory.getInstance().createTitle("Find the Doctor for you!");
 		lblNewJgoodiesTitle.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewJgoodiesTitle.setBounds(226, 11, 244, 57);
@@ -60,11 +62,29 @@ public class Healthcare_Search_Doc extends JFrame {
 		lblNewJgoodiesLabel.setBounds(236, 61, 216, 39);
 		contentPane.add(lblNewJgoodiesLabel);
 
-		
+		/*Write Health Issues into Text field*/
+
 		JLabel lblYourHealthProblems = new JLabel("You need consultations for:");
 		lblYourHealthProblems.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblYourHealthProblems.setBounds(37, 275, 179, 17);
+		lblYourHealthProblems.setBounds(26, 129, 179, 17);
 		contentPane.add(lblYourHealthProblems);
+
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(26, 157, 228, 105);
+		contentPane.add(textArea);
+
+		/*--------------------------------Appointment Panel----------------------------------*/
+
+
+
+
+		/*--------------------------------Appointment Panel End----------------------------------*/
+
+
+
+		/*
+		String Healthproblems[] = {"Cold Symptoms","Exhaustion", "Headache", "Pains",
+				"Eye Problems", "Skin Infections", "Teeth Problems", "Ear Problems", "Injuries"};
 		
 		JRadioButton rdbtnColdSymptoms = new JRadioButton("Cold Symptoms");
 		rdbtnColdSymptoms.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -90,23 +110,7 @@ public class Healthcare_Search_Doc extends JFrame {
 		rdbtnEyeProblems.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rdbtnEyeProblems.setBounds(37, 416, 105, 25);
 		contentPane.add(rdbtnEyeProblems);
-		
-		JLabel lblDistanceOfSearch = new JLabel("Distance of search:");
-		lblDistanceOfSearch.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblDistanceOfSearch.setBounds(374, 129, 140, 17);
-		contentPane.add(lblDistanceOfSearch);
-		
-		String ChooseDistance[] = {"1km", "2km", "5km", "10km", "15km", "20km"};
-		
-		@SuppressWarnings({"unchecked", "rawtypes"})
-		JComboBox comboBox = new JComboBox(ChooseDistance);
-		comboBox.setBounds(374, 155, 113, 22);
-		contentPane.add(comboBox);
-		
-		JButton btnNewButton = new JButton("Search now");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton.setBounds(489, 402, 140, 39);
-		contentPane.add(btnNewButton);
+
 		
 		JRadioButton rdbtnAllergicReaction = new JRadioButton("Skin Infections");
 		rdbtnAllergicReaction.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -126,7 +130,29 @@ public class Healthcare_Search_Doc extends JFrame {
 		JRadioButton rdbtnInjuries = new JRadioButton("Injuries");
 		rdbtnInjuries.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rdbtnInjuries.setBounds(169, 390, 130, 25);
-		contentPane.add(rdbtnInjuries);
+		contentPane.add(rdbtnInjuries);*/
+
+
+
+		/*Select Distance of Search*/
+
+		JLabel lblDistanceOfSearch = new JLabel("Distance of search:");
+		lblDistanceOfSearch.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblDistanceOfSearch.setBounds(26, 294, 140, 17);
+		contentPane.add(lblDistanceOfSearch);
+
+		String ChooseDistance[] = {"5km", "10km", "15km", "20km"};
+
+		@SuppressWarnings({"unchecked", "rawtypes"})
+		JComboBox comboBox = new JComboBox(ChooseDistance);
+		comboBox.setBounds(26, 322, 113, 22);
+		contentPane.add(comboBox);
+
+		/*Button Search*/
+		JButton btnSearchNow = new JButton("Search now");
+		btnSearchNow.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnSearchNow.setBounds(489, 402, 140, 39);
+		contentPane.add(btnSearchNow);
 
 		comboBox.addActionListener(new ActionListener() {
 			@Override

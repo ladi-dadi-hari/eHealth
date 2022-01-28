@@ -47,7 +47,9 @@ public class Healthcare_Entry extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
+		/*Introduction*/
+
 		JLabel lblNewJgoodiesTitle = DefaultComponentFactory.getInstance().createTitle("Welcome to JavaDocs!");
 		lblNewJgoodiesTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewJgoodiesTitle.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -58,21 +60,7 @@ public class Healthcare_Entry extends JFrame {
 		lblNewJgoodiesLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewJgoodiesLabel_1.setBounds(113, 226, 513, 58);
 		contentPane.add(lblNewJgoodiesLabel_1);
-		
-		JButton btnSearchDoc = new JButton("Start searching");
-		btnSearchDoc.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				//�ffne Eingangsfenster
-				Healthcare_Search_Doc second = new Healthcare_Search_Doc();
-				second.setVisible(true);
 
-				
-			}
-		});
-		btnSearchDoc.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnSearchDoc.setBounds(219, 295, 237, 45);
-		contentPane.add(btnSearchDoc);
 
 		JLabel lbluser = new JLabel("Sie sind eigeloggt als" + username);
 		lbluser.setFont(new Font("Tahoma", Font.PLAIN, 10));
@@ -84,7 +72,8 @@ public class Healthcare_Entry extends JFrame {
 		lblNewJgoodiesLabel.setBounds(268, 55, 164, 58);
 		contentPane.add(lblNewJgoodiesLabel);
 
-		
+		/*Buttons: Logout, My Profile, Services, Contact, Search*/
+
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.setBounds(587, 11, 88, 30);
 		contentPane.add(btnLogout);
@@ -110,5 +99,20 @@ public class Healthcare_Entry extends JFrame {
 		btnContactUs.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnContactUs.setBounds(483, 143, 143, 39);
 		contentPane.add(btnContactUs);
+
+		JButton btnSearchDoc = new JButton("Start searching");
+		btnSearchDoc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				//�ffne Eingangsfenster
+				Healthcare_Search_Doc second = new Healthcare_Search_Doc();
+				second.setVisible(true);
+
+
+			}
+		});
+		btnSearchDoc.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnSearchDoc.setBounds(219, 295, 237, 45);
+		contentPane.add(btnSearchDoc);
 	}
 }
