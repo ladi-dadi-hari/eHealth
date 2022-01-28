@@ -318,6 +318,15 @@ public class Connect {
         System.out.println("Appoint insert successfull!");
     }
 
+    public static ResultSet getAppointments(String docMail) throws SQLException {
+        String sql_statement = "SELECT * FROM Users.Appointment WHERE doctorMail =? ";
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Users", "root", "rootadmin");
+        PreparedStatement select_app = con.prepareStatement(sql_statement);
+        select_app.setString(1, docMail);
+        ResultSet rs = select_app.executeQuery();
+        return rs;
+    }
+
     /**
      * This method creates the table "appointment" where all information regarding appointments are stored.
      * It is called every time a new appointment is created to check if the table exists.
@@ -344,9 +353,11 @@ public class Connect {
      * This statement then stores the data in the database and returns the latest created ID Key to this object.
      * @param _fName
      * @param _lName
-     * @param _mailAdd
-     * @param _loc
+     * @param _username
+     * @param _address
      * @param _specF
+     * @param _mailAdd
+     * @param _pw
      * @return id Int
      * @throws Exception
      *
