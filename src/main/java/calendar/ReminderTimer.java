@@ -1,8 +1,13 @@
 package calendar;
 
 
+import Email.SendEmailClass;
+
+import javax.mail.MessagingException;
 import java.util.Date;
 import java.util.TimerTask;
+
+import static Email.SendEmailClass.SendEmail;
 
 public class ReminderTimer extends TimerTask{
 
@@ -13,7 +18,11 @@ public class ReminderTimer extends TimerTask{
     @Override
     public void run () {
 
-        System.out.println("Reminder");
+        try {
+            SendEmail("can.dechert@gmx.de", "Appointment Reminder", "You have an Appointment");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
 
 
         this.cancel();
