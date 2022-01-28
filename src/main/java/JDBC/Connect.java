@@ -24,11 +24,12 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="****";
+    static final String AUTH_STRING ="jusa210SQL";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
         createTablePatient();
+        createTableAppointment();
     }
 
     public static boolean usernameOrEmailExists(String _username, String _email)
