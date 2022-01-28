@@ -27,7 +27,7 @@ public class Patient extends Users.User {
         this.insurance = insurance;
         this.insuranceType = insuranceType;
         //this.health_info1 = health_info1;
-        Connect.insertNewPatient(this.firstName,this.lastName,this.location,this.birthday,this.healthInfo,this.mailAddress, salt, this.pw,this.insurance,this.insuranceType, this.isDoc);
+       // Connect.insertNewPatient(this.firstName,this.lastName,this.location,this.birthday,this.healthInfo,this.mailAddress, salt, this.pw,this.insurance,this.insuranceType, this.isDoc);
 
     }
 }

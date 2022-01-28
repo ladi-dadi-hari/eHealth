@@ -1,5 +1,7 @@
 package eHealth_GUI;
 
+import JDBC.Connect;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -29,6 +31,9 @@ public class Healthcare_Login {
 			public void run() {
 				try {
 					Healthcare_Login window = new Healthcare_Login();
+					Connect.createTablePatient();
+					Connect.createTableDoctor();
+					Connect.createTableAppointment();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,8 +41,6 @@ public class Healthcare_Login {
 			}
 		});
 	}
-
-
 
 	/**
 	 * Create the application.
@@ -79,34 +82,76 @@ public class Healthcare_Login {
 		loginButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		loginButton.setBounds(200, 286, 127, 34);
 		frame.getContentPane().add(loginButton);
+
+		JButton registerButton = new JButton("Register");
+		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		registerButton.setBounds(200, 340, 127, 34);
+		frame.getContentPane().add(registerButton);
 		
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0)
 			{
 				// An der Stelle Daten aus der Datenbank ziehen
 				// Beispiel Werte:
-
-
-				String u_name= username.getText();
+				String u_username= username.getText();
 				String u_pwd= password_field.getText();
-				
-				if(u_name.equals("name") && u_pwd.equals("password"))
+				boolean exists_patient = false;
+				boolean exists_doc = false;
+
+				final String sqlFetchHash_patient = "SELECT password FROM Users.patient WHERE patient_username=?";
+				final String sqlFetchSalt_patient = "SELECT salt FROM Users.patient WHERE patient_username=?";
+
+
+				final String sqlFetchHash_doc = "SELECT password FROM Users.doctor WHERE doctor_username=?";
+				final String sqlFetchSalt_doc = "SELECT salt FROM Users.doctor WHERE doctor_username=?";
+
+				try
 				{
-					JOptionPane.showMessageDialog(frame, "Login erfolgreich");
-					
+					exists_patient = Connect.validateData(u_username, u_pwd, sqlFetchHash_patient, sqlFetchSalt_patient);
+				}
+				catch (SQLException ex)
+				{
+					ex.printStackTrace();
+				}
+				try {
+					exists_doc = Connect.validateData(u_username, u_pwd, sqlFetchHash_doc, sqlFetchSalt_doc);
+				}
+				catch (SQLException e)
+				{
+					e.printStackTrace();
+				}
+				if(exists_patient)
+				{
+					JOptionPane.showMessageDialog(frame, "Login als Patient erfolgreich");
+
 					//�ffne Eingangsfenster
-					Healthcare_Entry second= new Healthcare_Entry(username.getText());
+					Healthcare_Entry second= new Healthcare_Entry();
 					second.setVisible(true);
 					frame.dispose();
-	
-				}
+					return;
 
-				
+				}
+				else if(exists_doc)
+				{
+					JOptionPane.showMessageDialog(frame, "Login als Doctor erfolgreich");
+
+					Doctor_Profile_Page doctor_profile_page = new Doctor_Profile_Page();
+					doctor_profile_page.frame_doc.setVisible(true);
+					frame.dispose();
+					return;
+				}
 				else
 				{
 					JOptionPane.showMessageDialog(frame, "Login fehlgeschlagen");
 				}
+			}
+		});
 
+		registerButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Healthcare_Registration third = new Healthcare_Registration();
+				third.frame_register.setVisible(true);
 			}
 		});
 	}

@@ -1,7 +1,6 @@
-package eHealth_GUI;
-//import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
+package eHealth_GUI;//import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,15 +11,19 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import Users.Patient;
+
 
 @SuppressWarnings("serial")
 public class Healthcare_Entry extends JFrame {
 
 	private JPanel contentPane;
 
+	String username;
+
 	/**
 	 * Launch the application.
-
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -33,12 +36,11 @@ public class Healthcare_Entry extends JFrame {
 			}
 		});
 	}
-	 */
+
 	/**
 	 * Create the frame.
 	 */
-	public Healthcare_Entry(String usermail) {
-
+	public Healthcare_Entry() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 699, 431);
 		contentPane = new JPanel();
@@ -62,7 +64,7 @@ public class Healthcare_Entry extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				//�ffne Eingangsfenster
-				Healthcare_Search_Doc second= new Healthcare_Search_Doc();
+				Healthcare_Search_Doc second = new Healthcare_Search_Doc();
 				second.setVisible(true);
 
 				
@@ -76,6 +78,11 @@ public class Healthcare_Entry extends JFrame {
 		lblNewJgoodiesLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewJgoodiesLabel.setBounds(268, 42, 164, 58);
 		contentPane.add(lblNewJgoodiesLabel);
+
+		JLabel lbluser = new JLabel("Sie sind eigeloggt als" + username);
+		lbluser.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lbluser.setBounds(268, 42, 164, 58);
+		contentPane.add(lbluser);
 		
 		JButton btnNewButton_1 = new JButton("Logout");
 		btnNewButton_1.setBounds(587, 11, 88, 30);

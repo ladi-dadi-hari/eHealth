@@ -55,10 +55,11 @@
             <artifactId>jcalendar</artifactId>
             <version>1.4</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/jgoodies/forms -->
         <dependency>
-            <groupId>com.jgoodies</groupId>
-            <artifactId>jgoodies-forms</artifactId>
-            <version>1.9.0</version>
+            <groupId>jgoodies</groupId>
+            <artifactId>forms</artifactId>
+            <version>1.0.5</version>
         </dependency>
         <!-- Thanks for using https://jar-download.com -->
 
