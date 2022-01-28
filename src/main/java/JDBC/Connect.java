@@ -345,7 +345,7 @@ public class Connect {
      * @param _fName
      * @param _lName
      * @param _mailAdd
-     * @param _loc
+     * @param _address
      * @param _specF
      * @return id Int
      * @throws Exception
