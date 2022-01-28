@@ -27,7 +27,7 @@ public class Manage_Appointment_doc extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Manage_Appointment_doc frame = new Manage_Appointment_doc();
+                    Manage_Appointment_doc frame = new Manage_Appointment_doc("mailaddres@xy.com");
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
