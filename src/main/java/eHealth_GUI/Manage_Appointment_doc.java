@@ -2,8 +2,7 @@ package eHealth_GUI;
 
 import JDBC.Connect;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -40,9 +39,9 @@ public class Manage_Appointment_doc extends JFrame {
      * Create the frame.
      */
     public Manage_Appointment_doc(String doctorMail) throws SQLException {
-        ResultSet appointments = JDBC.Connect.getAppointments(doctorMail);
+        ResultSet appointments = JDBC.Connect.getAppointments("doctormailing");
         JTable resTab =  new JTable();
-        resTab.setModel((TableModel) appointments);
+
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 684, 421);
@@ -51,11 +50,12 @@ public class Manage_Appointment_doc extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
+        if(appointments.next()){
         table = new JTable();
         table.setEnabled(false);
         table.setModel(new DefaultTableModel(
                 new Object[][] {
-                        {null, null, "", null, null, null, null},
+                        {null, null, appointments.getString(4), null, null, null, appointments.getBoolean(1)},
                         {null, null, null, null, null, null, null},
                         {"", "", null, null, null, null, null},
                         {null, null, null, null, null, null, null},
@@ -75,7 +75,7 @@ public class Manage_Appointment_doc extends JFrame {
         table.getColumnModel().getColumn(4).setMinWidth(16);
         table.getColumnModel().getColumn(5).setPreferredWidth(87);
         table.setRowHeight(70);
-
+        table.setFont(new Font("Serif", Font.PLAIN, 7));
         table.setBounds(10, 35, 414, 280);
         contentPane.add(table);
 
@@ -114,5 +114,11 @@ public class Manage_Appointment_doc extends JFrame {
         JButton btnExit = new JButton("Exit");
         btnExit.setBounds(548, 333, 85, 21);
         contentPane.add(btnExit);
+    }
+    else{
+        int i = 1+1;
+    }
+
+
     }
 }
