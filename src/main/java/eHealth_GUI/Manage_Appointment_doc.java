@@ -56,7 +56,7 @@ public class Manage_Appointment_doc extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Manage_Appointment_doc frame = new Manage_Appointment_doc("doctormailing");
+                    Manage_Appointment_doc frame = new Manage_Appointment_doc("doctor-healty@mailing");
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -89,33 +89,13 @@ public class Manage_Appointment_doc extends JFrame {
         btnCancel1.setBounds(750, 58, 85, 21);
         contentPane.add(btnCancel1);
 
-        JButton btnOK2 = new JButton("Confirm");
-        btnOK2.setBounds(655, 124, 85, 21);
-        contentPane.add(btnOK2);
 
-        JButton btnCancel2 = new JButton("Cancel");
-        btnCancel2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-        btnCancel2.setBounds(750, 124, 85, 21);
-        contentPane.add(btnCancel2);
 
-        JButton btnOK3 = new JButton("Confirm");
-        btnOK3.setBounds(655, 197, 85, 21);
-        contentPane.add(btnOK3);
 
-        JButton btnCancel3 = new JButton("Cancel");
-        btnCancel3.setBounds(750, 197, 85, 21);
-        contentPane.add(btnCancel3);
 
-        JButton btnOK4 = new JButton("Confirm");
-        btnOK4.setBounds(655, 272, 85, 21);
-        contentPane.add(btnOK4);
 
-        JButton btnCancel4 = new JButton("Cancel");
-        btnCancel4.setBounds(750, 272, 85, 21);
-        contentPane.add(btnCancel4);
+
+
 
         JButton btnExit = new JButton("Exit");
         btnExit.addActionListener(new ActionListener() {
@@ -193,135 +173,173 @@ public class Manage_Appointment_doc extends JFrame {
             contentPane.add(checkBox1);
 
             //Move to second row
-            appointments.absolute(2);
+           // appointments.absolute(2);
             //appointments.next();
 
             lbDate2 = new JLabel("");
             lbDate2.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            setLbDate2Text(appointments.getDate(2).toString());
-            lbDate2.setBounds(10, 132, 83, 13);
-            contentPane.add(lbDate2);
+            if(appointments.isLast()){}
+            else {
+                appointments.next();
+                setLbDate2Text(appointments.getDate(2).toString());
+                lbDate2.setBounds(10, 132, 83, 13);
+                contentPane.add(lbDate2);
 
-            lbTime2 = new JLabel("");
-            lbTime2.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            setLbTime2Text(appointments.getTime(3).toString());
-            lbTime2.setBounds(103, 132, 79, 13);
-            contentPane.add(lbTime2);
+                lbTime2 = new JLabel("");
+                lbTime2.setFont(new Font("Tahoma", Font.PLAIN, 8));
+                setLbTime2Text(appointments.getTime(3).toString());
+                lbTime2.setBounds(103, 132, 79, 13);
+                contentPane.add(lbTime2);
 
-            lbName2 = new JLabel("");
-            lbName2.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            setLbName2Text(appointments.getString(4));
-            lbName2.setBounds(192, 132, 75, 13);
-            contentPane.add(lbName2);
+                lbName2 = new JLabel("");
+                lbName2.setFont(new Font("Tahoma", Font.PLAIN, 8));
+                setLbName2Text(appointments.getString(4));
+                lbName2.setBounds(192, 132, 75, 13);
+                contentPane.add(lbName2);
 
-            lbHealthP2 = new JLabel("");
-            lbHealthP2.setHorizontalAlignment(SwingConstants.LEFT);
-            lbHealthP2.setVerticalAlignment(SwingConstants.TOP);
-            lbHealthP2.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            setLbHealthP2Text(appointments.getString(5));
-            lbHealthP2.setBounds(277, 133, 112, 40);
-            contentPane.add(lbHealthP2);
+                lbHealthP2 = new JLabel("");
+                lbHealthP2.setHorizontalAlignment(SwingConstants.LEFT);
+                lbHealthP2.setVerticalAlignment(SwingConstants.TOP);
+                lbHealthP2.setFont(new Font("Tahoma", Font.PLAIN, 8));
+                setLbHealthP2Text(appointments.getString(5));
+                lbHealthP2.setBounds(277, 133, 112, 40);
+                contentPane.add(lbHealthP2);
 
-            lbMail2 = new JLabel("");
-            lbMail2.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            setLbMail2Text(appointments.getString(6));
-            lbMail2.setBounds(428, 132, 101, 13);
-            contentPane.add(lbMail2);
+                lbMail2 = new JLabel("");
+                lbMail2.setFont(new Font("Tahoma", Font.PLAIN, 8));
+                setLbMail2Text(appointments.getString(6));
+                lbMail2.setBounds(428, 132, 101, 13);
+                contentPane.add(lbMail2);
 
-            checkBox2 = new JCheckBox("");
-            checkBox2.setBounds(589, 124, 32, 21);
-            setCheckBox2Selected(appointments.getBoolean(7));
-            contentPane.add(checkBox2);
+                checkBox2 = new JCheckBox("");
+                checkBox2.setBounds(589, 124, 32, 21);
+                setCheckBox2Selected(appointments.getBoolean(7));
+                contentPane.add(checkBox2);
 
+                JButton btnOK2 = new JButton("Confirm");
+                btnOK2.setBounds(655, 124, 85, 21);
+                contentPane.add(btnOK2);
+
+                JButton btnCancel2 = new JButton("Cancel");
+                btnCancel2.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                    }
+                });
+                btnCancel2.setBounds(750, 124, 85, 21);
+                contentPane.add(btnCancel2);
+            }
             //Move to 3rd row
-            appointments.absolute(3);
+            //appointments.absolute(3);
 
 
             lbDate3 = new JLabel("");
             lbDate3.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            setLbDate3Text(appointments.getDate(2).toString());
-            lbDate3.setBounds(10, 205, 83, 13);
-            contentPane.add(lbDate3);
+            if(appointments.isLast()){}
+            else {
+                appointments.next();
+                setLbDate3Text(appointments.getDate(2).toString());
 
-            lbTime3 = new JLabel("");
-            lbTime3.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            setLbTime3Text(appointments.getTime(3).toString());
-            lbTime3.setBounds(103, 205, 79, 13);
-            contentPane.add(lbTime3);
+                lbDate3.setBounds(10, 205, 83, 13);
+                contentPane.add(lbDate3);
 
-            lbName3 = new JLabel("");
-            lbName3.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            setLbName3Text(appointments.getString(4));
-            lbName3.setBounds(192, 205, 75, 13);
-            contentPane.add(lbName3);
+                lbTime3 = new JLabel("");
+                lbTime3.setFont(new Font("Tahoma", Font.PLAIN, 8));
+                setLbTime3Text(appointments.getTime(3).toString());
 
-            lbHealthP3 = new JLabel("");
-            lbHealthP3.setHorizontalAlignment(SwingConstants.LEFT);
-            lbHealthP3.setVerticalAlignment(SwingConstants.TOP);
-            lbHealthP3.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            setLbHealthP3Text(appointments.getString(5));
-            lbHealthP3.setBounds(277, 206, 112, 40);
-            contentPane.add(lbHealthP3);
+                lbTime3.setBounds(103, 205, 79, 13);
+                contentPane.add(lbTime3);
 
-            lbMail3 = new JLabel("");
-            lbMail3.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            setLbMail3Text(appointments.getString(6));
-            lbMail3.setBounds(428, 205, 101, 13);
-            contentPane.add(lbMail3);
+                lbName3 = new JLabel("");
+                lbName3.setFont(new Font("Tahoma", Font.PLAIN, 8));
+                setLbName3Text(appointments.getString(4));
+                lbName3.setBounds(192, 205, 75, 13);
+                contentPane.add(lbName3);
 
-            checkBox3 = new JCheckBox("");
-            checkBox3.setBounds(589, 197, 32, 21);
-            setCheckBox3Selected(appointments.getBoolean(7));
-            contentPane.add(checkBox3);
+                lbHealthP3 = new JLabel("");
+                lbHealthP3.setHorizontalAlignment(SwingConstants.LEFT);
+                lbHealthP3.setVerticalAlignment(SwingConstants.TOP);
+                lbHealthP3.setFont(new Font("Tahoma", Font.PLAIN, 8));
+                setLbHealthP3Text(appointments.getString(5));
+                lbHealthP3.setBounds(277, 206, 112, 40);
+                contentPane.add(lbHealthP3);
 
+                lbMail3 = new JLabel("");
+                lbMail3.setFont(new Font("Tahoma", Font.PLAIN, 8));
+                setLbMail3Text(appointments.getString(6));
+                lbMail3.setBounds(428, 205, 101, 13);
+                contentPane.add(lbMail3);
+
+                checkBox3 = new JCheckBox("");
+                checkBox3.setBounds(589, 197, 32, 21);
+                setCheckBox3Selected(appointments.getBoolean(7));
+                contentPane.add(checkBox3);
+
+                JButton btnOK3 = new JButton("Confirm");
+                btnOK3.setBounds(655, 197, 85, 21);
+                contentPane.add(btnOK3);
+
+                JButton btnCancel3 = new JButton("Cancel");
+                btnCancel3.setBounds(750, 197, 85, 21);
+                contentPane.add(btnCancel3);
+            }
             //Move to 4th row
-            appointments.absolute(4);
+            //appointments.absolute(4);
 
 
             lbDate4 = new JLabel("");
             lbDate4.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            setLbDate4Text(appointments.getDate(2).toString());
-            lbDate4.setBounds(10, 280, 83, 13);
-            contentPane.add(lbDate4);
+            if(appointments.isLast()){}
+            else {
+                appointments.next();
+                setLbDate4Text(appointments.getDate(2).toString());
+                lbDate4.setBounds(10, 280, 83, 13);
+                contentPane.add(lbDate4);
 
-            lbTime4 = new JLabel("");
-            lbTime4.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            setLbTime4Text(appointments.getTime(3).toString());
-            lbTime4.setBounds(103, 280, 79, 13);
-            contentPane.add(lbTime4);
+                lbTime4 = new JLabel("");
+                lbTime4.setFont(new Font("Tahoma", Font.PLAIN, 8));
+                setLbTime4Text(appointments.getTime(3).toString());
+                lbTime4.setBounds(103, 280, 79, 13);
+                contentPane.add(lbTime4);
 
-            lbName4 = new JLabel("");
-            lbName4.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            setLbName4Text(appointments.getString(4));
-            lbName4.setBounds(192, 280, 75, 13);
-            contentPane.add(lbName4);
+                lbName4 = new JLabel("");
+                lbName4.setFont(new Font("Tahoma", Font.PLAIN, 8));
+                setLbName4Text(appointments.getString(4));
+                lbName4.setBounds(192, 280, 75, 13);
+                contentPane.add(lbName4);
 
-            lbHealthP4 = new JLabel("");
-            lbHealthP4.setHorizontalAlignment(SwingConstants.LEFT);
-            lbHealthP4.setVerticalAlignment(SwingConstants.TOP);
-            setLbHealthP4Text(appointments.getString(5));
-            lbHealthP4.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            lbHealthP4.setBounds(277, 281, 112, 40);
-            contentPane.add(lbHealthP4);
+                lbHealthP4 = new JLabel("");
+                lbHealthP4.setHorizontalAlignment(SwingConstants.LEFT);
+                lbHealthP4.setVerticalAlignment(SwingConstants.TOP);
+                setLbHealthP4Text(appointments.getString(5));
+                lbHealthP4.setFont(new Font("Tahoma", Font.PLAIN, 8));
+                lbHealthP4.setBounds(277, 281, 112, 40);
+                contentPane.add(lbHealthP4);
 
-            lbMail4 = new JLabel("");
-            lbMail4.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            setLbMail4Text(appointments.getString(6));
-            lbMail4.setBounds(428, 280, 101, 13);
-            contentPane.add(lbMail4);
+                lbMail4 = new JLabel("");
+                lbMail4.setFont(new Font("Tahoma", Font.PLAIN, 8));
+                setLbMail4Text(appointments.getString(6));
+                lbMail4.setBounds(428, 280, 101, 13);
+                contentPane.add(lbMail4);
 
-            checkBox4 = new JCheckBox("");
-            setCheckBox4Selected(appointments.getBoolean(7));
-            checkBox4.setBounds(589, 272, 32, 21);
-            contentPane.add(checkBox4);
+                checkBox4 = new JCheckBox("");
+                setCheckBox4Selected(appointments.getBoolean(7));
+                checkBox4.setBounds(589, 272, 32, 21);
+                contentPane.add(checkBox4);
 
-            JLabel lbConfirmend = new JLabel("Confirmend");
-            lbConfirmend.setBounds(589, 24, 60, 13);
-            contentPane.add(lbConfirmend);
+                JLabel lbConfirmend = new JLabel("Confirmend");
+                lbConfirmend.setBounds(589, 24, 60, 13);
+                contentPane.add(lbConfirmend);
+
+                JButton btnOK4 = new JButton("Confirm");
+                btnOK4.setBounds(655, 272, 85, 21);
+                contentPane.add(btnOK4);
+
+                JButton btnCancel4 = new JButton("Cancel");
+                btnCancel4.setBounds(750, 272, 85, 21);
+                contentPane.add(btnCancel4);
 
 
-
-
+            }
 
     }
     public String getLbDateText() {
