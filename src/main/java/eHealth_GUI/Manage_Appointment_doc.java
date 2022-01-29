@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
+import static JDBC.Connect.cancelAppointment;
 import static JDBC.Connect.confirmAppointment;
 
 public class Manage_Appointment_doc extends JFrame {
@@ -71,73 +72,85 @@ public class Manage_Appointment_doc extends JFrame {
      * Create the frame.
      */
     public Manage_Appointment_doc(String doctorMail) throws SQLException {
-        ResultSet appointments = JDBC.Connect.getAppointments(doctorMail);
 
-        JTable resTab =  new JTable();
+            ResultSet appointments = JDBC.Connect.getAppointments(doctorMail);
+
+            JTable resTab = new JTable();
 
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 859, 421);
-        contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        setContentPane(contentPane);
-        contentPane.setLayout(null);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setBounds(100, 100, 859, 421);
+            contentPane = new JPanel();
+            contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+            setContentPane(contentPane);
+            contentPane.setLayout(null);
 
-        JButton btnOK1 = new JButton("Confirm");
-        btnOK1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            JButton btnOK1 = new JButton("Confirm");
+            btnOK1.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
 
-                try {
-                    appointments.absolute(1);
-                    confirmAppointment(appointments.getString(6), appointments.getDate(2));
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
+                    try {
+                        appointments.absolute(1);
+                        confirmAppointment(appointments.getString(6), appointments.getDate(2));
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
                 }
-            }
-        });
-        btnOK1.setBounds(655, 58, 85, 21);
-        contentPane.add(btnOK1);
+            });
+            btnOK1.setBounds(655, 58, 85, 21);
+            contentPane.add(btnOK1);
 
-        JButton btnCancel1 = new JButton("Cancel");
-        btnCancel1.setBounds(750, 58, 85, 21);
-        contentPane.add(btnCancel1);
+            JButton btnCancel1 = new JButton("Cancel");
+            btnCancel1.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+
+                    try {
+                        appointments.absolute(1);
+                        cancelAppointment(appointments.getString(6), appointments.getDate(2));
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+            btnCancel1.setBounds(750, 58, 85, 21);
+            contentPane.add(btnCancel1);
 
 
-        JButton btnExit = new JButton("Exit");
-        btnExit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        btnExit.setBounds(750, 332, 85, 21);
-        contentPane.add(btnExit);
+            JButton btnExit = new JButton("Exit");
+            btnExit.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    System.exit(0);
+                }
+            });
+            btnExit.setBounds(750, 332, 85, 21);
+            contentPane.add(btnExit);
 
-        lbDate = new JLabel("Date");
-        lbDate.setFont(new Font("Tahoma", Font.BOLD, 13));
-        lbDate.setBounds(10, 24, 45, 13);
-        contentPane.add(lbDate);
+            lbDate = new JLabel("Date");
+            lbDate.setFont(new Font("Tahoma", Font.BOLD, 13));
+            lbDate.setBounds(10, 24, 45, 13);
+            contentPane.add(lbDate);
 
-        JLabel lbTime = new JLabel("Time");
-        lbTime.setFont(new Font("Tahoma", Font.BOLD, 13));
-        lbTime.setBounds(103, 24, 45, 13);
-        contentPane.add(lbTime);
+            JLabel lbTime = new JLabel("Time");
+            lbTime.setFont(new Font("Tahoma", Font.BOLD, 13));
+            lbTime.setBounds(103, 24, 45, 13);
+            contentPane.add(lbTime);
 
-        JLabel lbName = new JLabel("Name");
-        lbName.setFont(new Font("Tahoma", Font.BOLD, 13));
-        lbName.setBounds(192, 24, 75, 13);
-        contentPane.add(lbName);
+            JLabel lbName = new JLabel("Name");
+            lbName.setFont(new Font("Tahoma", Font.BOLD, 13));
+            lbName.setBounds(192, 24, 75, 13);
+            contentPane.add(lbName);
 
-        JLabel lbHealthProblem = new JLabel("Healthproblems");
-        lbHealthProblem.setFont(new Font("Tahoma", Font.BOLD, 13));
-        lbHealthProblem.setBounds(277, 24, 112, 13);
-        contentPane.add(lbHealthProblem);
+            JLabel lbHealthProblem = new JLabel("Healthproblems");
+            lbHealthProblem.setFont(new Font("Tahoma", Font.BOLD, 13));
+            lbHealthProblem.setBounds(277, 24, 112, 13);
+            contentPane.add(lbHealthProblem);
 
-        JLabel lbMail = new JLabel("Mailaddress");
-        lbMail.setFont(new Font("Tahoma", Font.BOLD, 13));
-        lbMail.setBounds(428, 24, 85, 13);
-        contentPane.add(lbMail);
+            JLabel lbMail = new JLabel("Mailaddress");
+            lbMail.setFont(new Font("Tahoma", Font.BOLD, 13));
+            lbMail.setBounds(428, 24, 85, 13);
+            contentPane.add(lbMail);
 
-        //Move to first row in ResultSet
+            //Move to first row in ResultSet
             appointments.absolute(1);
 
 
@@ -175,17 +188,18 @@ public class Manage_Appointment_doc extends JFrame {
 
             checkBox1 = new JCheckBox("");
             checkBox1.setBounds(589, 58, 32, 21);
+
             setCheckBox1Selected(appointments.getBoolean(7));
             contentPane.add(checkBox1);
 
             //Move to second row
-           // appointments.absolute(2);
+            // appointments.absolute(2);
             //appointments.next();
 
             lbDate2 = new JLabel("");
             lbDate2.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            if(appointments.isLast()){}
-            else {
+            if (appointments.isLast()) {
+            } else {
                 appointments.next();
                 setLbDate2Text(appointments.getDate(2).toString());
                 lbDate2.setBounds(10, 132, 83, 13);
@@ -240,6 +254,13 @@ public class Manage_Appointment_doc extends JFrame {
                 JButton btnCancel2 = new JButton("Cancel");
                 btnCancel2.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
+
+                        try {
+                            appointments.absolute(2);
+                            cancelAppointment(appointments.getString(6), appointments.getDate(2));
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
                     }
                 });
                 btnCancel2.setBounds(750, 124, 85, 21);
@@ -251,8 +272,8 @@ public class Manage_Appointment_doc extends JFrame {
 
             lbDate3 = new JLabel("");
             lbDate3.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            if(appointments.isLast()){}
-            else {
+            if (appointments.isLast()) {
+            } else {
                 appointments.next();
                 setLbDate3Text(appointments.getDate(2).toString());
 
@@ -307,6 +328,17 @@ public class Manage_Appointment_doc extends JFrame {
                 contentPane.add(btnOK3);
 
                 JButton btnCancel3 = new JButton("Cancel");
+                btnCancel3.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+
+                        try {
+                            appointments.absolute(3);
+                            cancelAppointment(appointments.getString(6), appointments.getDate(2));
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
                 btnCancel3.setBounds(750, 197, 85, 21);
                 contentPane.add(btnCancel3);
             }
@@ -316,8 +348,8 @@ public class Manage_Appointment_doc extends JFrame {
 
             lbDate4 = new JLabel("");
             lbDate4.setFont(new Font("Tahoma", Font.PLAIN, 8));
-            if(appointments.isLast()){}
-            else {
+            if (appointments.isLast()) {
+            } else {
                 appointments.next();
                 setLbDate4Text(appointments.getDate(2).toString());
                 lbDate4.setBounds(10, 280, 83, 13);
@@ -365,6 +397,7 @@ public class Manage_Appointment_doc extends JFrame {
                         try {
                             appointments.absolute(4);
                             confirmAppointment(appointments.getString(6), appointments.getDate(2));
+                            repaint();
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                         }
@@ -374,11 +407,23 @@ public class Manage_Appointment_doc extends JFrame {
                 contentPane.add(btnOK4);
 
                 JButton btnCancel4 = new JButton("Cancel");
+                btnCancel4.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+
+                        try {
+                            appointments.absolute(4);
+                            cancelAppointment(appointments.getString(6), appointments.getDate(2));
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
                 btnCancel4.setBounds(750, 272, 85, 21);
                 contentPane.add(btnCancel4);
 
 
             }
+
 
     }
     public String getLbDateText() {

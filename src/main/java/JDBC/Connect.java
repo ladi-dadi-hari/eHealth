@@ -26,7 +26,7 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="*****";
+    static final String AUTH_STRING ="****";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
