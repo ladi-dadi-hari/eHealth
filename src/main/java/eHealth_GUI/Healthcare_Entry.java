@@ -47,7 +47,9 @@ public class Healthcare_Entry extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
+		/*Introduction*/
+
 		JLabel lblNewJgoodiesTitle = DefaultComponentFactory.getInstance().createTitle("Welcome to JavaDocs!");
 		lblNewJgoodiesTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewJgoodiesTitle.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -58,49 +60,59 @@ public class Healthcare_Entry extends JFrame {
 		lblNewJgoodiesLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewJgoodiesLabel_1.setBounds(113, 226, 513, 58);
 		contentPane.add(lblNewJgoodiesLabel_1);
+
+
+		JLabel lbluser = new JLabel("Sie sind eigeloggt als" + username);
+		lbluser.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lbluser.setBounds(268, 30, 164, 58);
+		contentPane.add(lbluser);
+
+		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("How can we help you?");
+		lblNewJgoodiesLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewJgoodiesLabel.setBounds(268, 55, 164, 58);
+		contentPane.add(lblNewJgoodiesLabel);
+
+		/*Buttons: Logout, My Profile, Services, Contact, Search*/
+
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.setBounds(587, 11, 88, 30);
+		contentPane.add(btnLogout);
 		
-		JButton btnNewButton = new JButton("Start searching");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnMyProfile = new JButton("My Profile");
+		btnMyProfile.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				Healthcare_User_Profile userprofile = new Healthcare_User_Profile();
+				userprofile.setVisible(true);
+			}
+		});
+		btnMyProfile.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnMyProfile.setBounds(50, 143, 143, 39);
+		contentPane.add(btnMyProfile);
+		
+		JButton btnServices = new JButton("Our Services");
+		btnServices.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnServices.setBounds(268, 143, 143, 39);
+		contentPane.add(btnServices);
+		
+		JButton btnContactUs = new JButton("Contact Us");
+		btnContactUs.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnContactUs.setBounds(483, 143, 143, 39);
+		contentPane.add(btnContactUs);
+
+		JButton btnSearchDoc = new JButton("Start searching");
+		btnSearchDoc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
 				//�ffne Eingangsfenster
 				Healthcare_Search_Doc second = new Healthcare_Search_Doc();
 				second.setVisible(true);
 
-				
+
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton.setBounds(219, 295, 237, 45);
-		contentPane.add(btnNewButton);
-		
-		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("How can we help you?");
-		lblNewJgoodiesLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewJgoodiesLabel.setBounds(268, 42, 164, 58);
-		contentPane.add(lblNewJgoodiesLabel);
-
-		JLabel lbluser = new JLabel("Sie sind eigeloggt als" + username);
-		lbluser.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lbluser.setBounds(268, 42, 164, 58);
-		contentPane.add(lbluser);
-		
-		JButton btnNewButton_1 = new JButton("Logout");
-		btnNewButton_1.setBounds(587, 11, 88, 30);
-		contentPane.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("My Profile");
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton_2.setBounds(50, 143, 143, 39);
-		contentPane.add(btnNewButton_2);
-		
-		JButton btnNewButton_2_1 = new JButton("Our Services");
-		btnNewButton_2_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton_2_1.setBounds(268, 143, 143, 39);
-		contentPane.add(btnNewButton_2_1);
-		
-		JButton btnNewButton_2_2 = new JButton("Contact Us");
-		btnNewButton_2_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton_2_2.setBounds(483, 143, 143, 39);
-		contentPane.add(btnNewButton_2_2);
+		btnSearchDoc.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnSearchDoc.setBounds(219, 295, 237, 45);
+		contentPane.add(btnSearchDoc);
 	}
 }
