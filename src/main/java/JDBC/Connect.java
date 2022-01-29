@@ -24,7 +24,7 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="****";
+    static final String AUTH_STRING ="*****";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
@@ -320,7 +320,7 @@ public class Connect {
 
     public static ResultSet getAppointments(String docMail) throws SQLException {
         String sql_statement = "SELECT * FROM Users.Appointment WHERE doctorMail =? ";
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Users", "root", "rootadmin");
+        Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
         PreparedStatement select_app = con.prepareStatement(sql_statement);
         select_app.setString(1, docMail);
         ResultSet rs = select_app.executeQuery();
