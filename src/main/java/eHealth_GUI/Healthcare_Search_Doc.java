@@ -16,13 +16,45 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
+/*imports for the appointment gui*/
+
+import com.toedter.calendar.JDateChooser;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.Date;
+import com.toedter.calendar.JMonthChooser;
+import com.toedter.components.JSpinField;
+import com.toedter.calendar.JCalendar;
+import java.sql.Time;
+import java.util.Timer;
+import Users.Doctor;
+import com.toedter.components.JSpinField;
+
+import javax.swing.JComboBox;
+
 
 
 public class Healthcare_Search_Doc extends JFrame {
 
+
 	private JPanel contentPane;
 	private JTextField textField;
+
+	/*For the reminder*/
+	int dropDownIndex;
+	JComboBox dropDown;
 	int distance;
+	JDateChooser dateChooser;
+	JSpinField hour;
+	JSpinField minute;
+	JLabel lbTime;
+	JLabel lbHour;
+	JLabel lblNewLabel;
+	Date date;
+	LocalTime time;
+	LocalDateTime pickedDateTime;
 
 	/**
 	 * Launch the application.
@@ -76,62 +108,79 @@ public class Healthcare_Search_Doc extends JFrame {
 		/*--------------------------------Appointment Panel----------------------------------*/
 
 
+			/*Date picker*/
+		Date heute = new Date();
+		JLabel lbChooseDate = new JLabel("Date:");
+		lbChooseDate.setBounds(420, 129, 179, 17);
+		getContentPane().add(lbChooseDate);
+
+		dateChooser = new JDateChooser(heute);
+		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+
+			}
+
+		});
+		dateChooser.setBounds(420, 150, 129, 25);
+		getContentPane().add(dateChooser);
+
+		/*Time pickers*/
+
+		lbTime = new JLabel("Time:");
+		lbTime.setBounds(420, 180, 50, 19);
+		getContentPane().add(lbTime);
+
+		hour = new JSpinField();
+		hour.setBounds(420, 200, 50, 22);
+		getContentPane().add(hour);
+
+		lbHour = new JLabel("Hours");
+		lbHour.setFont(new Font("Tahoma", Font.ITALIC, 8));
+		lbHour.setBounds(420, 218, 129, 19);
+		getContentPane().add(lbHour);
+
+		minute = new JSpinField();
+		minute.setBounds(470, 200, 50, 22);
+		getContentPane().add(minute);
+
+		lblNewLabel = new JLabel("Minutes");
+		lblNewLabel.setFont(new Font("Tahoma", Font.ITALIC, 8));
+		lblNewLabel.setBounds(470, 218, 50, 19);
+		getContentPane().add(lblNewLabel);
+
+		/*Reminder Dropdown*/
+
+		JLabel lbReminder = new JLabel("Reminder:");
+		lbReminder.setBounds(420, 240, 70, 19);
+		getContentPane().add(lbReminder);
+
+		String[] reminderList = {"1 week", "3 days", "1 hour", "10 minutes"};
+
+		dropDown = new JComboBox(reminderList);
+		dropDown.setBounds(420, 260, 100, 25);
+		getContentPane().add(dropDown);
+
+		dropDown.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				dropDownIndex =	dropDown.getSelectedIndex();
+				System.out.println(dropDownIndex);
+			}
+		});
+
+		setHourMaximum(20);
+		setHourMinimum(10);
+
+		setMinuteMaximum(59);
+		setMinuteMinimum(00);
+
+		setDropDownMaximumRowCount(3);
+
+
 
 
 		/*--------------------------------Appointment Panel End----------------------------------*/
-
-
-
-		/*
-		String Healthproblems[] = {"Cold Symptoms","Exhaustion", "Headache", "Pains",
-				"Eye Problems", "Skin Infections", "Teeth Problems", "Ear Problems", "Injuries"};
-		
-		JRadioButton rdbtnColdSymptoms = new JRadioButton("Cold Symptoms");
-		rdbtnColdSymptoms.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnColdSymptoms.setBounds(37, 304, 130, 25);
-		contentPane.add(rdbtnColdSymptoms);
-		
-		JRadioButton rdbtnExhaustion = new JRadioButton("Exhaustion");
-		rdbtnExhaustion.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnExhaustion.setBounds(37, 332, 91, 25);
-		contentPane.add(rdbtnExhaustion);
-		
-		JRadioButton rdbtnHeadache = new JRadioButton("Headache");
-		rdbtnHeadache.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnHeadache.setBounds(37, 360, 91, 25);
-		contentPane.add(rdbtnHeadache);
-		
-		JRadioButton rdbtnPains = new JRadioButton("Pains");
-		rdbtnPains.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnPains.setBounds(37, 388, 61, 25);
-		contentPane.add(rdbtnPains);
-		
-		JRadioButton rdbtnEyeProblems = new JRadioButton("Eye Problems");
-		rdbtnEyeProblems.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnEyeProblems.setBounds(37, 416, 105, 25);
-		contentPane.add(rdbtnEyeProblems);
-
-		
-		JRadioButton rdbtnAllergicReaction = new JRadioButton("Skin Infections");
-		rdbtnAllergicReaction.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnAllergicReaction.setBounds(169, 304, 130, 25);
-		contentPane.add(rdbtnAllergicReaction);
-		
-		JRadioButton rdbtnTeethProblems = new JRadioButton("Teeth Problems");
-		rdbtnTeethProblems.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnTeethProblems.setBounds(169, 334, 130, 25);
-		contentPane.add(rdbtnTeethProblems);
-		
-		JRadioButton rdbtnEarProblems = new JRadioButton("Ear Problems");
-		rdbtnEarProblems.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnEarProblems.setBounds(169, 362, 130, 25);
-		contentPane.add(rdbtnEarProblems);
-		
-		JRadioButton rdbtnInjuries = new JRadioButton("Injuries");
-		rdbtnInjuries.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnInjuries.setBounds(169, 390, 130, 25);
-		contentPane.add(rdbtnInjuries);*/
-
 
 
 		/*Select Distance of Search*/
@@ -141,7 +190,7 @@ public class Healthcare_Search_Doc extends JFrame {
 		lblDistanceOfSearch.setBounds(26, 294, 140, 17);
 		contentPane.add(lblDistanceOfSearch);
 
-		String ChooseDistance[] = {"5km", "10km", "15km", "20km"};
+		String ChooseDistance[] = {"1km", "2km", "5km", "10km", "15km", "20km"};
 
 		@SuppressWarnings({"unchecked", "rawtypes"})
 		JComboBox comboBox = new JComboBox(ChooseDistance);
@@ -185,4 +234,100 @@ public class Healthcare_Search_Doc extends JFrame {
 			}
 		});
 	}
+
+	/*Get and set methods for the appointment function*/
+
+
+	/**
+	 * @return String This returns the Date as String
+	 */
+	public String getDateChooserDateFormatString() {
+
+		return dateChooser.getDateFormatString();
+	}
+
+	/**
+	 * Set the initial date displayed when opening the window first.
+	 * In this application it shows the date of today.
+	 */
+	public void setDateChooserDateFormatString(String dateFormatString) {
+
+		dateChooser.setDateFormatString(dateFormatString);
+	}
+
+	/**
+	 * get the Hour entered into the JSpinField
+	 * @return Integer Returns the hour
+	 */
+	public int getHourMaximum() {
+
+		return hour.getMaximum();
+	}
+
+	/**
+	 * sets the maximum value of the JSpinField "Hour".
+	 * In this application, it represents the hour when the doctor is closing.
+	 * @param maximum
+	 */
+	public void setHourMaximum(int maximum) {
+		hour.setMaximum(maximum);
+	}
+
+	/**
+	 * get the minute entered into the JSpinField
+	 * @return int Returns the minute
+	 */
+	public int getMinuteMaximum() {
+		return minute.getMaximum();
+	}
+
+	/**
+	 * sets the maximum value of the JSpinField "Minute".
+	 * In this application, it represents the hour when the doctor is closing.
+	 * @param maximum_1
+	 */
+	public void setMinuteMaximum(int maximum_1) {
+		minute.setMaximum(maximum_1);
+	}
+
+	/**
+	 *
+	 * @return Integer Minute
+	 */
+	public int getMinuteMinimum() {
+		return minute.getMinimum();
+	}
+
+	/**
+	 * Minimum is set to 0 in this application.
+	 * @param minimum
+	 */
+	public void setMinuteMinimum(int minimum) {
+		minute.setMinimum(minimum);
+	}
+	public int getHourMinimum() {
+		return hour.getMinimum();
+	}
+
+	/**
+	 * Minimum represents the time when doctor is opening.
+	 * @param minimum_1
+	 */
+	public void setHourMinimum(int minimum_1) {
+		hour.setMinimum(minimum_1);
+	}
+
+	/**
+	 * Returned index is used to calculate the reminder time.
+	 * @return Integer Index of chosen element.
+	 */
+	public int getDropDownMaximumRowCount() {
+		return dropDown.getMaximumRowCount();
+	}
+	public void setDropDownMaximumRowCount(int maximumRowCount) {
+		dropDown.setMaximumRowCount(maximumRowCount);
+	}
+
 }
+
+
