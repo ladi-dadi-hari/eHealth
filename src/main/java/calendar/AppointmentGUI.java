@@ -38,7 +38,7 @@ import javax.swing.JComboBox;
 
 public class AppointmentGUI {
 
-    private JFrame frmAppointment;
+    public JFrame frmAppointment = new JFrame();;
     private JDateChooser dateChooser;
     private JSpinField hour;
     private JSpinField minute;
@@ -79,9 +79,9 @@ public class AppointmentGUI {
      * Initialize the contents of the frame.
      * This method is called in the constructor, defining the behavior of this window when opened.
      */
-    private void initialize() {
+    public void initialize() {
 
-        frmAppointment = new JFrame();
+
         frmAppointment.setTitle("Appointment");
         frmAppointment.setBounds(100, 100, 394, 326);
         frmAppointment.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -157,7 +157,6 @@ public class AppointmentGUI {
 
             public void actionPerformed(ActionEvent e) {
                 dropDownIndex =	dropDown.getSelectedIndex();
-                System.out.println(dropDownIndex);
             }
         });
         dropDown.setBounds(217, 130, 85, 19);
