@@ -145,7 +145,7 @@ public class Healthcare_Search_Doc extends JFrame {
 		skinIssuesdropDown.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				dropDownIndex =	skinIssuesdropDown.getSelectedIndex();
+				dropDownIndex = generalIssues.length + skinIssuesdropDown.getSelectedIndex();
 				System.out.println(dropDownIndex);
 			}
 		});
@@ -166,7 +166,7 @@ public class Healthcare_Search_Doc extends JFrame {
 		jointIssuesdropDown.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				dropDownIndex =	jointIssuesdropDown.getSelectedIndex();
+				dropDownIndex =	generalIssues.length + skinIssues.length + jointIssuesdropDown.getSelectedIndex();
 				System.out.println(dropDownIndex);
 			}
 		});
@@ -188,7 +188,7 @@ public class Healthcare_Search_Doc extends JFrame {
 		chronicIssuesdropDown.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				dropDownIndex =	chronicIssuesdropDown.getSelectedIndex();
+				dropDownIndex = generalIssues.length + skinIssues.length + jointIssues.length + chronicIssuesdropDown.getSelectedIndex();
 				System.out.println(dropDownIndex);
 			}
 		});
