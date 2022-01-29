@@ -11,6 +11,8 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoField;
 import java.util.List;
 
+import static java.sql.ResultSet.CONCUR_READ_ONLY;
+
 /**
  * <h1>Connect Class</h1>
  * This class contains all methods required to communicate with the MySQL Database, using the JDBC driver.
@@ -24,11 +26,12 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="*****";
+    static final String AUTH_STRING ="****";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
         createTablePatient();
+        createTableAppointment();
     }
 
     public static boolean usernameOrEmailExists(String _username, String _email)
@@ -288,19 +291,20 @@ public class Connect {
      * @param _date
      * @param _patientMail
      * @param _doctorMail
+     * @param _patientName
      * @throws Exception
      *
      * @author: Max Endres
      */
-    public static void insertAppointment(Time _time, Date _date, String _patientMail, String _doctorMail) throws Exception {
+    public static void insertAppointment(Time _time, Date _date,String _patientName, String _patientMail, String _doctorMail) throws Exception {
         //Time time = Time.valueOf(LocalTime)
-        String location = "Dort";
-        String healthprob = "Corona-rona";
+        String location = "Frankfurt";
+        String healthprob = "Husten";
         Time time = _time;
         Date date = _date;
         String patMail = _patientMail;
         String docMail = _doctorMail;
-        String sql_insert = "INSERT INTO appointment (date, time, patientMail, doctorMail, location, healthproblem) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql_insert = "INSERT INTO appointment (date, time, patientMail, doctorMail, location, healthproblem, name, confirmend) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
 
@@ -312,6 +316,8 @@ public class Connect {
         insertApp.setString(4, docMail);
         insertApp.setString(5, location);
         insertApp.setString(6, healthprob);
+        insertApp.setString(7, _patientName);
+        insertApp.setBoolean(8, false);
 
         insertApp.executeUpdate();
 
@@ -321,8 +327,10 @@ public class Connect {
     public static ResultSet getAppointments(String docMail) throws SQLException {
         String sql_statement = "SELECT * FROM Users.Appointment WHERE doctorMail =? ";
         Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
-        PreparedStatement select_app = con.prepareStatement(sql_statement);
+        PreparedStatement select_app = con.prepareStatement(sql_statement,ResultSet.TYPE_SCROLL_INSENSITIVE, CONCUR_READ_ONLY);
         select_app.setString(1, docMail);
+
+
         ResultSet rs = select_app.executeQuery();
         return rs;
     }
@@ -338,7 +346,7 @@ public class Connect {
 
         try {
             Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
-            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS appointment(ID int NOT NULL AUTO_INCREMENT, date DATE, time TIME, patientMail VARCHAR(255), doctorMail VARCHAR(255), location VARCHAR(255), healthproblem VARCHAR(255), PRIMARY KEY (ID))");
+            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS appointment(ID int NOT NULL AUTO_INCREMENT, date DATE, time TIME,name VARCHAR(30), healthproblem VARCHAR(255), patientMail VARCHAR(255), confirmend TINYINT, doctorMail VARCHAR(255), location VARCHAR(255),  PRIMARY KEY (ID))");
             create.executeUpdate();
 
         }catch(Exception e) {System.out.println(e);

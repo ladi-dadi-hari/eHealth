@@ -84,7 +84,7 @@ public class AppointmentGUI {
 
         frmAppointment.setTitle("Appointment");
         frmAppointment.setBounds(100, 100, 394, 326);
-        frmAppointment.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frmAppointment.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmAppointment.getContentPane().setLayout(null);
 
         Date heute = new Date();
@@ -138,8 +138,8 @@ public class AppointmentGUI {
          */
         btnCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                frmAppointment.setVisible(false);
 
-                System.exit(0);
             }
         });
         btnCancel.setBounds(230, 224, 85, 21);
@@ -199,7 +199,7 @@ public class AppointmentGUI {
                 //(Time _time, Date _date, String _patientMail, String _doctorMail
 
                 try {
-                    Connect.insertAppointment(sqlTime, sqlDate, "Mail1@oasd.de", "doctormailing");
+                    Connect.insertAppointment(sqlTime, sqlDate, "Dampf", "Mail1@gmail.de", "doctormailing");
                 } catch (Exception e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
