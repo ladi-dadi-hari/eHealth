@@ -36,10 +36,10 @@ public class Healthcare_Registration extends JFrame
     private JLabel lblbirtday;
     private JRadioButton rdbtnPublic;
     private JRadioButton rdbtnPrivate;
-    private JTextField specificationF;
-    private JTextField healthproblem;
+    private JComboBox combobox_specificationF;
+    private JTextField preIll;
     private Label lblspeF;
-    private Label lblHP;
+    private Label lblpreIll;
     private String typeOfInsurance;
 
     ButtonGroup group_pub = new ButtonGroup();
@@ -164,29 +164,37 @@ public class Healthcare_Registration extends JFrame
 
         lblTheNameOf = new JLabel("Name of your Insurance");
         lblTheNameOf.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lblTheNameOf.setBounds(400, 90, 250, 52);
+        lblTheNameOf.setBounds(400, 250, 250, 52);
         contentPane.add(lblTheNameOf);
         lblTheNameOf.setVisible(false);
 
         nameofinsurance = new JTextField();
-        nameofinsurance.setBounds(400, 130, 250, 25);
+        nameofinsurance.setBounds(400, 290, 250, 25);
         contentPane.add(nameofinsurance);
         nameofinsurance.setColumns(10);
         nameofinsurance.setVisible(false);
 
         rdbtnPublic = new JRadioButton("public");
         rdbtnPublic.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        rdbtnPublic.setBounds(400, 170, 100, 25);
+        rdbtnPublic.setBounds(400, 370, 100, 25);
         contentPane.add(rdbtnPublic);
         group_pub.add(rdbtnPublic);
         rdbtnPublic.setVisible(false);
 
         rdbtnPrivate = new JRadioButton("private");
         rdbtnPrivate.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        rdbtnPrivate.setBounds(500, 170, 100, 25);
+        rdbtnPrivate.setBounds(500, 370, 100, 25);
         contentPane.add(rdbtnPrivate);
         group_prv.add(rdbtnPrivate);
         rdbtnPrivate.setVisible(false);
+
+        enum spec {Pediatrician,
+            General,
+            Cardiologist,
+            Pulmonologist,
+            Orthopedist,
+            Dentist,
+            Physiotherapist}
 
         lblspeF = new Label("Specification");
         lblspeF.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -194,32 +202,31 @@ public class Healthcare_Registration extends JFrame
         frame_register.getContentPane().add(lblspeF);
         lblspeF.setVisible(false);
 
-        specificationF = new JTextField();
-        specificationF.setBounds(400, 50, 250, 25);
-        frame_register.getContentPane().add(specificationF);
-        specificationF.setColumns(10);
-        specificationF.setVisible(false);
+        combobox_specificationF = new JComboBox(spec.values());
+        combobox_specificationF.setBounds(400, 50, 250, 25);
+        frame_register.getContentPane().add(combobox_specificationF);
+        combobox_specificationF.setVisible(false);
 
-        lblHP = new Label("Health Problems");
-        lblHP.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lblHP.setBounds(400, 90, 110, 25);
-        frame_register.getContentPane().add(lblHP);
-        lblHP.setVisible(false);
+        preIll = new JTextField();
+        preIll.setBounds(400, 130, 250, 100);
+        frame_register.getContentPane().add(preIll);
+        preIll.setColumns(10);
+        preIll.setVisible(false);
 
-        healthproblem = new JTextField();
-        healthproblem.setBounds(400, 130, 250, 25);
-        frame_register.getContentPane().add(healthproblem);
-        healthproblem.setColumns(10);
-        healthproblem.setVisible(false);
+        lblpreIll = new Label("Pre-existing illness");
+        lblpreIll.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lblpreIll.setBounds(400, 90, 150, 52);
+        frame_register.getContentPane().add(lblpreIll);
+        lblpreIll.setVisible(false);
 
         JButton registerButton = new JButton("Register");
         registerButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        registerButton.setBounds(400, 370, 127, 34);
+        registerButton.setBounds(400, 450, 127, 34);
         frame_register.getContentPane().add(registerButton);
 
         JButton cancelbutton = new JButton("Cancel");
         cancelbutton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        cancelbutton.setBounds(400, 440, 127, 34);
+        cancelbutton.setBounds(400, 520, 127, 34);
         frame_register.getContentPane().add(cancelbutton);
 
         cancelbutton.addActionListener(new ActionListener() {
@@ -265,10 +272,10 @@ public class Healthcare_Registration extends JFrame
                    lblbirtday.setVisible(true);
                    birthday.setVisible(true);
                    lblspeF.setVisible(false);
-                   lblHP.setVisible(false);
+                   lblpreIll.setVisible(true);
                    lblspeF.setVisible(false);
-                   specificationF.setVisible(false);
-                   healthproblem.setVisible(false);
+                   combobox_specificationF.setVisible(false);
+                   preIll.setVisible(true);
 
                }
                else if(comboBox.getSelectedItem().toString().equals("Doctor"))
@@ -280,10 +287,10 @@ public class Healthcare_Registration extends JFrame
                    lblbirtday.setVisible(false);
                    birthday.setVisible(false);
                    lblspeF.setVisible(true);
-                   lblHP.setVisible(true);
+                   lblpreIll.setVisible(false);
                    lblspeF.setVisible(true);
-                   specificationF.setVisible(true);
-                   healthproblem.setVisible(true);
+                   combobox_specificationF.setVisible(true);
+                   preIll.setVisible(false);
                }
                }
 
@@ -322,7 +329,7 @@ public class Healthcare_Registration extends JFrame
                     {
                         try
                         {
-                            Connect.insertNewDoc(firstName.getText(), lastName.getText(), username.getText(),address.getText(), specificationF.getText(),  mailAddress.getText(), password.getText());
+                            Connect.insertNewDoc(firstName.getText(), lastName.getText(), username.getText(),address.getText(), combobox_specificationF.getSelectedItem().toString(),  mailAddress.getText(), password.getText());
                             frame_register.dispose();
                         } catch (Exception e) {
                             e.printStackTrace();
