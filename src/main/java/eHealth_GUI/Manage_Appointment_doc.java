@@ -20,6 +20,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
+import static JDBC.Connect.confirmAppointment;
+
 public class Manage_Appointment_doc extends JFrame {
 
     private JPanel contentPane;
@@ -56,7 +58,7 @@ public class Manage_Appointment_doc extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Manage_Appointment_doc frame = new Manage_Appointment_doc("doctor-healty@mailing");
+                    Manage_Appointment_doc frame = new Manage_Appointment_doc("doctormailing");
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -82,19 +84,23 @@ public class Manage_Appointment_doc extends JFrame {
         contentPane.setLayout(null);
 
         JButton btnOK1 = new JButton("Confirm");
+        btnOK1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    appointments.absolute(1);
+                    confirmAppointment(appointments.getString(6), appointments.getDate(2));
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
         btnOK1.setBounds(655, 58, 85, 21);
         contentPane.add(btnOK1);
 
         JButton btnCancel1 = new JButton("Cancel");
         btnCancel1.setBounds(750, 58, 85, 21);
         contentPane.add(btnCancel1);
-
-
-
-
-
-
-
 
 
         JButton btnExit = new JButton("Exit");
@@ -133,7 +139,7 @@ public class Manage_Appointment_doc extends JFrame {
 
         //Move to first row in ResultSet
             appointments.absolute(1);
-        //appointments.next();
+
 
             lbDate1 = new JLabel("");
             lbDate1.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -217,6 +223,17 @@ public class Manage_Appointment_doc extends JFrame {
                 contentPane.add(checkBox2);
 
                 JButton btnOK2 = new JButton("Confirm");
+                btnOK2.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+
+                        try {
+                            appointments.absolute(2);
+                            confirmAppointment(appointments.getString(6), appointments.getDate(2));
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
                 btnOK2.setBounds(655, 124, 85, 21);
                 contentPane.add(btnOK2);
 
@@ -228,9 +245,9 @@ public class Manage_Appointment_doc extends JFrame {
                 btnCancel2.setBounds(750, 124, 85, 21);
                 contentPane.add(btnCancel2);
             }
-            //Move to 3rd row
-            //appointments.absolute(3);
 
+
+            //Move to 3rd row
 
             lbDate3 = new JLabel("");
             lbDate3.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -275,6 +292,17 @@ public class Manage_Appointment_doc extends JFrame {
                 contentPane.add(checkBox3);
 
                 JButton btnOK3 = new JButton("Confirm");
+                btnOK3.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+
+                        try {
+                            appointments.absolute(3);
+                            confirmAppointment(appointments.getString(6), appointments.getDate(2));
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
                 btnOK3.setBounds(655, 197, 85, 21);
                 contentPane.add(btnOK3);
 
@@ -282,9 +310,9 @@ public class Manage_Appointment_doc extends JFrame {
                 btnCancel3.setBounds(750, 197, 85, 21);
                 contentPane.add(btnCancel3);
             }
-            //Move to 4th row
-            //appointments.absolute(4);
 
+
+            //Move to 4th row
 
             lbDate4 = new JLabel("");
             lbDate4.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -331,6 +359,17 @@ public class Manage_Appointment_doc extends JFrame {
                 contentPane.add(lbConfirmend);
 
                 JButton btnOK4 = new JButton("Confirm");
+                btnOK4.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+
+                        try {
+                            appointments.absolute(4);
+                            confirmAppointment(appointments.getString(6), appointments.getDate(2));
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
                 btnOK4.setBounds(655, 272, 85, 21);
                 contentPane.add(btnOK4);
 

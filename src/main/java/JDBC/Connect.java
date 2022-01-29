@@ -26,7 +26,7 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="****";
+    static final String AUTH_STRING ="*****";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
@@ -283,7 +283,33 @@ public class Connect {
         return false;
     }
 
+    public static void confirmAppointment(String _patMail, Date _appDate) throws SQLException {
 
+        //Send Confirm-Mail to _patMail
+
+        Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+        PreparedStatement confirmApp = con.prepareStatement("UPDATE Users.appointment SET confirmend = ? WHERE patientMail = ? AND date = ? ");
+        confirmApp.setBoolean(1, true);
+        confirmApp.setString(2, _patMail);
+        confirmApp.setDate(3, _appDate );
+
+
+        confirmApp.execute();
+    }
+
+    public static void cancelAppointment(String _patMail, Date _appDate) throws SQLException {
+
+        //Send Confirm-Mail to _patMail
+
+        Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+        PreparedStatement confirmApp = con.prepareStatement("UPDATE Users.appointment SET confirmend = ? WHERE patientMail = ? AND date = ? ");
+        confirmApp.setBoolean(1, false);
+        confirmApp.setString(2, _patMail);
+        confirmApp.setDate(3, _appDate );
+
+
+        confirmApp.execute();
+    }
     /**
      * This method inserts the created appointment into the table "appointment".
      * The parameter values are provided by the user over the GUI.
