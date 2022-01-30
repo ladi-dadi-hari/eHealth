@@ -10,7 +10,8 @@ public class Patient extends Users.User {
     private String birthday = null; // Implement Date type?
 
 
-
+    private String firstName = null;
+    private String lastName = null;
     private String healthInfo = null;
     private String insurance = null; // Enum?
     private String insuranceType = null; // Enum?
@@ -40,6 +41,13 @@ public class Patient extends Users.User {
     }
 
     public Patient(){}
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public void setLastName(String lastName){
+        this.lastName = lastName;
+    }
 
     public void setMailAddress(String mail){
         this.mailAddress = mail;
