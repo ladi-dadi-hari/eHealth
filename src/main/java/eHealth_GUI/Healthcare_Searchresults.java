@@ -47,7 +47,7 @@ public class Healthcare_Searchresults extends JFrame {
 	public Healthcare_Searchresults(Patient patient, List<List<String>> doctors) {
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 381, 545);
+		setBounds(100, 100, 450, 545);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -64,7 +64,7 @@ public class Healthcare_Searchresults extends JFrame {
 		System.out.println(doctors.size());
 
 		JList list = new JList(neu);
-		list.setBounds(71, 71, 225, 211);
+		list.setBounds(71, 71, 300, 211);
 		contentPane.add(list);
 
 		JLabel lblResults = new JLabel("Search Results:");
