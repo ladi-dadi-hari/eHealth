@@ -81,7 +81,7 @@ public class Healthcare_Search_Doc extends JFrame {
 	 */
 	public Healthcare_Search_Doc() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 685, 510);
+		setBounds(100, 100, 331, 510);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -90,12 +90,12 @@ public class Healthcare_Search_Doc extends JFrame {
 		/*Introduction*/
 		JLabel lblNewJgoodiesTitle = DefaultComponentFactory.getInstance().createTitle("Find the Doctor for you!");
 		lblNewJgoodiesTitle.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewJgoodiesTitle.setBounds(226, 11, 244, 57);
+		lblNewJgoodiesTitle.setBounds(44, 11, 228, 57);
 		contentPane.add(lblNewJgoodiesTitle);
 		
 		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("In only a few more steps:");
 		lblNewJgoodiesLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewJgoodiesLabel.setBounds(236, 61, 216, 39);
+		lblNewJgoodiesLabel.setBounds(64, 59, 188, 39);
 		contentPane.add(lblNewJgoodiesLabel);
 
 		/*Choose Health Issues from dropdown menus*/
@@ -211,7 +211,7 @@ public class Healthcare_Search_Doc extends JFrame {
 		/*Button Search*/
 		JButton btnSearchNow = new JButton("Search now");
 		btnSearchNow.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnSearchNow.setBounds(489, 402, 140, 39);
+		btnSearchNow.setBounds(88, 405, 140, 39);
 		contentPane.add(btnSearchNow);
 
 		comboBox.addActionListener(new ActionListener() {
@@ -245,177 +245,11 @@ public class Healthcare_Search_Doc extends JFrame {
 			}
 		});
 
-		/*--------------------------------Appointment Panel----------------------------------*/
-
-
-			/*Date picker*/
-		Date heute = new Date();
-		JLabel lbChooseDate = new JLabel("Date:");
-		lbChooseDate.setBounds(420, 129, 179, 25);
-		getContentPane().add(lbChooseDate);
-
-		dateChooser = new JDateChooser(heute);
-		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-
-			}
-
-		});
-		dateChooser.setBounds(420, 150, 129, 25);
-		getContentPane().add(dateChooser);
-
-		/*Time pickers*/
-
-		lbTime = new JLabel("Time:");
-		lbTime.setBounds(420, 180, 50, 19);
-		getContentPane().add(lbTime);
-
-		hour = new JSpinField();
-		hour.setBounds(420, 200, 50, 22);
-		getContentPane().add(hour);
-
-		lbHour = new JLabel("Hours");
-		lbHour.setFont(new Font("Tahoma", Font.ITALIC, 8));
-		lbHour.setBounds(420, 218, 129, 19);
-		getContentPane().add(lbHour);
-
-		minute = new JSpinField();
-		minute.setBounds(470, 200, 50, 22);
-		getContentPane().add(minute);
-
-		lblNewLabel = new JLabel("Minutes");
-		lblNewLabel.setFont(new Font("Tahoma", Font.ITALIC, 8));
-		lblNewLabel.setBounds(470, 218, 50, 19);
-		getContentPane().add(lblNewLabel);
-
-		/*Reminder Dropdown*/
-
-		JLabel lbReminder = new JLabel("Reminder:");
-		lbReminder.setBounds(420, 240, 70, 19);
-		getContentPane().add(lbReminder);
-
-		String[] reminderList = {"1 week", "3 days", "1 hour", "10 minutes"};
-
-		reminderdropDown = new JComboBox(reminderList);
-		reminderdropDown.setBounds(420, 260, 100, 25);
-		getContentPane().add(reminderdropDown);
-
-		reminderdropDown.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				dropDownIndex =	reminderdropDown.getSelectedIndex();
-				System.out.println(dropDownIndex);
-			}
-		});
-
-		setHourMaximum(20);
-		setHourMinimum(10);
-
-		setMinuteMaximum(59);
-		setMinuteMinimum(00);
-
-		setDropDownMaximumRowCount(3);
-
-
-
+		/*--------------------------------Appointment Panel----------------------------------
 
 		/*--------------------------------Appointment Panel End----------------------------------*/
 
 
-	}
-
-	/*Get and set methods for the appointment function*/
-
-
-	/**
-	 * @return String This returns the Date as String
-	 */
-	public String getDateChooserDateFormatString() {
-
-		return dateChooser.getDateFormatString();
-	}
-
-	/**
-	 * Set the initial date displayed when opening the window first.
-	 * In this application it shows the date of today.
-	 */
-	public void setDateChooserDateFormatString(String dateFormatString) {
-
-		dateChooser.setDateFormatString(dateFormatString);
-	}
-
-	/**
-	 * get the Hour entered into the JSpinField
-	 * @return Integer Returns the hour
-	 */
-	public int getHourMaximum() {
-
-		return hour.getMaximum();
-	}
-
-	/**
-	 * sets the maximum value of the JSpinField "Hour".
-	 * In this application, it represents the hour when the doctor is closing.
-	 * @param maximum
-	 */
-	public void setHourMaximum(int maximum) {
-		hour.setMaximum(maximum);
-	}
-
-	/**
-	 * get the minute entered into the JSpinField
-	 * @return int Returns the minute
-	 */
-	public int getMinuteMaximum() {
-		return minute.getMaximum();
-	}
-
-	/**
-	 * sets the maximum value of the JSpinField "Minute".
-	 * In this application, it represents the hour when the doctor is closing.
-	 * @param maximum_1
-	 */
-	public void setMinuteMaximum(int maximum_1) {
-		minute.setMaximum(maximum_1);
-	}
-
-	/**
-	 *
-	 * @return Integer Minute
-	 */
-	public int getMinuteMinimum() {
-		return minute.getMinimum();
-	}
-
-	/**
-	 * Minimum is set to 0 in this application.
-	 * @param minimum
-	 */
-	public void setMinuteMinimum(int minimum) {
-		minute.setMinimum(minimum);
-	}
-	public int getHourMinimum() {
-		return hour.getMinimum();
-	}
-
-	/**
-	 * Minimum represents the time when doctor is opening.
-	 * @param minimum_1
-	 */
-	public void setHourMinimum(int minimum_1) {
-		hour.setMinimum(minimum_1);
-	}
-
-	/**
-	 * Returned index is used to calculate the reminder time.
-	 * @return Integer Index of chosen element.
-	 */
-	public int getDropDownMaximumRowCount() {
-		return reminderdropDown.getMaximumRowCount();
-	}
-	public void setDropDownMaximumRowCount(int maximumRowCount) {
-		reminderdropDown.setMaximumRowCount(maximumRowCount);
 	}
 
 }
