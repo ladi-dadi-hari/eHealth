@@ -1,15 +1,13 @@
 package eHealth_GUI;
 
+import Export.PDF_Functionality;
 import Users.Patient;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -50,34 +48,34 @@ public class Healthcare_User_Profile extends JFrame {
 		lblNewLabel.setBounds(159, 27, 185, 25);
 		contentPane.add(lblNewLabel);
 		
-		JLabel firstName_label = new JLabel("First Name:");
+		JLabel firstName_label = new JLabel("First Name: "+ patient.getFirstName());
 		firstName_label.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		firstName_label.setBounds(38, 90, 88, 39);
+		firstName_label.setBounds(38, 90, 250, 39);
 		contentPane.add(firstName_label);
 		
-		JLabel lastName_label = new JLabel("Last Name:");
+		JLabel lastName_label = new JLabel("Last Name: "+patient.getLastName());
 		lastName_label.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lastName_label.setBounds(38, 150, 88, 39);
+		lastName_label.setBounds(38, 150, 250, 39);
 		contentPane.add(lastName_label);
 		
-		JLabel dateofBirth_label = new JLabel("Date of Birth:");
+		JLabel dateofBirth_label = new JLabel("Date of Birth: "+patient.getBirthday());
 		dateofBirth_label.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		dateofBirth_label.setBounds(38, 210, 100, 39);
+		dateofBirth_label.setBounds(38, 210, 250, 39);
 		contentPane.add(dateofBirth_label);
 		
-		JLabel eMail_label = new JLabel("E-Mail Address:");
+		JLabel eMail_label = new JLabel("E-Mail Address: "+patient.getMailAddress());
 		eMail_label.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		eMail_label.setBounds(38, 270, 114, 39);
+		eMail_label.setBounds(38, 270, 400, 39);
 		contentPane.add(eMail_label);
 		
-		JLabel insurance_label = new JLabel("Insured at:");
+		JLabel insurance_label = new JLabel("Insured at: "+patient.getInsurance());
 		insurance_label.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		insurance_label.setBounds(274, 90, 88, 39);
+		insurance_label.setBounds(274, 90, 250, 39);
 		contentPane.add(insurance_label);
 		
-		JLabel healthInfo_label = new JLabel("Health Info:");
+		JLabel healthInfo_label = new JLabel("Health Info: "+patient.getHealthInfo());
 		healthInfo_label.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		healthInfo_label.setBounds(274, 150, 88, 39);
+		healthInfo_label.setBounds(274, 150, 250, 39);
 		contentPane.add(healthInfo_label);
 		
 		JButton exportPDFbtn = new JButton("Export Info");
@@ -85,6 +83,10 @@ public class Healthcare_User_Profile extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				// Aufruf der Funktion, die für das Exportieren zuständig ist
+
+				PDF_Functionality.CreatePDF(patient.getHealthInfo());
+				JOptionPane.showMessageDialog(contentPane,"PDF exported succesfully");
+
 			}
 		});
 

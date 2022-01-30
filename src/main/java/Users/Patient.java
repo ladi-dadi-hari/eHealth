@@ -2,6 +2,7 @@ package Users;
 
 import Hashing.Hashing;
 import JDBC.Connect;
+import eHealth_GUI.Healthcare_Login;
 
 public class Patient extends Users.User {
 
@@ -10,8 +11,7 @@ public class Patient extends Users.User {
     private String birthday = null; // Implement Date type?
 
 
-    private String firstName = null;
-    private String lastName = null;
+
     private String healthInfo = null;
     private String insurance = null; // Enum?
     private String insuranceType = null; // Enum?
@@ -42,11 +42,27 @@ public class Patient extends Users.User {
 
     public Patient(){}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-    public void setLastName(String lastName){
-        this.lastName = lastName;
+    /**
+     * When calling this function, the object patient gets deleted and logged out.
+     *
+     * @param patient
+     */
+
+    public void logOutPat (Patient patient){
+
+        patient.setFirstName(null);
+        patient.setLastName(null);
+        patient.setUsername(null);
+        patient.setMailAddress(null);
+        patient.setBirthday(null);
+        patient.setLocation(null);
+        patient.setHealthInfo(null);
+        patient.setInsurance(null);
+        patient.setInsuranceType(null);
+
+        System.gc();
+        System.out.println("patient is logged out and object deleted");
+
     }
 
     public void setMailAddress(String mail){
@@ -83,6 +99,8 @@ public class Patient extends Users.User {
     public int getIsDoc() {return isDoc;}
 
     public void setIsDoc(int isDoc) {this.isDoc = isDoc;}
+
+    public String getMailAddress() {return mailAddress;}
 
     public String getUsername() {return username;}
 

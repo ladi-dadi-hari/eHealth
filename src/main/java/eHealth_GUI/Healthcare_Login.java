@@ -19,9 +19,9 @@ import java.sql.SQLException;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class Healthcare_Login {
+public class Healthcare_Login extends JFrame {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField username;
 	private JTextField password_field;
 
@@ -54,6 +54,24 @@ public class Healthcare_Login {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	/*
+		Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    SendEmail("can.dechert@gmx.de", "Appointment Reminder", "You have an Appointment one the " + _appDate + " at ");
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                }
+                this.cancel();
+            }
+        };
+
+        timer.schedule(task, delay);
+	 */
+
+
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 531, 467);
@@ -131,17 +149,18 @@ public class Healthcare_Login {
 						ResultSet rs = Connect.getPatient(u_username);
 						if(rs.next()) {
 							Patient patient = new Patient();
-							patient.setUsername(rs.getString(4));
-							patient.setMailAddress(rs.getString(5));
-							patient.setLatitude(rs.getFloat(14));
-							patient.setLongitude(rs.getFloat(13));
-							patient.setHealthInfo(rs.getString(10));
 							patient.setFirstName(rs.getString(2));
 							patient.setLastName(rs.getString(3));
+							patient.setUsername(rs.getString(4));
+							patient.setMailAddress(rs.getString(5));
+							patient.setBirthday(rs.getString(6));
+							patient.setLocation(rs.getString(9));
+							patient.setHealthInfo(rs.getString(10));
+							patient.setInsurance(rs.getString(11));
+							patient.setInsuranceType(rs.getString(12));
 
 							Healthcare_Entry second = new Healthcare_Entry(patient);
 							Healthcare_Tray_Icon third = new Healthcare_Tray_Icon();
-							third.Tray_Icon(patient);
 							second.setVisible(true);
 							frame.dispose();
 							return;

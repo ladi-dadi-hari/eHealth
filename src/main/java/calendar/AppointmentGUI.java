@@ -75,15 +75,15 @@ public class AppointmentGUI {
      * Create the application.
      * patient_mail + Doc_Mail for constructor to initialize
      */
-    public AppointmentGUI(Patient patient) {
-        initialize(patient);
+    public AppointmentGUI(Patient patient, String docMail) {
+        initialize(patient, docMail);
     }
 
     /**
      * Initialize the contents of the frame.
      * This method is called in the constructor, defining the behavior of this window when opened.
      */
-    public void initialize(Patient patient) {
+    public void initialize(Patient patient, String docMail) {
 
 
         frmAppointment.setTitle("Appointment");
@@ -203,7 +203,7 @@ public class AppointmentGUI {
                 //(Time _time, Date _date, String _patientMail, String _doctorMail
 
                 try {
-                    Connect.insertAppointment(sqlTime, sqlDate, "Dampf", "nachname", "Mail1@gmail.de", "NewT@as.de", "Healthproblems");
+                    Connect.insertAppointment(sqlTime, sqlDate, patient.getFirstName(), patient.getLastName(), patient.getMailAddress(), docMail, patient.getHealthInfo());
                 } catch (Exception e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
@@ -215,7 +215,7 @@ public class AppointmentGUI {
 
 
                 pickedDateTime = LocalDateTime.of(pickedDate.getYear(), pickedDate.getMonth(), pickedDate.getDayOfMonth(), time.getHour(), time.getMinute());
-                Appointment appCreatet = new Appointment(pickedDateTime, dropDownIndex );
+                Appointment appCreatet = new Appointment(pickedDateTime, dropDownIndex, patient);
 
             }
         });

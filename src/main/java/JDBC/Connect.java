@@ -382,7 +382,7 @@ public class Connect {
 
         try {
             Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
-            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS appointment(ID int NOT NULL AUTO_INCREMENT, date DATE, time TIME,first_name VARCHAR(30), last_name VARCHAR(50), healthproblem VARCHAR(255), patientMail VARCHAR(255), confirmend TINYINT, doctorMail VARCHAR(255)),  PRIMARY KEY (ID))");
+            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS appointment(ID int NOT NULL AUTO_INCREMENT, date DATE, time TIME,first_name VARCHAR(30), last_name VARCHAR(50), healthproblem VARCHAR(255), patientMail VARCHAR(255), confirmend TINYINT, doctorMail VARCHAR(255),  PRIMARY KEY (ID))");
             create.executeUpdate();
 
         }catch(Exception e) {System.out.println(e);
