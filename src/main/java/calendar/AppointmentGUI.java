@@ -160,7 +160,7 @@ public class AppointmentGUI {
         dropDown.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                dropDownIndex =	dropDown.getSelectedIndex();
+                dropDownIndex = dropDown.getSelectedIndex();
             }
         });
         dropDown.setBounds(217, 130, 85, 19);

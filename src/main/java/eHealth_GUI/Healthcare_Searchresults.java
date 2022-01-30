@@ -45,7 +45,7 @@ public class Healthcare_Searchresults extends JFrame {
 	 * Create the frame.
 	 */
 	public Healthcare_Searchresults(Patient patient, List<List<String>> doctors) {
-		String docMail = null;
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 381, 545);
 		contentPane = new JPanel();
@@ -56,7 +56,10 @@ public class Healthcare_Searchresults extends JFrame {
 		String[] neu = new String[doctors.size()];
 
 		for (i = 0; i < doctors.size(); i++){
-			neu[i] = String.valueOf(doctors.get(i));
+			String docResult = String.valueOf(doctors.get(i));
+			docResult = docResult.replace("[", "");
+			docResult = docResult.replace("]", "");
+			neu[i] = String.valueOf(docResult);
 		}
 		System.out.println(doctors.size());
 
@@ -73,9 +76,14 @@ public class Healthcare_Searchresults extends JFrame {
 		JButton btnNewButton = new JButton("Make Appointment");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int i = list.getAnchorSelectionIndex(); //doctor_mailAddress
-				AppointmentGUI appointment= new AppointmentGUI(patient, docMail);
+				String chosenDocMail = list.getSelectedValue().toString();
+				chosenDocMail = chosenDocMail.substring(chosenDocMail.indexOf(",")+1);
+				chosenDocMail = chosenDocMail.substring(chosenDocMail.indexOf(",")+1);
+				chosenDocMail =chosenDocMail.trim();
+				AppointmentGUI appointment= new AppointmentGUI(patient, chosenDocMail);
 				appointment.frmAppointment.setVisible(true);
+				System.out.println(chosenDocMail);
+				System.out.println("Test");
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));

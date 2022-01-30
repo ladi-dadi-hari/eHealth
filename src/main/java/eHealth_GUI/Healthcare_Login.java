@@ -174,14 +174,13 @@ public class Healthcare_Login extends JFrame {
 
 				}
 				else if(exists_doc)
-				{	try {
+				{
 					JOptionPane.showMessageDialog(frame, "Login als Doctor erfolgreich");
-
-
+					try {
 					ResultSet rs = Connect.getDoctor(u_username);
 					if(rs.next()) {
 						Doctor doc = new Doctor();
-						doc.setUsername(rs.getString(4));
+						doc.setUsername(u_username);
 						doc.setMailAdd(rs.getString(7));
 						Manage_Appointment_doc doctor_profile_page = new Manage_Appointment_doc(doc);
 

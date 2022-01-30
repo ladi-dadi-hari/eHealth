@@ -223,7 +223,7 @@ public class Manage_Appointment_doc extends JFrame {
 
                     lbName2 = new JLabel("");
                     lbName2.setFont(new Font("Tahoma", Font.PLAIN, 8));
-                    setLbName2Text(appointments.getString(4 + ", " + appointments.getString(5)));
+                    setLbName2Text(appointments.getString(4) + ", " + appointments.getString(5));
                     lbName2.setBounds(192, 132, 75, 13);
                     contentPane.add(lbName2);
 
