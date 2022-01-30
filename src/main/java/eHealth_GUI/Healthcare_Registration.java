@@ -7,11 +7,12 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * <h1>Registration GUI</h1>
  * This class provides the registration interface for our patients, aswell as our doctors.
- *
+ * @author Maximilian Rabe
  *
  *
  */
@@ -73,7 +74,7 @@ public class Healthcare_Registration extends JFrame
     private void initilaize()
     {
         frame_register.setBounds(50, 50, 750, 650);
-        frame_register.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame_register.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(100  , 100, 100, 100));
@@ -265,7 +266,7 @@ public class Healthcare_Registration extends JFrame
        comboBox.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
-               if(comboBox.getSelectedItem().toString().equals("Patient"))
+               if(Objects.requireNonNull(comboBox.getSelectedItem()).toString().equals("Patient"))
                {
                    nameofinsurance.setVisible(true);
                    lblTheNameOf.setVisible(true);
@@ -303,24 +304,20 @@ public class Healthcare_Registration extends JFrame
             @Override
             public void actionPerformed(ActionEvent arg0) {
 
-
-                if(comboBox.getSelectedItem().toString().equals("Patient"))
+            if(!username.getText().equals("admin") && !password.getText().equals("admin")){
+                if(Objects.requireNonNull(comboBox.getSelectedItem()).toString().equals("Patient"))
                 {
                     try {
                         if(Connect.usernameOrEmailExists(username.getText(), mailAddress.getText()))
                         {
-                        Connect.insertnewPatient(firstName.getText(), lastName.getText(), username.getText() ,address.getText(), birthday.getText(), "ay", mailAddress.getText(), password.getText(), nameofinsurance.getText(), typeOfInsurance);
+                        Connect.insertnewPatient(firstName.getText(), lastName.getText(), username.getText() ,address.getText(), birthday.getText(), preIll.getText(), mailAddress.getText(), password.getText(), nameofinsurance.getText(), typeOfInsurance);
                         frame_register.dispose();
                         }
                         else
                         {
                             JOptionPane.showMessageDialog(frame_register, "Username or Email already exists.");
                         }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (ApiException e) {
+                    } catch (IOException | InterruptedException | ApiException e) {
                         e.printStackTrace();
                     }
                 }
@@ -329,7 +326,7 @@ public class Healthcare_Registration extends JFrame
                 {
                     if(Connect.usernameOrEmailExists(username.getText(), mailAddress.getText()))
                     {
-                        switch (specialFieldIndex){
+                        switch (combobox_specificationF.getSelectedIndex()){
                             case 0:
                                 specialField = "Pediatrician";
                                 break;
@@ -370,6 +367,7 @@ public class Healthcare_Registration extends JFrame
 
                 }
 
+            }
             }
         });
 

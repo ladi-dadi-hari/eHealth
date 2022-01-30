@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- *
+/**<h1> Location Search</h1>
+ * This class provides all functionalities to search for location of an address (Longitude and Latitude),
+ * save those values into our databse and later calculate the distance between the patient and the doctors from our database by using the haversine formula.
+ * @author Maximilian Rabe
  */
 
 public class location {
@@ -63,6 +65,11 @@ public class location {
     final private String key = "AIzaSyCuFtEOQhiW5_JlW0J2IE3YX6_sh3LwCbw";
     Scanner scan = new Scanner(System.in);
 
+
+    /**
+     * This method
+     * @return
+     */
     public String getAddress()
     {
         String loc = "";
@@ -85,6 +92,14 @@ public class location {
         return loc;
     }
 
+
+    /**
+     * This method (checkUmlaut) checks, if a mutated vowel exists in the given address, replaces that mutated vowel and returns the paraphased address.
+     * It is used especially for the search of the location's longitude and latitude, since the Google API, we use, doesn't recognize mutated vowels.
+     * @param addresse
+     * @return
+     */
+
     public String checkUmlaut(String addresse)
     {
 
@@ -96,6 +111,22 @@ public class location {
 
     }
 
+    /**
+     * The method getLocInfo takes a string containing the users address and
+     * returns the longitude and latitude for the given address in a list of the type float.
+     * By building a package of information, containing the predefined API Key (taken from the Google API website) and the address string,
+     * and using the GeocodingAPI method to send this package to the Google Service, we receive a GeocodingResults Array.
+     * The GeocodingResults Array contains all sorts of information about the address,
+     * for example the place_id given by Google or ..., but for us, only the values for the latitude and the longitude are of use.
+     * We then store both values into a list of the data type float called lat_lng and return that list.
+     *
+     * @param address
+     * @return
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws ApiException
+     * @return
+     */
 
     public List<Float> getLocInfo(String address) throws IOException, InterruptedException, ApiException {
         List<Float> lat_lng = new ArrayList<>(2);
@@ -115,9 +146,20 @@ public class location {
         return lat_lng;
     }
 
+    /**
+     * This method calculates the distance between two points using the haversine formula.
+     * getDistance receives four float values, first the latitude, second the longitude, both belonging to the patient,
+     * third another latitude and fourth another longitude, both belonging to the doctor.
+     * The method then
+     *
+     * @param lat
+     * @param lng
+     * @param doc_lat
+     * @param doc_lng
+     * @return
+     */
 
-
-    public float getDistance(float lat, float lng, float doc_lat, float doc_lng)
+    public static float getDistance(float lat, float lng, float doc_lat, float doc_lng)
     {
         final int earth_radius = 6371;
 

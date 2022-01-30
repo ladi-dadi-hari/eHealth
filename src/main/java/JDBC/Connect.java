@@ -9,6 +9,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoField;
+import java.util.ArrayList;
 import java.util.List;
 import Email.SendEmailClass;
 
@@ -37,6 +38,45 @@ public class Connect {
         createTablePatient();
         createTableAppointment();
     }
+
+
+    public static List<String> AvailDoc(String specF, int distance/*Patient patient*/) throws SQLException {
+
+       // float patient_lat = patient.getlat;
+        //float patient_lng = patient.getlng;
+        float patient_lat = (float)50.101782260523514;
+        float patient_lng = (float) 8.59555965609318;
+        float dis;
+        List<String> doc = new ArrayList();
+
+
+        String sql_Select = "SELECT * FROM Users.doctor WHERE specF = ?";
+        Connection conn = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+        PreparedStatement getDoc = conn.prepareStatement(sql_Select);
+        getDoc.setString(1, specF);
+
+        ResultSet rs = getDoc.executeQuery();
+
+        while(rs.next())
+        {
+            float lat = rs.getFloat(11);
+            float lng = rs.getFloat(10);
+
+            dis = location.getDistance(patient_lat, patient_lng, lat,lng);
+
+            if(dis <= distance)
+            {
+                doc.add(rs.getString(2));
+                doc.add(rs.getString(3));
+                doc.add(rs.getString(5));
+                doc.add(rs.getString(6));
+            }
+        }
+        System.out.println(doc);
+
+        return doc;
+    }
+
 
     public static boolean usernameOrEmailExists(String _username, String _email)
     {
