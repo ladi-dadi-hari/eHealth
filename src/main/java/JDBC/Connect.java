@@ -12,6 +12,8 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
+
 import Email.SendEmailClass;
 
 import javax.mail.MessagingException;
@@ -32,7 +34,7 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="Mein8771!";
+    static final String AUTH_STRING ="TokyoGhoul^^123";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
@@ -41,15 +43,15 @@ public class Connect {
     }
 
 
-    public static ResultSet AvailDoc(String specF, int distance, float pat_lat, float pat_lng) throws SQLException {
+    public static List<List<String>> AvailDoc(String specF, int distance, float pat_lat, float pat_lng) throws SQLException {
 
         float dis;
-        int i = 0;
+        List<List<String>> doc = new ArrayList();
 
 
         String sql_Select = "SELECT * FROM Users.doctor WHERE specF = ?";
         Connection conn = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
-        PreparedStatement getDoc = conn.prepareStatement(sql_Select, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        PreparedStatement getDoc = conn.prepareStatement(sql_Select);
         getDoc.setString(1, specF);
 
         ResultSet rs = getDoc.executeQuery();
@@ -61,19 +63,16 @@ public class Connect {
 
             dis = location.getDistance(pat_lat, pat_lng, lat,lng);
 
-            if(dis > distance)
+            if(dis <= distance)
             {
-               rs.deleteRow();
-
+                List<String> empty = new ArrayList<>();
+                empty.add(rs.getString(2));
+                doc.add(empty);
             }
-            System.out.println(rs.getString(1));
         }
-        rs.absolute(0);
-        //doc.get(0).get(0);
+        System.out.println(doc);
 
-        return rs;
-
-
+        return doc;
     }
 
 

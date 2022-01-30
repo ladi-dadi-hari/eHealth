@@ -158,6 +158,8 @@ public class Healthcare_Login extends JFrame {
 							patient.setHealthInfo(rs.getString(10));
 							patient.setInsurance(rs.getString(11));
 							patient.setInsuranceType(rs.getString(12));
+							patient.setLongitude(rs.getFloat(13));
+							patient.setLatitude(rs.getFloat(14));
 
 							Healthcare_Entry second = new Healthcare_Entry(patient);
 							Healthcare_Tray_Icon third = new Healthcare_Tray_Icon();

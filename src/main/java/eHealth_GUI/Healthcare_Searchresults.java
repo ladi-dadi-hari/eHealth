@@ -44,7 +44,7 @@ public class Healthcare_Searchresults extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Healthcare_Searchresults(Patient patient, ResultSet doctors) {
+	public Healthcare_Searchresults(Patient patient, List<List<String>> doctors) {
 		String docMail = null;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 381, 545);
@@ -53,23 +53,11 @@ public class Healthcare_Searchresults extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		String[] neu = new String[doctors.size()];
+		neu[1] = String.valueOf(doctors.get(1));
+		System.out.println(neu[1]);
 
-		try {
-			doctors.last();
-			int len = doctors.getRow();
-			int i = 0;
-			String[][] doctorResults = new String [len][2];
-			doctors.beforeFirst();
-
-			while(doctors.next()){
-				doctorResults[i][0] = doctors.getString(3);
-				doctorResults[i][1] = doctors.getString(5);
-				i = i+1;
-
-			}
-
-
-		JList list = new JList();
+		JList list = new JList(neu);
 		list.setBounds(71, 71, 225, 211);
 		contentPane.add(list);
 
@@ -91,9 +79,6 @@ public class Healthcare_Searchresults extends JFrame {
 		btnNewButton.setBounds(108, 351, 150, 30);
 		contentPane.add(btnNewButton);
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 
 	}
 }
