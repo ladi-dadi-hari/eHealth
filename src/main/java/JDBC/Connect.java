@@ -12,7 +12,6 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import Email.SendEmailClass;
 
@@ -34,7 +33,7 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="TokyoGhoul^^123";
+    static final String AUTH_STRING ="*****";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
