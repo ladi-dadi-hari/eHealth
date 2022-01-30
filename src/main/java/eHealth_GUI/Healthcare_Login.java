@@ -1,6 +1,7 @@
 package eHealth_GUI;
 
 import JDBC.Connect;
+import Users.Doctor;
 
 import java.awt.EventQueue;
 
@@ -12,6 +13,7 @@ import javax.swing.JPasswordField;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JTextField;
@@ -132,13 +134,25 @@ public class Healthcare_Login {
 
 				}
 				else if(exists_doc)
-				{
+				{	try {
 					JOptionPane.showMessageDialog(frame, "Login als Doctor erfolgreich");
 
-					Doctor_Profile_Page doctor_profile_page = new Doctor_Profile_Page();
-					doctor_profile_page.frame_doc.setVisible(true);
-					frame.dispose();
-					return;
+
+					ResultSet rs = Connect.getDoctor(u_username);
+					if(rs.next()) {
+						Doctor doc = new Doctor();
+						doc.setUsername(rs.getString(4));
+						doc.setMailAdd(rs.getString(7));
+						Manage_Appointment_doc doctor_profile_page = new Manage_Appointment_doc(doc);
+
+						doctor_profile_page.setVisible(true);
+						frame.dispose();
+						return;
+					}
+				}
+				catch (SQLException e){
+					e.printStackTrace();
+				}
 				}
 				else
 				{

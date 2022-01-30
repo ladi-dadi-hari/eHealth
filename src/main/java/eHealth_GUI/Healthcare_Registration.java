@@ -41,6 +41,8 @@ public class Healthcare_Registration extends JFrame
     private Label lblspeF;
     private Label lblpreIll;
     private String typeOfInsurance;
+    private int specialFieldIndex;
+    private String specialField;
 
     ButtonGroup group_pub = new ButtonGroup();
     ButtonGroup group_prv = new ButtonGroup();
@@ -327,9 +329,34 @@ public class Healthcare_Registration extends JFrame
                 {
                     if(Connect.usernameOrEmailExists(username.getText(), mailAddress.getText()))
                     {
+                        switch (specialFieldIndex){
+                            case 0:
+                                specialField = "Pediatrician";
+                                break;
+                            case 1:
+                                specialField = "General";
+                                break;
+                            case 2:
+                                specialField = "Cardiologist";
+                                break;
+                            case 3:
+                                specialField = "Pulmonologist";
+                                break;
+                            case 4:
+                                specialField = "Orthopedist";
+                                break;
+                            case 5:
+                                specialField ="Dentist";
+                                break;
+                            case 6:
+                                specialField = "Physiotherapist";
+                            default:
+                                break;
+
+                        }
                         try
                         {
-                            Connect.insertNewDoc(firstName.getText(), lastName.getText(), username.getText(),address.getText(), combobox_specificationF.getSelectedItem().toString(),  mailAddress.getText(), password.getText());
+                            Connect.insertNewDoc(firstName.getText(), lastName.getText(), username.getText(), address.getText(), specialField,  mailAddress.getText(), password.getText());
                             frame_register.dispose();
                         } catch (Exception e) {
                             e.printStackTrace();

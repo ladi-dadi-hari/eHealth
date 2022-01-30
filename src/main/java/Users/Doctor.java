@@ -35,7 +35,7 @@ public class Doctor extends Users.User {
     /**
      * Login constructor
      */
-    Doctor(){}
+    public Doctor(){}
 
     /**
      * The constructor parameter values are provided throug user input via the GUI.
@@ -100,6 +100,10 @@ public class Doctor extends Users.User {
         return this.id;
     }
 
+    public String getUname(){
+        return this.username;
+    }
+
 
     //Set
     public void setfName(String _fn) {
@@ -122,6 +126,10 @@ public class Doctor extends Users.User {
         this.id = _id;
     }
 
+    public void setUsername(String uname){
+        this.username = uname;
+    }
+
 
 
 
@@ -135,6 +143,7 @@ public class Doctor extends Users.User {
     private String firstName = null;
     private String lastName = null;
     private String mailAdress = null;
+    private String username = null;
     private String location = null;
     private int isDoc = 1;
     private String[] specString = new String[5];

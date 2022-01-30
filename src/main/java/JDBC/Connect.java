@@ -10,7 +10,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoField;
 import java.util.List;
+import Email.SendEmailClass;
 
+import javax.mail.MessagingException;
+
+import static Email.SendEmailClass.SendEmail;
 import static java.sql.ResultSet.CONCUR_READ_ONLY;
 
 /**
@@ -283,7 +287,7 @@ public class Connect {
         return false;
     }
 
-    public static void confirmAppointment(String _patMail, Date _appDate) throws SQLException {
+    public static void confirmAppointment(String _patMail, Date _appDate) throws SQLException, MessagingException {
 
         //Send Confirm-Mail to _patMail
 
@@ -292,9 +296,10 @@ public class Connect {
         confirmApp.setBoolean(1, true);
         confirmApp.setString(2, _patMail);
         confirmApp.setDate(3, _appDate );
-
-
         confirmApp.execute();
+
+        SendEmail(_patMail, "Appointment confirmend!", "Dr. " + _patMail+" confirmend your Appointment on " + _appDate.toString());
+
     }
 
     public static void cancelAppointment(String _patMail, Date _appDate) throws SQLException {
@@ -306,8 +311,6 @@ public class Connect {
         confirmApp.setBoolean(1, false);
         confirmApp.setString(2, _patMail);
         confirmApp.setDate(3, _appDate );
-
-
         confirmApp.execute();
     }
     /**
@@ -381,6 +384,17 @@ public class Connect {
         }
     }
 
+
+    public static ResultSet getDoctor(String username) throws SQLException {
+        String sql_Select = "SELECT * FROM Users.doctor WHERE doctor_username = ?";
+        Connection conn = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+        PreparedStatement getDoc = conn.prepareStatement(sql_Select);
+        getDoc.setString(1, username);
+
+        ResultSet rs = getDoc.executeQuery();
+
+        return rs;
+    }
     /**
      * This method is called when a new doctor registers in our system.
      * It takes the parameter values from the GUI and passes them to an SQL statement.
