@@ -2,6 +2,7 @@ package Users;
 
 import Hashing.Hashing;
 import JDBC.Connect;
+import eHealth_GUI.Healthcare_Login;
 
 public class Patient extends Users.User {
 
@@ -40,6 +41,29 @@ public class Patient extends Users.User {
     }
 
     public Patient(){}
+
+    /**
+     * When calling this function, the object patient gets deleted and logged out.
+     *
+     * @param patient
+     */
+
+    public void logOutPat (Patient patient){
+
+        patient.setFirstName(null);
+        patient.setLastName(null);
+        patient.setUsername(null);
+        patient.setMailAddress(null);
+        patient.setBirthday(null);
+        patient.setLocation(null);
+        patient.setHealthInfo(null);
+        patient.setInsurance(null);
+        patient.setInsuranceType(null);
+
+        System.gc();
+        System.out.println("patient is logged out and object deleted");
+
+    }
 
     public void setMailAddress(String mail){
         this.mailAddress = mail;
