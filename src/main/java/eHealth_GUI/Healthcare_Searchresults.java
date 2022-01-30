@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JList;
 import java.sql.ResultSet;
@@ -52,6 +53,22 @@ public class Healthcare_Searchresults extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+
+		try {
+			doctors.last();
+			int len = doctors.getRow();
+			int i = 0;
+			String[][] doctorResults = new String [len][2];
+			doctors.beforeFirst();
+
+			while(doctors.next()){
+				doctorResults[i][0] = doctors.getString(3);
+				doctorResults[i][1] = doctors.getString(5);
+				i = i+1;
+
+			}
+
+
 		JList list = new JList();
 		list.setBounds(71, 71, 225, 211);
 		contentPane.add(list);
@@ -73,6 +90,10 @@ public class Healthcare_Searchresults extends JFrame {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnNewButton.setBounds(108, 351, 150, 30);
 		contentPane.add(btnNewButton);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 }
