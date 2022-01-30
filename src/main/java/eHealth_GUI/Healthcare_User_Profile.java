@@ -1,5 +1,7 @@
 package eHealth_GUI;
 
+import Users.Patient;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -20,23 +22,23 @@ public class Healthcare_User_Profile extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Healthcare_User_Profile frame = new Healthcare_User_Profile();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//public static void main(String[] args) {
+	//	EventQueue.invokeLater(new Runnable() {
+	//		public void run() {
+	//			try {
+	//				Healthcare_User_Profile frame = new Healthcare_User_Profile();
+	//				frame.setVisible(true);
+	//			} catch (Exception e) {
+	//				e.printStackTrace();
+	//			}
+	//		}
+	//	});
+	//}
 
 	/**
 	 * Create the frame.
 	 */
-	public Healthcare_User_Profile() {
+	public Healthcare_User_Profile(Patient patient) {
 		setBounds(100, 100, 517, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

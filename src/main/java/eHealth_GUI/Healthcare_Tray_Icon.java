@@ -14,7 +14,7 @@ import java.awt.event.*;
  * @author Can Dechert
  */
 
-public class Healthcare_Tray_Icon () {
+public class Healthcare_Tray_Icon {
     ImageIcon icon;
     public void Tray_Icon(Patient patient){
         if (!SystemTray.isSupported()) {
@@ -32,7 +32,7 @@ public class Healthcare_Tray_Icon () {
         trayIcon.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Healthcare_User_Profile second = new Healthcare_User_Profile(patient);
+                Healthcare_Entry second = new Healthcare_Entry(patient);
                 second.setVisible(true);    // WHICH WINDOW SHOULD OPEN?
             }
         });
