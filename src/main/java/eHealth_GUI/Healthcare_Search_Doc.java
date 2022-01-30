@@ -256,7 +256,7 @@ public class Healthcare_Search_Doc extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 
-				if(generalIssuesdropDown.getSelectedIndex() <= 8)
+				if(dropDownIndex<= 9)
 				{
 					specF = "General";
 				}

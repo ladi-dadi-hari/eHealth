@@ -147,7 +147,7 @@ public class Manage_Appointment_doc extends JFrame {
 
                 lbName1 = new JLabel("");
                 lbName1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-                setLbName1Text(appointments.getString(4));
+                setLbName1Text(appointments.getString(4) +", " + appointments.getString(5));
                 lbName1.setBounds(192, 66, 75, 13);
                 contentPane.add(lbName1);
 
@@ -155,19 +155,19 @@ public class Manage_Appointment_doc extends JFrame {
                 lbHealthP1.setHorizontalAlignment(SwingConstants.LEFT);
                 lbHealthP1.setVerticalAlignment(SwingConstants.TOP);
                 lbHealthP1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-                setLbHealthP1Text(appointments.getString(5));
+                setLbHealthP1Text(appointments.getString(6));
                 lbHealthP1.setBounds(277, 67, 112, 40);
                 contentPane.add(lbHealthP1);
 
                 lbMail1 = new JLabel("");
                 lbMail1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-                setLbMail1Text(appointments.getString(6));
+                setLbMail1Text(appointments.getString(7));
                 lbMail1.setBounds(428, 66, 101, 13);
                 contentPane.add(lbMail1);
 
                 checkBox1 = new JCheckBox("");
                 checkBox1.setBounds(589, 58, 32, 21);
-                setCheckBox1Selected(appointments.getBoolean(7));
+                setCheckBox1Selected(appointments.getBoolean(8));
                 contentPane.add(checkBox1);
 
                 JButton btnOK1 = new JButton("Confirm");
@@ -176,7 +176,7 @@ public class Manage_Appointment_doc extends JFrame {
 
                         try {
                             appointments.absolute(1);
-                            confirmAppointment(appointments.getString(6), appointments.getDate(2));
+                            confirmAppointment(appointments.getString(7), appointments.getDate(2));
                             setCheckBox1Selected(true);
                         } catch (SQLException | MessagingException ex) {
                             ex.printStackTrace();
@@ -192,7 +192,7 @@ public class Manage_Appointment_doc extends JFrame {
 
                         try {
                             appointments.absolute(1);
-                            cancelAppointment(appointments.getString(6), appointments.getDate(2));
+                            cancelAppointment(appointments.getString(7), appointments.getDate(2));
                             setCheckBox1Selected(false);
                         } catch (SQLException ex) {
                             ex.printStackTrace();
@@ -223,7 +223,7 @@ public class Manage_Appointment_doc extends JFrame {
 
                     lbName2 = new JLabel("");
                     lbName2.setFont(new Font("Tahoma", Font.PLAIN, 8));
-                    setLbName2Text(appointments.getString(4));
+                    setLbName2Text(appointments.getString(4 + ", " + appointments.getString(5)));
                     lbName2.setBounds(192, 132, 75, 13);
                     contentPane.add(lbName2);
 
@@ -231,19 +231,19 @@ public class Manage_Appointment_doc extends JFrame {
                     lbHealthP2.setHorizontalAlignment(SwingConstants.LEFT);
                     lbHealthP2.setVerticalAlignment(SwingConstants.TOP);
                     lbHealthP2.setFont(new Font("Tahoma", Font.PLAIN, 8));
-                    setLbHealthP2Text(appointments.getString(5));
+                    setLbHealthP2Text(appointments.getString(6));
                     lbHealthP2.setBounds(277, 133, 112, 40);
                     contentPane.add(lbHealthP2);
 
                     lbMail2 = new JLabel("");
                     lbMail2.setFont(new Font("Tahoma", Font.PLAIN, 8));
-                    setLbMail2Text(appointments.getString(6));
+                    setLbMail2Text(appointments.getString(7));
                     lbMail2.setBounds(428, 132, 101, 13);
                     contentPane.add(lbMail2);
 
                     checkBox2 = new JCheckBox("");
                     checkBox2.setBounds(589, 124, 32, 21);
-                    setCheckBox2Selected(appointments.getBoolean(7));
+                    setCheckBox2Selected(appointments.getBoolean(8));
                     contentPane.add(checkBox2);
 
                     JButton btnOK2 = new JButton("Confirm");
@@ -252,7 +252,7 @@ public class Manage_Appointment_doc extends JFrame {
 
                             try {
                                 appointments.absolute(2);
-                                confirmAppointment(appointments.getString(6), appointments.getDate(2));
+                                confirmAppointment(appointments.getString(7), appointments.getDate(2));
                                 setCheckBox2Selected(true);
                             } catch (SQLException | MessagingException ex) {
                                 ex.printStackTrace();
@@ -268,7 +268,7 @@ public class Manage_Appointment_doc extends JFrame {
 
                             try {
                                 appointments.absolute(2);
-                                cancelAppointment(appointments.getString(6), appointments.getDate(2));
+                                cancelAppointment(appointments.getString(7), appointments.getDate(2));
                                 setCheckBox2Selected(false);
                             } catch (SQLException ex) {
                                 ex.printStackTrace();
@@ -288,7 +288,6 @@ public class Manage_Appointment_doc extends JFrame {
                 } else {
                     appointments.next();
                     setLbDate3Text(appointments.getDate(2).toString());
-
                     lbDate3.setBounds(10, 205, 83, 13);
                     contentPane.add(lbDate3);
 
@@ -301,7 +300,7 @@ public class Manage_Appointment_doc extends JFrame {
 
                     lbName3 = new JLabel("");
                     lbName3.setFont(new Font("Tahoma", Font.PLAIN, 8));
-                    setLbName3Text(appointments.getString(4));
+                    setLbName3Text(appointments.getString(4) +", "+ appointments.getString(5));
                     lbName3.setBounds(192, 205, 75, 13);
                     contentPane.add(lbName3);
 
@@ -309,19 +308,19 @@ public class Manage_Appointment_doc extends JFrame {
                     lbHealthP3.setHorizontalAlignment(SwingConstants.LEFT);
                     lbHealthP3.setVerticalAlignment(SwingConstants.TOP);
                     lbHealthP3.setFont(new Font("Tahoma", Font.PLAIN, 8));
-                    setLbHealthP3Text(appointments.getString(5));
+                    setLbHealthP3Text(appointments.getString(6));
                     lbHealthP3.setBounds(277, 206, 112, 40);
                     contentPane.add(lbHealthP3);
 
                     lbMail3 = new JLabel("");
                     lbMail3.setFont(new Font("Tahoma", Font.PLAIN, 8));
-                    setLbMail3Text(appointments.getString(6));
+                    setLbMail3Text(appointments.getString(7));
                     lbMail3.setBounds(428, 205, 101, 13);
                     contentPane.add(lbMail3);
 
                     checkBox3 = new JCheckBox("");
                     checkBox3.setBounds(589, 197, 32, 21);
-                    setCheckBox3Selected(appointments.getBoolean(7));
+                    setCheckBox3Selected(appointments.getBoolean(8));
                     contentPane.add(checkBox3);
 
                     JButton btnOK3 = new JButton("Confirm");
@@ -330,7 +329,7 @@ public class Manage_Appointment_doc extends JFrame {
 
                             try {
                                 appointments.absolute(3);
-                                confirmAppointment(appointments.getString(6), appointments.getDate(2));
+                                confirmAppointment(appointments.getString(7), appointments.getDate(2));
                                 setCheckBox3Selected(true);
                             } catch (SQLException | MessagingException ex) {
                                 ex.printStackTrace();
@@ -346,7 +345,7 @@ public class Manage_Appointment_doc extends JFrame {
 
                             try {
                                 appointments.absolute(3);
-                                cancelAppointment(appointments.getString(6), appointments.getDate(2));
+                                cancelAppointment(appointments.getString(7), appointments.getDate(2));
                                 setCheckBox3Selected(false);
                             } catch (SQLException ex) {
                                 ex.printStackTrace();
@@ -360,11 +359,13 @@ public class Manage_Appointment_doc extends JFrame {
 
                 //Move to 4th row
 
-                lbDate4 = new JLabel("");
-                lbDate4.setFont(new Font("Tahoma", Font.PLAIN, 8));
+
                 if (appointments.isLast()) {
                 } else {
                     appointments.next();
+
+                    lbDate4 = new JLabel("");
+                    lbDate4.setFont(new Font("Tahoma", Font.PLAIN, 8));
                     setLbDate4Text(appointments.getDate(2).toString());
                     lbDate4.setBounds(10, 280, 83, 13);
                     contentPane.add(lbDate4);
@@ -377,26 +378,26 @@ public class Manage_Appointment_doc extends JFrame {
 
                     lbName4 = new JLabel("");
                     lbName4.setFont(new Font("Tahoma", Font.PLAIN, 8));
-                    setLbName4Text(appointments.getString(4));
+                    setLbName4Text(appointments.getString(4) +", " + appointments.getString((5)));
                     lbName4.setBounds(192, 280, 75, 13);
                     contentPane.add(lbName4);
 
                     lbHealthP4 = new JLabel("");
                     lbHealthP4.setHorizontalAlignment(SwingConstants.LEFT);
                     lbHealthP4.setVerticalAlignment(SwingConstants.TOP);
-                    setLbHealthP4Text(appointments.getString(5));
+                    setLbHealthP4Text(appointments.getString(6));
                     lbHealthP4.setFont(new Font("Tahoma", Font.PLAIN, 8));
                     lbHealthP4.setBounds(277, 281, 112, 40);
                     contentPane.add(lbHealthP4);
 
                     lbMail4 = new JLabel("");
                     lbMail4.setFont(new Font("Tahoma", Font.PLAIN, 8));
-                    setLbMail4Text(appointments.getString(6));
+                    setLbMail4Text(appointments.getString(7));
                     lbMail4.setBounds(428, 280, 101, 13);
                     contentPane.add(lbMail4);
 
                     checkBox4 = new JCheckBox("");
-                    setCheckBox4Selected(appointments.getBoolean(7));
+                    setCheckBox4Selected(appointments.getBoolean(8));
                     checkBox4.setBounds(589, 272, 32, 21);
                     contentPane.add(checkBox4);
 
@@ -406,7 +407,7 @@ public class Manage_Appointment_doc extends JFrame {
 
                             try {
                                 appointments.absolute(4);
-                                confirmAppointment(appointments.getString(6), appointments.getDate(2));
+                                confirmAppointment(appointments.getString(7), appointments.getDate(2));
                                 setCheckBox4Selected(true);
                             } catch (SQLException | MessagingException ex) {
                                 ex.printStackTrace();
@@ -422,7 +423,7 @@ public class Manage_Appointment_doc extends JFrame {
 
                             try {
                                 appointments.absolute(4);
-                                cancelAppointment(appointments.getString(6), appointments.getDate(2));
+                                cancelAppointment(appointments.getString(7), appointments.getDate(2));
                                 setCheckBox4Selected(false);
                             } catch (SQLException ex) {
                                 ex.printStackTrace();
