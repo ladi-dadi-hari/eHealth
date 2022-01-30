@@ -4,14 +4,13 @@ import JDBC.Connect;
 import Users.Doctor;
 import Users.Patient;
 
-import java.awt.EventQueue;
+import java.awt.*;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
-import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
@@ -136,6 +135,7 @@ public class Healthcare_Login {
 							patient.setMailAddress(rs.getString(5));
 
 							Healthcare_Entry second = new Healthcare_Entry(patient);
+							Healthcare_Tray_Icon third = new Healthcare_Tray_Icon();
 							second.setVisible(true);
 							frame.dispose();
 							return;

@@ -1,5 +1,7 @@
 package eHealth_GUI;
 
+import Users.Patient;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -12,9 +14,9 @@ import java.awt.event.*;
  * @author Can Dechert
  */
 
-public class Healthcare_Tray_Icon {
+public class Healthcare_Tray_Icon () {
     ImageIcon icon;
-    public void Tray_Icon(){
+    public void Tray_Icon(Patient patient){
         if (!SystemTray.isSupported()) {
             System.out.println("SystemTray is not supported");
             return;
@@ -30,7 +32,8 @@ public class Healthcare_Tray_Icon {
         trayIcon.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                frame.setVisible(true);    // WHICH WINDOW SHOULD OPEN?
+                Healthcare_User_Profile second = new Healthcare_User_Profile(patient);
+                second.setVisible(true);    // WHICH WINDOW SHOULD OPEN?
             }
         });
 
