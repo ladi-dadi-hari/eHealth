@@ -265,7 +265,7 @@ public class Healthcare_Search_Doc extends JFrame {
 
 				try {
 					ResultSet doctors = Connect.AvailDoc(specF, distance, patient.getLatitude(), patient.getLongitude());
-					Healthcare_Searchresults results = new Healthcare_Searchresults(doctors);
+					Healthcare_Searchresults results = new Healthcare_Searchresults(patient, doctors);
 					results.setVisible(true);
 				} catch (SQLException ex) {
 					ex.printStackTrace();

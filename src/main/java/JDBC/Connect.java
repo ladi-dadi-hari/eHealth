@@ -68,7 +68,7 @@ public class Connect {
             }
             System.out.println(rs.getString(1));
         }
-
+        rs.absolute(0);
         //doc.get(0).get(0);
 
         return rs;

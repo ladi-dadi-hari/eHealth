@@ -43,7 +43,8 @@ public class Healthcare_Searchresults extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Healthcare_Searchresults(ResultSet doctors) {
+	public Healthcare_Searchresults(Patient patient, ResultSet doctors) {
+		String docMail = null;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 381, 545);
 		contentPane = new JPanel();
