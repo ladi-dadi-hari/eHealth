@@ -2,6 +2,7 @@ package eHealth_GUI;
 
 import JDBC.Connect;
 import Users.Doctor;
+import Users.Patient;
 
 import java.awt.EventQueue;
 
@@ -127,10 +128,22 @@ public class Healthcare_Login {
 					JOptionPane.showMessageDialog(frame, "Login als Patient erfolgreich");
 
 					//�ffne Eingangsfenster
-					Healthcare_Entry second= new Healthcare_Entry();
-					second.setVisible(true);
-					frame.dispose();
-					return;
+					try {
+						ResultSet rs = Connect.getPatient(u_username);
+						if(rs.next()) {
+							Patient patient = new Patient();
+							patient.setUsername(rs.getString(4));
+							patient.setMailAddress(rs.getString(5));
+
+							Healthcare_Entry second = new Healthcare_Entry(patient);
+							second.setVisible(true);
+							frame.dispose();
+							return;
+						}
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+
 
 				}
 				else if(exists_doc)

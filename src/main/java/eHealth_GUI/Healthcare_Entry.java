@@ -28,8 +28,8 @@ public class Healthcare_Entry extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Healthcare_Entry frame = new Healthcare_Entry();
-					frame.setVisible(true);
+					//Healthcare_Entry frame = new Healthcare_Entry();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -40,7 +40,7 @@ public class Healthcare_Entry extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Healthcare_Entry() {
+	public Healthcare_Entry(Patient patient) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 699, 431);
 		contentPane = new JPanel();

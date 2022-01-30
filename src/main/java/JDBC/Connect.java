@@ -30,7 +30,7 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="****";
+    static final String AUTH_STRING ="*****";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
@@ -384,7 +384,16 @@ public class Connect {
         }
     }
 
+    public static ResultSet getPatient(String username) throws SQLException {
+        String sql_Select = "SELECT * FROM Users.patient WHERE patient_username = ?";
+        Connection conn = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+        PreparedStatement getPat = conn.prepareStatement(sql_Select);
+        getPat.setString(1, username);
 
+        ResultSet rs = getPat.executeQuery();
+
+        return rs;
+    }
     public static ResultSet getDoctor(String username) throws SQLException {
         String sql_Select = "SELECT * FROM Users.doctor WHERE doctor_username = ?";
         Connection conn = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);

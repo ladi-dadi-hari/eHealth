@@ -12,6 +12,7 @@ public class Patient extends Users.User {
     private String insurance = null; // Enum?
     private String insuranceType = null; // Enum?
     private int isDoc = 0;
+    private String username = null;
 
     public Patient(String firstName, String lastName, String location, String birthday, String healthInfo, String mailAddress, String pw, String insurance, String insuranceType) {
 
@@ -29,5 +30,14 @@ public class Patient extends Users.User {
         //this.health_info1 = health_info1;
        // Connect.insertNewPatient(this.firstName,this.lastName,this.location,this.birthday,this.healthInfo,this.mailAddress, salt, this.pw,this.insurance,this.insuranceType, this.isDoc);
 
+    }
+
+    public Patient(){}
+
+    public void setMailAddress(String mail){
+        this.mailAddress = mail;
+    }
+    public void setUsername(String usname){
+        this.username = usname;
     }
 }
