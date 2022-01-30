@@ -8,6 +8,9 @@ public class Patient extends Users.User {
     // Attributes
 
     private String birthday = null; // Implement Date type?
+
+
+
     private String healthInfo = null;
     private String insurance = null; // Enum?
     private String insuranceType = null; // Enum?
@@ -40,4 +43,26 @@ public class Patient extends Users.User {
     public void setUsername(String usname){
         this.username = usname;
     }
+
+    public String getBirthday() {return birthday;}
+
+    public void setBirthday(String birthday) {this.birthday = birthday;}
+
+    public String getHealthInfo() {return healthInfo;}
+
+    public void setHealthInfo(String healthInfo) {this.healthInfo = healthInfo;}
+
+    public String getInsurance() {return insurance;}
+
+    public void setInsurance(String insurance) {this.insurance = insurance;}
+
+    public String getInsuranceType() {return insuranceType;}
+
+    public void setInsuranceType(String insuranceType) {this.insuranceType = insuranceType;}
+
+    public int getIsDoc() {return isDoc;}
+
+    public void setIsDoc(int isDoc) {this.isDoc = isDoc;}
+
+    public String getUsername() {return username;}
 }

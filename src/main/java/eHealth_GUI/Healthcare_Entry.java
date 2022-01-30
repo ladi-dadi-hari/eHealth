@@ -62,7 +62,7 @@ public class Healthcare_Entry extends JFrame {
 		contentPane.add(lblNewJgoodiesLabel_1);
 
 
-		JLabel lbluser = new JLabel("Sie sind eigeloggt als" + username);
+		JLabel lbluser = new JLabel("You are logged in as:" + patient.getUsername());
 		lbluser.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lbluser.setBounds(268, 30, 164, 58);
 		contentPane.add(lbluser);

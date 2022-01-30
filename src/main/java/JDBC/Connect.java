@@ -30,7 +30,7 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="*****";
+    static final String AUTH_STRING ="rootadmin";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
@@ -71,6 +71,28 @@ public class Connect {
         return true;
     }
 
+
+    /**
+     * This class allows inserting a new patient in the Database.
+     * The parameters get passed in from the GUI and written into the local database.
+     *
+     *
+     * @param _firstName
+     * @param _lastName
+     * @param _username
+     * @param _address
+     * @param _birthday
+     * @param _healthInfo
+     * @param _mailAdress
+     * @param _pw
+     * @param _insurance
+     * @param _insuranceType
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws ApiException
+     *
+     * @author: Harris Nuhanovic
+     */
 
 
     public static void insertnewPatient (String _firstName, String _lastName, String _username, String _address, String _birthday, String _healthInfo, String _mailAdress, String _pw, String _insurance, String _insuranceType) throws IOException, InterruptedException, ApiException {
@@ -141,6 +163,23 @@ public class Connect {
 
     }
 
+    /**
+     * The validateData function takes the input username and password from the GUI.
+     * According to the role of the user, the matching sql statement for fetching the hash and the salt get passed in the function.
+     * When the return is true, the function has found a matching account in the database,
+     * when it's false, there is no matching account.
+     *
+     *
+     * @param mailAdress
+     * @param password
+     * @param _sqlFetchHash
+     * @param _sqlFetchSalt
+     * @return
+     * @throws SQLException
+     *
+     * @author: Harris Nuhanovic
+     */
+
     public static boolean validateData (String mailAdress, String password, String _sqlFetchHash, String _sqlFetchSalt) throws SQLException {
 
         String inputPassword = password;
@@ -197,15 +236,6 @@ public class Connect {
                 } else {
                     return false;
                 }
-
-
-                /**
-                 * TODO
-                 * if Statement: fetch isDOC when true call loginDoc when false call loginPatient
-                 * fetch attributes by mailAdress and write into variables
-                 * call constructor and pass variables
-                 * return object
-                 **/
 
 
         }
@@ -268,15 +298,6 @@ public class Connect {
             }
 
             else return false;
-
-
-            /**
-             * TODO
-             * if Statement: fetch isDOC when true call loginDoc when false call loginPatient
-             * fetch attributes by mailAdress and write into variables
-             * call constructor and pass variables
-             * return object
-             **/
 
         }
 
@@ -394,6 +415,7 @@ public class Connect {
 
         return rs;
     }
+
     public static ResultSet getDoctor(String username) throws SQLException {
         String sql_Select = "SELECT * FROM Users.doctor WHERE doctor_username = ?";
         Connection conn = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
