@@ -18,7 +18,7 @@ public class TXT_Functionality
     {
 
         //  Initialize path information
-        File file = new File("C:\\HealthInformation.txt"); // change path accordingly
+        File file = new File("C:\\Users\\Public\\Downloads\\HealthInformation.txt"); // change path accordingly
 
         //  Initialize Filewriter
 
