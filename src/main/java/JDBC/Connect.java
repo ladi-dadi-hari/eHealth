@@ -49,7 +49,7 @@ public class Connect {
 
         String sql_Select = "SELECT * FROM Users.doctor WHERE specF = ?";
         Connection conn = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
-        PreparedStatement getDoc = conn.prepareStatement(sql_Select);
+        PreparedStatement getDoc = conn.prepareStatement(sql_Select, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         getDoc.setString(1, specF);
 
         ResultSet rs = getDoc.executeQuery();
