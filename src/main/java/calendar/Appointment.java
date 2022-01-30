@@ -8,6 +8,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 import JDBC.Connect;
 
+import javax.mail.MessagingException;
+
+import static Email.SendEmailClass.SendEmail;
+
 /**
  * <h1>Appointment </h1>
  * The "Appointment"-Class implements the functionality to store an appointment inside the applications database and creating a reminder for that appointment.
@@ -43,7 +47,7 @@ public class Appointment {
      * @param appDate_
      * @param index_
      */
-    public static void setReminder(LocalDateTime appDate_, int index_) {
+    public static LocalDateTime setReminder(LocalDateTime appDate_, int index_) {
 
         LocalDateTime _appDate = appDate_;
         LocalDateTime now = LocalDateTime.now();
@@ -70,9 +74,20 @@ public class Appointment {
         System.out.println("Delay: "+ delay);
 
         Timer timer = new Timer();
-        TimerTask task = new ReminderTimer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    SendEmail("can.dechert@gmx.de", "Appointment Reminder", "You have an Appointment one the " + _appDate + " at ");
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                }
+                this.cancel();
+            }
+        };
 
         timer.schedule(task, delay);
+        return reminderDate;
     }
 
 
