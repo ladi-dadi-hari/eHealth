@@ -200,7 +200,7 @@ public class AppointmentGUI {
                 //(Time _time, Date _date, String _patientMail, String _doctorMail
 
                 try {
-                    Connect.insertAppointment(sqlTime, sqlDate, "Dampf", "nachname", "Mail1@gmail.de", "NewT@as.de");
+                    Connect.insertAppointment(sqlTime, sqlDate, "Dampf", "nachname", "Mail1@gmail.de", "NewT@as.de", "Healthproblems");
                 } catch (Exception e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
