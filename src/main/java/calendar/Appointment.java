@@ -7,6 +7,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Timer;
 import java.util.TimerTask;
 import JDBC.Connect;
+import Users.Patient;
 
 import javax.mail.MessagingException;
 
@@ -15,23 +16,23 @@ import static Email.SendEmailClass.SendEmail;
 /**
  * <h1>Appointment </h1>
  * The "Appointment"-Class implements the functionality to store an appointment inside the applications database and creating a reminder for that appointment.
- * @author Max Endres
+ * @author Max Endres, Can Dechert
  * @version 1.0
  *
  *
  */
 
 public class Appointment {
-
+/*
     public static void main(String[] args) {
 
         LocalDateTime irgendwann = LocalDateTime.of(2022,  1, 17, 19, 56);
-        Appointment id1 = new Appointment(irgendwann, 1 );
+        Appointment id1 = new Appointment(irgendwann, 1 , );
     }
-
-    Appointment(LocalDateTime appointmentDate, int index){
+*/
+    Appointment(LocalDateTime appointmentDate, int index, Patient _patient){
         this.appDate = appointmentDate;
-        setReminder(this.appDate, index);
+        setReminder(this.appDate, index, _patient);
         System.out.println("Appointment created.");
     }
 
@@ -47,7 +48,7 @@ public class Appointment {
      * @param appDate_
      * @param index_
      */
-    public static LocalDateTime setReminder(LocalDateTime appDate_, int index_) {
+    public static LocalDateTime setReminder(LocalDateTime appDate_, int index_, Patient _patient) {
 
         LocalDateTime _appDate = appDate_;
         LocalDateTime now = LocalDateTime.now();
@@ -78,7 +79,7 @@ public class Appointment {
             @Override
             public void run() {
                 try {
-                    SendEmail("can.dechert@gmx.de", "Appointment Reminder", "You have an Appointment one the " + _appDate + " at ");
+                    SendEmail(_patient.getMailAddress(), "Appointment Reminder", "You have an Appointment one the " + _appDate + " at ");
                 } catch (MessagingException e) {
                     e.printStackTrace();
                 }
