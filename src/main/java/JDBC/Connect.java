@@ -40,12 +40,8 @@ public class Connect {
     }
 
 
-    public static List<String> AvailDoc(String specF, int distance/*Patient patient*/) throws SQLException {
+    public static List<String> AvailDoc(String specF, int distance, float pat_lat, float pat_lng) throws SQLException {
 
-       // float patient_lat = patient.getlat;
-        //float patient_lng = patient.getlng;
-        float patient_lat = (float)50.101782260523514;
-        float patient_lng = (float) 8.59555965609318;
         float dis;
         List<String> doc = new ArrayList();
 
@@ -62,7 +58,7 @@ public class Connect {
             float lat = rs.getFloat(11);
             float lng = rs.getFloat(10);
 
-            dis = location.getDistance(patient_lat, patient_lng, lat,lng);
+            dis = location.getDistance(pat_lat, pat_lng, lat,lng);
 
             if(dis <= distance)
             {
@@ -279,68 +275,6 @@ public class Connect {
 
 
         }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        return false;
-    }
-
-    public static boolean validateData_doc (String mailAdress, String password) throws SQLException {
-
-        String inputPassword = password;
-
-        String passwordHash = null;
-        String salt = null;
-
-        String sqlFetchHash = "SELECT password FROM Users.doctor WHERE doctor_mailAddress=?";
-        String sqlFetchSalt = "SELECT salt FROM Users.doctor WHERE doctor_mailAddress=?";
-
-        try {
-
-            Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
-
-            PreparedStatement stHash = con.prepareStatement(sqlFetchHash);
-            PreparedStatement stSalt = con.prepareStatement(sqlFetchSalt);
-
-            stHash.setString(1, mailAdress);
-            stSalt.setString(1, mailAdress);
-
-
-            ResultSet rs = stHash.executeQuery();
-
-            if (rs.next()) {
-
-                String pw = rs.getString("password");
-                passwordHash = pw;
-
-            }
-
-            else{return false;}
-
-            ResultSet rs1 = stSalt.executeQuery();
-
-            if (rs1.next()) {
-
-                salt = rs1.getString("salt");
-
-            }
-
-            inputPassword = Hashing.doHashing(inputPassword, salt);
-
-            System.out.println(inputPassword);
-            System.out.println(passwordHash);
-
-            if (passwordHash.equals(inputPassword)) {
-
-                return true;
-
-            }
-
-            else return false;
-
-        }
-
         catch (SQLException throwables) {
             throwables.printStackTrace();
         }

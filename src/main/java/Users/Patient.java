@@ -16,8 +16,10 @@ public class Patient extends Users.User {
     private String insuranceType = null; // Enum?
     private int isDoc = 0;
     private String username = null;
+    private float longitude = 0;
+    private float latitude = 0;
 
-    public Patient(String firstName, String lastName, String location, String birthday, String healthInfo, String mailAddress, String pw, String insurance, String insuranceType) {
+    public Patient(String firstName, String lastName, String location, String birthday, String healthInfo, String mailAddress, String pw, String insurance, String insuranceType, float longitude, float latitude) {
 
         String salt = Hashing.getSalt();
 
@@ -30,6 +32,8 @@ public class Patient extends Users.User {
         this.pw = Hashing.doHashing(pw, salt);
         this.insurance = insurance;
         this.insuranceType = insuranceType;
+        this.latitude = latitude;
+        this.longitude = longitude;
         //this.health_info1 = health_info1;
        // Connect.insertNewPatient(this.firstName,this.lastName,this.location,this.birthday,this.healthInfo,this.mailAddress, salt, this.pw,this.insurance,this.insuranceType, this.isDoc);
 
@@ -42,6 +46,14 @@ public class Patient extends Users.User {
     }
     public void setUsername(String usname){
         this.username = usname;
+    }
+
+    public void setLongitude(float longitude){
+        this.longitude = longitude;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
     }
 
     public String getBirthday() {return birthday;}
@@ -65,4 +77,9 @@ public class Patient extends Users.User {
     public void setIsDoc(int isDoc) {this.isDoc = isDoc;}
 
     public String getUsername() {return username;}
+
+    public float getLatitude() {return latitude;}
+
+    public float getLongitude() {return longitude;}
+
 }

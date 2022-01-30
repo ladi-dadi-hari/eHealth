@@ -69,7 +69,7 @@ public class Healthcare_Search_Doc extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -85,7 +85,7 @@ public class Healthcare_Search_Doc extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Healthcare_Search_Doc(/*Patient patient*/) {
+	public Healthcare_Search_Doc(Patient patient) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 331, 510);
 		contentPane = new JPanel();
@@ -262,7 +262,7 @@ public class Healthcare_Search_Doc extends JFrame {
 				}
 
 				try {
-					Connect.AvailDoc(specF, distance/*patient*/);
+					Connect.AvailDoc(specF, distance, patient.getLatitude(), patient.getLongitude());
 				} catch (SQLException ex) {
 					ex.printStackTrace();
 				}

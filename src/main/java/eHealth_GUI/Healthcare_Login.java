@@ -133,6 +133,8 @@ public class Healthcare_Login {
 							Patient patient = new Patient();
 							patient.setUsername(rs.getString(4));
 							patient.setMailAddress(rs.getString(5));
+							patient.setLatitude(rs.getFloat(14));
+							patient.setLongitude(rs.getFloat(13));
 
 							Healthcare_Entry second = new Healthcare_Entry(patient);
 							Healthcare_Tray_Icon third = new Healthcare_Tray_Icon();
