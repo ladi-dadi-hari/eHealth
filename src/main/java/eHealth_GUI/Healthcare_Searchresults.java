@@ -63,6 +63,7 @@ public class Healthcare_Searchresults extends JFrame {
 		JButton btnNewButton = new JButton("Make Appointment");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int i = list.getAnchorSelectionIndex(); //doctor_mailAddress
 				AppointmentGUI appointment= new AppointmentGUI();
 				appointment.frmAppointment.setVisible(true);
 			}

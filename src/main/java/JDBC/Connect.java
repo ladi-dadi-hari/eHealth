@@ -32,7 +32,7 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="TokyoGhoul^^123";
+    static final String AUTH_STRING ="****";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
@@ -330,7 +330,7 @@ public class Connect {
      *
      * @author: Max Endres
      */
-    public static void insertAppointment(Time _time, Date _date,String _patientName, String _patientMail, String _doctorMail) throws Exception {
+    public static void insertAppointment(Time _time, Date _date,String _patientName, String lastname, String _patientMail, String _doctorMail) throws Exception {
         //Time time = Time.valueOf(LocalTime)
         String location = "Frankfurt";
         String healthprob = "Husten";
@@ -338,7 +338,7 @@ public class Connect {
         Date date = _date;
         String patMail = _patientMail;
         String docMail = _doctorMail;
-        String sql_insert = "INSERT INTO appointment (date, time, patientMail, doctorMail, location, healthproblem, name, confirmend) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql_insert = "INSERT INTO appointment (date, time, patientMail, doctorMail, location, healthproblem, first_name, confirmend, last_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
 
@@ -352,6 +352,7 @@ public class Connect {
         insertApp.setString(6, healthprob);
         insertApp.setString(7, _patientName);
         insertApp.setBoolean(8, false);
+        insertApp.setString(9, lastname);
 
         insertApp.executeUpdate();
 
@@ -380,7 +381,7 @@ public class Connect {
 
         try {
             Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
-            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS appointment(ID int NOT NULL AUTO_INCREMENT, date DATE, time TIME,name VARCHAR(30), healthproblem VARCHAR(255), patientMail VARCHAR(255), confirmend TINYINT, doctorMail VARCHAR(255), location VARCHAR(255),  PRIMARY KEY (ID))");
+            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS appointment(ID int NOT NULL AUTO_INCREMENT, date DATE, time TIME,first_name VARCHAR(30), last_name VARCHAR(50), healthproblem VARCHAR(255), patientMail VARCHAR(255), confirmend TINYINT, doctorMail VARCHAR(255), location VARCHAR(255),  PRIMARY KEY (ID))");
             create.executeUpdate();
 
         }catch(Exception e) {System.out.println(e);

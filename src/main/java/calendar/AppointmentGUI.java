@@ -70,6 +70,7 @@ public class AppointmentGUI {
 
     /**
      * Create the application.
+     * patient_mail + Doc_Mail for constructor to initialize
      */
     public AppointmentGUI() {
         initialize();
