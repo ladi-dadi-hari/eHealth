@@ -104,6 +104,14 @@ public class Doctor extends Users.User {
         return this.username;
     }
 
+    public int getOpeningHour(){
+        return this.openingHour;
+    }
+
+    public int getClosingHour(){
+        return this.closingHour;
+    }
+
 
     //Set
     public void setfName(String _fn) {
@@ -130,6 +138,14 @@ public class Doctor extends Users.User {
         this.username = uname;
     }
 
+    public void setOpeningHour(int opH)
+    {
+        this.openingHour = opH;
+    }
+
+    public void setClosingHour(int clH){
+        this.closingHour = clH;
+    }
 
 
 

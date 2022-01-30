@@ -72,10 +72,10 @@ public class Healthcare_Searchresults extends JFrame {
 		JButton btnNewButton_1 = new JButton("Select");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AppointmentGUI window1 = new AppointmentGUI();
+				//AppointmentGUI window1 = new AppointmentGUI();
 
 
-				window1.frmAppointment.setVisible(true);
+				//window1.frmAppointment.setVisible(true);
 
 
 			}});
