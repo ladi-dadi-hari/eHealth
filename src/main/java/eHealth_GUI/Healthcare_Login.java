@@ -136,6 +136,9 @@ public class Healthcare_Login {
 							patient.setLatitude(rs.getFloat(14));
 							patient.setLongitude(rs.getFloat(13));
 							patient.setHealthInfo(rs.getString(10));
+							patient.setFirstName(rs.getString(2));
+							patient.setLastName(rs.getString(3));
+
 							Healthcare_Entry second = new Healthcare_Entry(patient);
 							Healthcare_Tray_Icon third = new Healthcare_Tray_Icon();
 							third.Tray_Icon(patient);
