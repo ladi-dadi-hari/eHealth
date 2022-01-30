@@ -125,7 +125,7 @@ public class Healthcare_Entry extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				//�ffne Eingangsfenster
-				Healthcare_Search_Doc second = new Healthcare_Search_Doc(/*patient*/);
+				Healthcare_Search_Doc second = new Healthcare_Search_Doc(patient);
 				second.setVisible(true);
 
 

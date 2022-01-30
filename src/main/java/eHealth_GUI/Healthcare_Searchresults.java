@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.List;
 import javax.swing.JList;
 
 @SuppressWarnings("serial")
@@ -44,7 +45,9 @@ public class Healthcare_Searchresults extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Healthcare_Searchresults(Patient patient) {
+	public Healthcare_Searchresults(Patient patient, List<List<String>> docResult) {
+
+		String docMail = null;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 381, 545);
 		contentPane = new JPanel();
@@ -66,7 +69,7 @@ public class Healthcare_Searchresults extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = list.getAnchorSelectionIndex(); //doctor_mailAddress
-				AppointmentGUI appointment= new AppointmentGUI(patient);
+				AppointmentGUI appointment= new AppointmentGUI(patient, docMail);
 				appointment.frmAppointment.setVisible(true);
 			}
 		});
