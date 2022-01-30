@@ -136,6 +136,7 @@ public class Healthcare_Login {
 
 							Healthcare_Entry second = new Healthcare_Entry(patient);
 							Healthcare_Tray_Icon third = new Healthcare_Tray_Icon();
+							third.Tray_Icon(patient);
 							second.setVisible(true);
 							frame.dispose();
 							return;
