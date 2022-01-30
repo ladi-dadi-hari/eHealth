@@ -325,20 +325,22 @@ public class Connect {
      * @param _date
      * @param _patientMail
      * @param _doctorMail
-     * @param _patientName
+     * @param firstname
+     * @param lastname
+     * @param _healthprob
      * @throws Exception
      *
      * @author: Max Endres
      */
-    public static void insertAppointment(Time _time, Date _date,String _patientName, String lastname, String _patientMail, String _doctorMail) throws Exception {
+    public static void insertAppointment(Time _time, Date _date,String firstname, String lastname, String _patientMail, String _doctorMail, String _healthprob) throws Exception {
         //Time time = Time.valueOf(LocalTime)
-        String location = "Frankfurt";
-        String healthprob = "Husten";
+
+
         Time time = _time;
         Date date = _date;
         String patMail = _patientMail;
         String docMail = _doctorMail;
-        String sql_insert = "INSERT INTO appointment (date, time, patientMail, doctorMail, location, healthproblem, first_name, confirmend, last_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql_insert = "INSERT INTO appointment (date, time, patientMail, doctorMail,  healthproblem, first_name, confirmend, last_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
 
@@ -348,11 +350,10 @@ public class Connect {
         insertApp.setTime(2, time);
         insertApp.setString(3, patMail);
         insertApp.setString(4, docMail);
-        insertApp.setString(5, location);
-        insertApp.setString(6, healthprob);
-        insertApp.setString(7, _patientName);
-        insertApp.setBoolean(8, false);
-        insertApp.setString(9, lastname);
+        insertApp.setString(5, _healthprob);
+        insertApp.setString(6, firstname);
+        insertApp.setBoolean(7, false);
+        insertApp.setString(8, lastname);
 
         insertApp.executeUpdate();
 
@@ -381,7 +382,7 @@ public class Connect {
 
         try {
             Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
-            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS appointment(ID int NOT NULL AUTO_INCREMENT, date DATE, time TIME,first_name VARCHAR(30), last_name VARCHAR(50), healthproblem VARCHAR(255), patientMail VARCHAR(255), confirmend TINYINT, doctorMail VARCHAR(255), location VARCHAR(255),  PRIMARY KEY (ID))");
+            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS appointment(ID int NOT NULL AUTO_INCREMENT, date DATE, time TIME,first_name VARCHAR(30), last_name VARCHAR(50), healthproblem VARCHAR(255), patientMail VARCHAR(255), confirmend TINYINT, doctorMail VARCHAR(255)),  PRIMARY KEY (ID))");
             create.executeUpdate();
 
         }catch(Exception e) {System.out.println(e);
