@@ -20,7 +20,7 @@ import java.util.Scanner;
 
 public class location {
 
-    public static void main(String[] args) throws IOException, InterruptedException, ApiException {
+   /* public static void main(String[] args) throws IOException, InterruptedException, ApiException {
         String address;
         int radius;
 
@@ -53,10 +53,10 @@ public class location {
         /*if(distance <= radius)
         {
 
-        }*/
+        }
 
 
-    }
+    }*/
 
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/users";
@@ -100,7 +100,7 @@ public class location {
      * @return
      */
 
-    public String checkUmlaut(String addresse)
+    public static String checkUmlaut(String addresse)
     {
 
         String new_address = addresse.replace("ß", "ss")

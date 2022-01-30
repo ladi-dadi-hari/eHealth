@@ -1,6 +1,7 @@
 package eHealth_GUI;
 
 import JDBC.Connect;
+import Location.location;
 import com.google.maps.errors.ApiException;
 import com.toedter.components.JSpinField;
 
@@ -341,7 +342,8 @@ public class Healthcare_Registration extends JFrame
                     try {
                         if(Connect.usernameOrEmailExists(username.getText(), mailAddress.getText()))
                         {
-                        Connect.insertnewPatient(firstName.getText(), lastName.getText(), username.getText() ,address.getText(), birthday.getText(), preIll.getText(), mailAddress.getText(), password.getText(), nameofinsurance.getText(), typeOfInsurance);
+
+                        Connect.insertnewPatient(firstName.getText(), lastName.getText(), username.getText() ,location.checkUmlaut(address.getText()), birthday.getText(), preIll.getText(), mailAddress.getText(), password.getText(), nameofinsurance.getText(), typeOfInsurance);
                         frame_register.dispose();
                         }
                         else
@@ -384,7 +386,7 @@ public class Healthcare_Registration extends JFrame
                         }
                         try
                         {
-                            Connect.insertNewDoc(firstName.getText(), lastName.getText(), username.getText(), address.getText(), specialField,  mailAddress.getText(), password.getText(), openHour.getValue(), closeHour.getValue());
+                            Connect.insertNewDoc(firstName.getText(), lastName.getText(), username.getText(), location.checkUmlaut(address.getText()), specialField,  mailAddress.getText(), password.getText(), openHour.getValue(), closeHour.getValue());
                             frame_register.dispose();
                         } catch (Exception e) {
                             e.printStackTrace();
