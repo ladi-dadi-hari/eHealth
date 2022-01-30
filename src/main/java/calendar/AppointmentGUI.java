@@ -215,7 +215,7 @@ public class AppointmentGUI {
 
 
                 pickedDateTime = LocalDateTime.of(pickedDate.getYear(), pickedDate.getMonth(), pickedDate.getDayOfMonth(), time.getHour(), time.getMinute());
-                Appointment appCreatet = new Appointment(pickedDateTime, dropDownIndex );
+                Appointment appCreatet = new Appointment(pickedDateTime, dropDownIndex, patient);
 
             }
         });

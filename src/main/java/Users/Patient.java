@@ -100,6 +100,8 @@ public class Patient extends Users.User {
 
     public void setIsDoc(int isDoc) {this.isDoc = isDoc;}
 
+    public String getMailAddress() {return mailAddress;}
+
     public String getUsername() {return username;}
 
     public float getLatitude() {return latitude;}

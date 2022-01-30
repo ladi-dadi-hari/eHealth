@@ -54,6 +54,24 @@ public class Healthcare_Login extends JFrame {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	/*
+		Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    SendEmail("can.dechert@gmx.de", "Appointment Reminder", "You have an Appointment one the " + _appDate + " at ");
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                }
+                this.cancel();
+            }
+        };
+
+        timer.schedule(task, delay);
+	 */
+
+
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 531, 467);
