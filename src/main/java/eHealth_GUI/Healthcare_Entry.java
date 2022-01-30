@@ -82,7 +82,7 @@ public class Healthcare_Entry extends JFrame {
 		btnMyProfile.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Healthcare_User_Profile userprofile = new Healthcare_User_Profile();
+				Healthcare_User_Profile userprofile = new Healthcare_User_Profile(patient);
 				userprofile.setVisible(true);
 			}
 		});

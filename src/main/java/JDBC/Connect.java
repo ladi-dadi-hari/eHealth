@@ -31,7 +31,7 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="rootadmin";
+    static final String AUTH_STRING ="***";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
@@ -482,7 +482,7 @@ public class Connect {
      *
      * @author: Max Endres
      */
-    public static int insertNewDoc(String _fName, String _lName, String _username, String _address, String _specF, String _mailAdd, String _pw) throws Exception{
+    public static int insertNewDoc(String _fName, String _lName, String _username, String _address, String _specF, String _mailAdd, String _pw, int opHour, int clHour ) throws Exception{
 
         location loc = new location();
         List<Float> lat_lng = loc.getLocInfo(_address);
@@ -506,8 +506,8 @@ public class Connect {
                 "doctor_mailAddress, " +
                 "salt, password, " +
                 "longitude, " +
-                "latitude) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "latitude, opening_hour, closing_hour) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         Connection conn = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
 
@@ -522,6 +522,8 @@ public class Connect {
         insertDoc.setString(8, password);
         insertDoc.setFloat(9, lng);
         insertDoc.setFloat(10, lat);
+        insertDoc.setInt(11, opHour);
+        insertDoc.setInt(12, clHour);
 
         insertDoc.executeUpdate();
         ResultSet rs = insertDoc.getGeneratedKeys();
@@ -545,7 +547,7 @@ public class Connect {
 
         try {
             Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
-            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS doctor(ID int NOT NULL AUTO_INCREMENT, firstName VARCHAR(255), lastName VARCHAR(255), doctor_username VARCHAR(255), address VARCHAR(255), specF VARCHAR(255), doctor_mailAddress VARCHAR(255),salt VARCHAR(255) , password VARCHAR(255), longitude float, latitude float, PRIMARY KEY (ID))");
+            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS doctor(ID int NOT NULL AUTO_INCREMENT, firstName VARCHAR(255), lastName VARCHAR(255), doctor_username VARCHAR(255), address VARCHAR(255), specF VARCHAR(255), doctor_mailAddress VARCHAR(255),salt VARCHAR(255) , password VARCHAR(255), longitude float, latitude float, opening_hour INT, closing_hour INT, PRIMARY KEY (ID))");
             create.executeUpdate();
 
         }catch(Exception e) {System.out.println(e);

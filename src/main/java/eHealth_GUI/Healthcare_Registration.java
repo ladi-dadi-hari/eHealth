@@ -2,6 +2,8 @@ package eHealth_GUI;
 
 import JDBC.Connect;
 import com.google.maps.errors.ApiException;
+import com.toedter.components.JSpinField;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -23,7 +25,10 @@ public class Healthcare_Registration extends JFrame
 
     JFrame frame_register = new JFrame();
 
-
+    private JLabel opHour;
+    private JLabel cloHour;
+    private JSpinField openHour;
+    private JSpinField closeHour;
     private JTextField username;
     private JTextField firstName;
     private JTextField lastName;
@@ -216,6 +221,28 @@ public class Healthcare_Registration extends JFrame
         preIll.setColumns(10);
         preIll.setVisible(false);
 
+        opHour = new JLabel("Opening Hour");
+        opHour.setFont(new Font("Tahoma", Font.PLAIN, 8));
+        opHour.setBounds(400, 170, 81, 52);
+        frame_register.getContentPane().add(opHour);
+        opHour.setVisible(false);
+
+        openHour = new JSpinField();
+        openHour.setBounds(400, 210, 40, 19);
+        frame_register.getContentPane().add(openHour);
+        openHour.setVisible(false);
+
+        cloHour = new JLabel("Closing Hour");
+        cloHour.setFont(new Font("Tahoma", Font.PLAIN, 8));
+        cloHour.setBounds(460, 170, 81, 52);
+        frame_register.getContentPane().add(cloHour);
+        cloHour.setVisible(false);
+
+        closeHour = new JSpinField();
+        closeHour.setBounds(460, 210, 40, 19);
+        frame_register.getContentPane().add(closeHour);
+        closeHour.setVisible(false);
+
         lblpreIll = new Label("Pre-existing illness");
         lblpreIll.setFont(new Font("Tahoma", Font.PLAIN, 15));
         lblpreIll.setBounds(400, 90, 150, 52);
@@ -294,6 +321,10 @@ public class Healthcare_Registration extends JFrame
                    lblspeF.setVisible(true);
                    combobox_specificationF.setVisible(true);
                    preIll.setVisible(false);
+                   closeHour.setVisible(true);
+                   openHour.setVisible(true);
+                   opHour.setVisible(true);
+                   cloHour.setVisible(true);
                }
                }
 
@@ -353,7 +384,7 @@ public class Healthcare_Registration extends JFrame
                         }
                         try
                         {
-                            Connect.insertNewDoc(firstName.getText(), lastName.getText(), username.getText(), address.getText(), specialField,  mailAddress.getText(), password.getText());
+                            Connect.insertNewDoc(firstName.getText(), lastName.getText(), username.getText(), address.getText(), specialField,  mailAddress.getText(), password.getText(), openHour.getValue(), closeHour.getValue());
                             frame_register.dispose();
                         } catch (Exception e) {
                             e.printStackTrace();
