@@ -2,6 +2,7 @@ package JDBC;
 
 import Location.location;
 import Hashing.Hashing;
+import Users.Patient;
 import com.google.maps.errors.ApiException;
 
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="***";
+    static final String AUTH_STRING ="TokyoGhoul^^123";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
@@ -40,10 +41,10 @@ public class Connect {
     }
 
 
-    public static List<String> AvailDoc(String specF, int distance, float pat_lat, float pat_lng) throws SQLException {
+    public static List<List<String>> AvailDoc(String specF, int distance, float pat_lat, float pat_lng) throws SQLException {
 
         float dis;
-        List<String> doc = new ArrayList();
+        List<List<String>> doc = new ArrayList<List<String>>();
 
 
         String sql_Select = "SELECT * FROM Users.doctor WHERE specF = ?";
@@ -62,15 +63,22 @@ public class Connect {
 
             if(dis <= distance)
             {
-                doc.add(rs.getString(2));
-                doc.add(rs.getString(3));
-                doc.add(rs.getString(5));
-                doc.add(rs.getString(6));
+                List<String> empty = new ArrayList<>();
+                doc.add(empty);
+                empty.add(rs.getString(2));
+                empty.add(rs.getString(3));
+                empty.add(rs.getString(5));
+                empty.add(rs.getString(6));
+                empty.add(rs.getString(7));
+
             }
         }
         System.out.println(doc);
+        //doc.get(0).get(0);
 
         return doc;
+
+
     }
 
 
@@ -306,6 +314,8 @@ public class Connect {
         confirmApp.setBoolean(1, false);
         confirmApp.setString(2, _patMail);
         confirmApp.setDate(3, _appDate );
+
+
         confirmApp.execute();
     }
     /**

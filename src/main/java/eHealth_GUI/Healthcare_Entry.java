@@ -24,12 +24,14 @@ public class Healthcare_Entry extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//Healthcare_Entry frame = new Healthcare_Entry();
-					//frame.setVisible(true);
+					Healthcare_Entry window = new Healthcare_Entry();
+					window.setVisible(true);
+
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
