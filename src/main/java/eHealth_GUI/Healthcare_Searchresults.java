@@ -52,10 +52,13 @@ public class Healthcare_Searchresults extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		int i = 0;
 		String[] neu = new String[doctors.size()];
-		neu[1] = String.valueOf(doctors.get(1));
-		System.out.println(neu[1]);
+
+		for (i = 0; i < doctors.size(); i++){
+			neu[i] = String.valueOf(doctors.get(i));
+		}
+		System.out.println(doctors.size());
 
 		JList list = new JList(neu);
 		list.setBounds(71, 71, 225, 211);
