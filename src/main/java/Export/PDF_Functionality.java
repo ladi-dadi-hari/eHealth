@@ -26,7 +26,7 @@ public class PDF_Functionality
         {
 
             //  Initialize path information and filewriter
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:\\HealthInformation.pdf")); // change path accordingly
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\Public\\Downloads\\HealthInformation.pdf")); // change path accordingly
 
 
             //  Writing document text
