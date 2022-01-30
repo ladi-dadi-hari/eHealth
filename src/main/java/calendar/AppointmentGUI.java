@@ -3,6 +3,8 @@ package calendar;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+
+import Users.Patient;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -53,6 +55,7 @@ public class AppointmentGUI {
     /**
      * Launch the application.
      */
+    /*
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -67,20 +70,20 @@ public class AppointmentGUI {
             }
         });
     }
-
+*/
     /**
      * Create the application.
      * patient_mail + Doc_Mail for constructor to initialize
      */
-    public AppointmentGUI() {
-        initialize();
+    public AppointmentGUI(Patient patient) {
+        initialize(patient);
     }
 
     /**
      * Initialize the contents of the frame.
      * This method is called in the constructor, defining the behavior of this window when opened.
      */
-    public void initialize() {
+    public void initialize(Patient patient) {
 
 
         frmAppointment.setTitle("Appointment");

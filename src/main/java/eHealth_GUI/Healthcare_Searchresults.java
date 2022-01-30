@@ -1,6 +1,7 @@
 package eHealth_GUI;
 
 
+import Users.Patient;
 import calendar.*;
 
 import java.awt.EventQueue;
@@ -26,6 +27,7 @@ public class Healthcare_Searchresults extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -38,11 +40,11 @@ public class Healthcare_Searchresults extends JFrame {
 			}
 		});
 	}
-
+*/
 	/**
 	 * Create the frame.
 	 */
-	public Healthcare_Searchresults() {
+	public Healthcare_Searchresults(Patient patient) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 381, 545);
 		contentPane = new JPanel();
@@ -64,7 +66,7 @@ public class Healthcare_Searchresults extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = list.getAnchorSelectionIndex(); //doctor_mailAddress
-				AppointmentGUI appointment= new AppointmentGUI();
+				AppointmentGUI appointment= new AppointmentGUI(patient);
 				appointment.frmAppointment.setVisible(true);
 			}
 		});
