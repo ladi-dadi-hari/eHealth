@@ -167,6 +167,15 @@ public class Healthcare_Login {
 					e.printStackTrace();
 				}
 				}
+
+				else if(u_username.equals("admin") && u_pwd.equals("admin"))
+				{
+					JOptionPane.showMessageDialog(frame, "Login als Admin erfolgreich");
+					Admin_Page admin = new Admin_Page();
+					admin.frame_admin.setVisible(true);
+					frame.dispose();
+					return;
+				}
 				else
 				{
 					JOptionPane.showMessageDialog(frame, "Login fehlgeschlagen");

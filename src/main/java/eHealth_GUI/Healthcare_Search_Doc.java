@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import JDBC.Connect;
+import Users.Patient;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -19,6 +22,8 @@ import javax.swing.JTextArea;
 /*imports for the appointment gui*/
 
 import com.toedter.calendar.JDateChooser;
+
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -59,6 +64,7 @@ public class Healthcare_Search_Doc extends JFrame {
 	Date date;
 	LocalTime time;
 	LocalDateTime pickedDateTime;
+	String specF;
 
 	/**
 	 * Launch the application.
@@ -79,7 +85,7 @@ public class Healthcare_Search_Doc extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Healthcare_Search_Doc() {
+	public Healthcare_Search_Doc(/*Patient patient*/) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 331, 510);
 		contentPane = new JPanel();
@@ -241,6 +247,24 @@ public class Healthcare_Search_Doc extends JFrame {
 				else if(comboBox.getSelectedItem().toString().equals("20km"))
 				{
 					distance = 20;
+				}
+			}
+		});
+
+		btnSearchNow.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+
+				if(generalIssuesdropDown.getSelectedIndex() <= 8)
+				{
+					specF = "General";
+				}
+
+				try {
+					Connect.AvailDoc(specF, distance/*patient*/);
+				} catch (SQLException ex) {
+					ex.printStackTrace();
 				}
 			}
 		});
