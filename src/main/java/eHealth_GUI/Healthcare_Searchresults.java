@@ -4,32 +4,30 @@ package eHealth_GUI;
 import Users.Patient;
 import calendar.*;
 
-import java.awt.EventQueue;
+import java.awt.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.swing.JList;
+import java.sql.ResultSet;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class Healthcare_Searchresults extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame frame;
+	int i = 0;
 
 	/**
 	 * Launch the application.
 	 */
-	/*
-	public static void main(String[] args) {
+
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -45,10 +43,8 @@ public class Healthcare_Searchresults extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Healthcare_Searchresults(Patient patient, List<List<String>> docResult) {
-
-		String docMail = null;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public Healthcare_Searchresults(ResultSet doctors) {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 381, 545);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

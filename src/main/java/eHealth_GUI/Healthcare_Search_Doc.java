@@ -23,12 +23,12 @@ import javax.swing.JTextArea;
 
 import com.toedter.calendar.JDateChooser;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import com.toedter.calendar.JMonthChooser;
 import com.toedter.components.JSpinField;
@@ -264,8 +264,8 @@ public class Healthcare_Search_Doc extends JFrame {
 				}
 
 				try {
-					List<List<String>> listDoc = Connect.AvailDoc(specF, distance, patient.getLatitude(), patient.getLongitude());
-					Healthcare_Searchresults results = new Healthcare_Searchresults(patient, listDoc);
+					ResultSet doctors = Connect.AvailDoc(specF, distance, patient.getLatitude(), patient.getLongitude());
+					Healthcare_Searchresults results = new Healthcare_Searchresults(doctors);
 					results.setVisible(true);
 				} catch (SQLException ex) {
 					ex.printStackTrace();

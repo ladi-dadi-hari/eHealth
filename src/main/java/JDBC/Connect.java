@@ -32,7 +32,7 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="****";
+    static final String AUTH_STRING ="TokyoGhoul^^123";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
@@ -41,10 +41,10 @@ public class Connect {
     }
 
 
-    public static List<List<String>> AvailDoc(String specF, int distance, float pat_lat, float pat_lng) throws SQLException {
+    public static ResultSet AvailDoc(String specF, int distance, float pat_lat, float pat_lng) throws SQLException {
 
         float dis;
-        List<List<String>> doc = new ArrayList<List<String>>();
+        int i = 0;
 
 
         String sql_Select = "SELECT * FROM Users.doctor WHERE specF = ?";
@@ -61,22 +61,17 @@ public class Connect {
 
             dis = location.getDistance(pat_lat, pat_lng, lat,lng);
 
-            if(dis <= distance)
+            if(dis > distance)
             {
-                List<String> empty = new ArrayList<>();
-                doc.add(empty);
-                empty.add(rs.getString(2));
-                empty.add(rs.getString(3));
-                empty.add(rs.getString(5));
-                empty.add(rs.getString(6));
-                empty.add(rs.getString(7));
+               rs.deleteRow();
 
             }
+            System.out.println(rs.getString(1));
         }
-        System.out.println(doc);
+
         //doc.get(0).get(0);
 
-        return doc;
+        return rs;
 
 
     }

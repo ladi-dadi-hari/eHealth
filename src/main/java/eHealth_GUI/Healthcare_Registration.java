@@ -260,148 +260,130 @@ public class Healthcare_Registration extends JFrame
         cancelbutton.setBounds(400, 520, 127, 34);
         frame_register.getContentPane().add(cancelbutton);
 
-        cancelbutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame_register.dispose();
+        cancelbutton.addActionListener(e -> frame_register.dispose());
+
+
+        rdbtnPrivate.addActionListener(e -> {
+            if(rdbtnPrivate.isSelected())
+            {
+                typeOfInsurance = "private";
+                group_pub.clearSelection();
+
             }
         });
 
-
-        rdbtnPrivate.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(rdbtnPrivate.isSelected())
-                {
-                    typeOfInsurance = "private";
-                    group_pub.clearSelection();
-
-                }
+        rdbtnPublic.addActionListener(e -> {
+            if(rdbtnPublic.isSelected())
+            {
+                typeOfInsurance = "public";
+                group_prv.clearSelection();
             }
         });
 
-        rdbtnPublic.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(rdbtnPublic.isSelected())
-                {
-                    typeOfInsurance = "public";
-                    group_prv.clearSelection();
-                }
-            }
-        });
+       comboBox.addActionListener(e -> {
+           if(Objects.requireNonNull(comboBox.getSelectedItem()).toString().equals("Patient"))
+           {
+               nameofinsurance.setVisible(true);
+               lblTheNameOf.setVisible(true);
+               rdbtnPrivate.setVisible(true);
+               rdbtnPublic.setVisible(true);
+               lblbirtday.setVisible(true);
+               birthday.setVisible(true);
+               lblspeF.setVisible(false);
+               lblpreIll.setVisible(true);
+               lblspeF.setVisible(false);
+               combobox_specificationF.setVisible(false);
+               preIll.setVisible(true);
 
-       comboBox.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               if(Objects.requireNonNull(comboBox.getSelectedItem()).toString().equals("Patient"))
-               {
-                   nameofinsurance.setVisible(true);
-                   lblTheNameOf.setVisible(true);
-                   rdbtnPrivate.setVisible(true);
-                   rdbtnPublic.setVisible(true);
-                   lblbirtday.setVisible(true);
-                   birthday.setVisible(true);
-                   lblspeF.setVisible(false);
-                   lblpreIll.setVisible(true);
-                   lblspeF.setVisible(false);
-                   combobox_specificationF.setVisible(false);
-                   preIll.setVisible(true);
-
-               }
-               else if(comboBox.getSelectedItem().toString().equals("Doctor"))
-               {
-                   nameofinsurance.setVisible(false);
-                   lblTheNameOf.setVisible(false);
-                   rdbtnPrivate.setVisible(false);
-                   rdbtnPublic.setVisible(false);
-                   lblbirtday.setVisible(false);
-                   birthday.setVisible(false);
-                   lblspeF.setVisible(true);
-                   lblpreIll.setVisible(false);
-                   lblspeF.setVisible(true);
-                   combobox_specificationF.setVisible(true);
-                   preIll.setVisible(false);
-                   closeHour.setVisible(true);
-                   openHour.setVisible(true);
-                   opHour.setVisible(true);
-                   cloHour.setVisible(true);
-               }
-               }
-
+           }
+           else if(comboBox.getSelectedItem().toString().equals("Doctor"))
+           {
+               nameofinsurance.setVisible(false);
+               lblTheNameOf.setVisible(false);
+               rdbtnPrivate.setVisible(false);
+               rdbtnPublic.setVisible(false);
+               lblbirtday.setVisible(false);
+               birthday.setVisible(false);
+               lblspeF.setVisible(true);
+               lblpreIll.setVisible(false);
+               lblspeF.setVisible(true);
+               combobox_specificationF.setVisible(true);
+               preIll.setVisible(false);
+               closeHour.setVisible(true);
+               openHour.setVisible(true);
+               opHour.setVisible(true);
+               cloHour.setVisible(true);
+           }
            }
        );
 
-        registerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
+        registerButton.addActionListener(arg0 -> {
 
-            if(!username.getText().equals("admin") && !password.getText().equals("admin")){
-                if(Objects.requireNonNull(comboBox.getSelectedItem()).toString().equals("Patient"))
-                {
-                    try {
-                        if(Connect.usernameOrEmailExists(username.getText(), mailAddress.getText()))
-                        {
-
-                        Connect.insertnewPatient(firstName.getText(), lastName.getText(), username.getText() ,location.checkUmlaut(address.getText()), birthday.getText(), preIll.getText(), mailAddress.getText(), password.getText(), nameofinsurance.getText(), typeOfInsurance);
-                        frame_register.dispose();
-                        }
-                        else
-                        {
-                            JOptionPane.showMessageDialog(frame_register, "Username or Email already exists.");
-                        }
-                    } catch (IOException | InterruptedException | ApiException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                else if(comboBox.getSelectedItem().toString().equals("Doctor"))
-                {
+        if(!username.getText().equals("admin") && !password.getText().equals("admin")){
+            if(Objects.requireNonNull(comboBox.getSelectedItem()).toString().equals("Patient"))
+            {
+                try {
                     if(Connect.usernameOrEmailExists(username.getText(), mailAddress.getText()))
                     {
-                        switch (combobox_specificationF.getSelectedIndex()){
-                            case 0:
-                                specialField = "Pediatrician";
-                                break;
-                            case 1:
-                                specialField = "General";
-                                break;
-                            case 2:
-                                specialField = "Cardiologist";
-                                break;
-                            case 3:
-                                specialField = "Pulmonologist";
-                                break;
-                            case 4:
-                                specialField = "Orthopedist";
-                                break;
-                            case 5:
-                                specialField ="Dentist";
-                                break;
-                            case 6:
-                                specialField = "Physiotherapist";
-                            default:
-                                break;
 
-                        }
-                        try
-                        {
-                            Connect.insertNewDoc(firstName.getText(), lastName.getText(), username.getText(), location.checkUmlaut(address.getText()), specialField,  mailAddress.getText(), password.getText(), openHour.getValue(), closeHour.getValue());
-                            frame_register.dispose();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                    Connect.insertnewPatient(firstName.getText(), lastName.getText(), username.getText() ,location.checkUmlaut(address.getText()), birthday.getText(), preIll.getText(), mailAddress.getText(), password.getText(), nameofinsurance.getText(), typeOfInsurance);
+                    frame_register.dispose();
                     }
                     else
                     {
                         JOptionPane.showMessageDialog(frame_register, "Username or Email already exists.");
                     }
+                } catch (IOException | InterruptedException | ApiException e) {
+                    e.printStackTrace();
+                }
+            }
 
+            else if(comboBox.getSelectedItem().toString().equals("Doctor"))
+            {
+                if(Connect.usernameOrEmailExists(username.getText(), mailAddress.getText()))
+                {
+                    switch (combobox_specificationF.getSelectedIndex()){
+                        case 0:
+                            specialField = "Pediatrician";
+                            break;
+                        case 1:
+                            specialField = "General";
+                            break;
+                        case 2:
+                            specialField = "Cardiologist";
+                            break;
+                        case 3:
+                            specialField = "Pulmonologist";
+                            break;
+                        case 4:
+                            specialField = "Orthopedist";
+                            break;
+                        case 5:
+                            specialField ="Dentist";
+                            break;
+                        case 6:
+                            specialField = "Physiotherapist";
+                        default:
+                            break;
 
+                    }
+                    try
+                    {
+                        Connect.insertNewDoc(firstName.getText(), lastName.getText(), username.getText(), location.checkUmlaut(address.getText()), specialField,  mailAddress.getText(), password.getText(), openHour.getValue(), closeHour.getValue());
+                        frame_register.dispose();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(frame_register, "Username or Email already exists.");
                 }
 
+
             }
-            }
+
+        }
         });
 
 
