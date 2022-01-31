@@ -88,7 +88,7 @@ public class Healthcare_Search_Doc extends JFrame {
 	 * Create the frame.
 	 */
 	public Healthcare_Search_Doc(Patient patient) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 331, 510);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -120,7 +120,7 @@ public class Healthcare_Search_Doc extends JFrame {
 		contentPane.add(lblGeneralIssues);
 
 		String[] generalIssues =
-				{"Cold", "Sickness", "Flu", "Migraines", "Head Ache", "Fever",
+				{"-", "Cold", "Sickness", "Flu", "Migraines", "Head Ache", "Fever",
 						"Stomach Pain", "Covid", "Allergies", "Obesity"
 
 		};
@@ -143,7 +143,7 @@ public class Healthcare_Search_Doc extends JFrame {
 		contentPane.add(lblSkinIssues);
 
 		String[] skinIssues =
-				{"Akne", "Rashes", "Itches", "Skin Disease", "Moles"
+				{"-", "Akne", "Rashes", "Itches", "Skin Disease", "Moles"
 				};
 
 		skinIssuesdropDown = new JComboBox(skinIssues);
@@ -164,7 +164,7 @@ public class Healthcare_Search_Doc extends JFrame {
 		contentPane.add(lblJointIssues);
 
 		String[] jointIssues =
-				{"Back Pain", "Knee Pain", "Neck Pain", "Joint Pain"
+				{"-", "Back Pain", "Knee Pain", "Neck Pain", "Joint Pain"
 				};
 
 		jointIssuesdropDown = new JComboBox(jointIssues);
@@ -186,7 +186,7 @@ public class Healthcare_Search_Doc extends JFrame {
 		contentPane.add(lblchronicIssues);
 
 		String[] chronicIssues =
-				{"Asthma", "Blood Pressure", "Hay Fever", "Diabetes"
+				{"-", "Asthma", "Blood Pressure", "Hay Fever", "Diabetes"
 				};
 
 		chronicIssuesdropDown = new JComboBox(chronicIssues);
