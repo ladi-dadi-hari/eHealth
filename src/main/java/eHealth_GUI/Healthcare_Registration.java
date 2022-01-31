@@ -263,22 +263,7 @@ public class Healthcare_Registration extends JFrame
         cancelbutton.addActionListener(e -> frame_register.dispose());
 
 
-        rdbtnPrivate.addActionListener(e -> {
-            if(rdbtnPrivate.isSelected())
-            {
-                typeOfInsurance = "private";
-                group_pub.clearSelection();
 
-            }
-        });
-
-        rdbtnPublic.addActionListener(e -> {
-            if(rdbtnPublic.isSelected())
-            {
-                typeOfInsurance = "public";
-                group_prv.clearSelection();
-            }
-        });
 
        comboBox.addActionListener(e -> {
            if(Objects.requireNonNull(comboBox.getSelectedItem()).toString().equals("Patient"))

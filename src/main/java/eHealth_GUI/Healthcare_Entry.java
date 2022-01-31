@@ -100,6 +100,9 @@ public class Healthcare_Entry extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Healthcare_User_Profile userprofile = new Healthcare_User_Profile(patient);
 				userprofile.setVisible(true);
+
+				dispose();
+
 			}
 		});
 		btnMyProfile.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -111,8 +114,6 @@ public class Healthcare_Entry extends JFrame {
 		btnLogout.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				// GUI PROBLEM TODO
 
 				patient.logOutPat(patient);
 

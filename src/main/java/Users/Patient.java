@@ -46,6 +46,7 @@ public class Patient extends Users.User {
      * When calling this function, the object patient gets deleted and logged out.
      *
      * @param patient
+     * @author: Harris Nuhanovic
      */
 
     public void logOutPat (Patient patient){

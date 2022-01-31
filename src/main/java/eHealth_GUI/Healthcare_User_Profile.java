@@ -93,8 +93,27 @@ public class Healthcare_User_Profile extends JFrame {
 		exportPDFbtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		exportPDFbtn.setBounds(194, 366, 114, 39);
 		contentPane.add(exportPDFbtn);
-		
+
+
+		/**
+		 * Pressing the Edit button will lead to a frame where the patient can edit his account data.
+		 * The function executes the SQL statements and writes the changes in the database.
+		 *
+		 * @author: Harris Nuhanovic
+		 *
+		 */
 		JButton editBtn = new JButton("Edit");
+		editBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Healthcare_User_Profile.this.dispose();
+
+				Edit_Profile edit = new Edit_Profile(patient);
+				edit.frame_edit.setVisible(true);
+
+			}
+		});
 		editBtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		editBtn.setBounds(194, 439, 114, 39);
 		contentPane.add(editBtn);
