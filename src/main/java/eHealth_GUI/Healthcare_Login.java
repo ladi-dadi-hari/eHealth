@@ -55,6 +55,8 @@ public class Healthcare_Login extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	/*
+	-> Braucht patienten email, reminder datum
+
 		Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             @Override
@@ -68,7 +70,7 @@ public class Healthcare_Login extends JFrame {
             }
         };
 
-        timer.schedule(task, delay);
+        timer.schedule(task, delay); <- muss nochmal berechnet werden mit der neuen datums differenz
 	 */
 
 
