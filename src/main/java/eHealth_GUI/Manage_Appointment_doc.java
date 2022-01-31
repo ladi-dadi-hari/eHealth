@@ -119,7 +119,7 @@ public class Manage_Appointment_doc extends JFrame {
 
                 JLabel lbMail = new JLabel("Mailaddress");
                 lbMail.setFont(new Font("Tahoma", Font.BOLD, 13));
-                lbMail.setBounds(428, 24, 85, 13);
+                lbMail.setBounds(428, 24, 105, 13);
                 contentPane.add(lbMail);
 
                 JLabel lbConfirmend = new JLabel("Confirmend");
@@ -176,7 +176,7 @@ public class Manage_Appointment_doc extends JFrame {
 
                         try {
                             appointments.absolute(1);
-                            confirmAppointment(appointments.getString(7), appointments.getDate(2));
+                            confirmAppointment(_doc.getfName(), _doc.getLastName(), appointments.getString(7), appointments.getDate(2));
                             setCheckBox1Selected(true);
                         } catch (SQLException | MessagingException ex) {
                             ex.printStackTrace();
@@ -238,7 +238,7 @@ public class Manage_Appointment_doc extends JFrame {
                     lbMail2 = new JLabel("");
                     lbMail2.setFont(new Font("Tahoma", Font.PLAIN, 8));
                     setLbMail2Text(appointments.getString(7));
-                    lbMail2.setBounds(428, 132, 101, 13);
+                    lbMail2.setBounds(428, 132, 105, 13);
                     contentPane.add(lbMail2);
 
                     checkBox2 = new JCheckBox("");
@@ -252,7 +252,7 @@ public class Manage_Appointment_doc extends JFrame {
 
                             try {
                                 appointments.absolute(2);
-                                confirmAppointment(appointments.getString(7), appointments.getDate(2));
+                                confirmAppointment(_doc.getFirstName(), _doc.getLastName(), appointments.getString(7), appointments.getDate(2));
                                 setCheckBox2Selected(true);
                             } catch (SQLException | MessagingException ex) {
                                 ex.printStackTrace();
@@ -315,7 +315,7 @@ public class Manage_Appointment_doc extends JFrame {
                     lbMail3 = new JLabel("");
                     lbMail3.setFont(new Font("Tahoma", Font.PLAIN, 8));
                     setLbMail3Text(appointments.getString(7));
-                    lbMail3.setBounds(428, 205, 101, 13);
+                    lbMail3.setBounds(428, 205, 105, 13);
                     contentPane.add(lbMail3);
 
                     checkBox3 = new JCheckBox("");
@@ -329,7 +329,7 @@ public class Manage_Appointment_doc extends JFrame {
 
                             try {
                                 appointments.absolute(3);
-                                confirmAppointment(appointments.getString(7), appointments.getDate(2));
+                                confirmAppointment(_doc.getfName(), _doc.getLastName(), appointments.getString(7), appointments.getDate(2));
                                 setCheckBox3Selected(true);
                             } catch (SQLException | MessagingException ex) {
                                 ex.printStackTrace();
@@ -393,7 +393,7 @@ public class Manage_Appointment_doc extends JFrame {
                     lbMail4 = new JLabel("");
                     lbMail4.setFont(new Font("Tahoma", Font.PLAIN, 8));
                     setLbMail4Text(appointments.getString(7));
-                    lbMail4.setBounds(428, 280, 101, 13);
+                    lbMail4.setBounds(428, 280, 105, 13);
                     contentPane.add(lbMail4);
 
                     checkBox4 = new JCheckBox("");
@@ -406,9 +406,10 @@ public class Manage_Appointment_doc extends JFrame {
                         public void actionPerformed(ActionEvent e) {
 
                             try {
-                                appointments.absolute(4);
-                                confirmAppointment(appointments.getString(7), appointments.getDate(2));
                                 setCheckBox4Selected(true);
+                                appointments.absolute(4);
+                                confirmAppointment(_doc.getfName(), _doc.getLastName(), appointments.getString(7), appointments.getDate(2));
+
                             } catch (SQLException | MessagingException ex) {
                                 ex.printStackTrace();
                             }

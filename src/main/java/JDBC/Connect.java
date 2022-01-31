@@ -33,7 +33,7 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="******";
+    static final String AUTH_STRING ="****";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
@@ -285,7 +285,7 @@ public class Connect {
         return false;
     }
 
-    public static void confirmAppointment(String _patMail, Date _appDate) throws SQLException, MessagingException {
+    public static void confirmAppointment(String docFname, String docLname, String _patMail, Date _appDate) throws SQLException, MessagingException {
 
         //Send Confirm-Mail to _patMail
 
@@ -296,7 +296,7 @@ public class Connect {
         confirmApp.setDate(3, _appDate );
         confirmApp.execute();
 
-        SendEmail(_patMail, "Appointment confirmend!", "Dr. " + _patMail+" confirmend your Appointment on " + _appDate.toString());
+        SendEmail(_patMail, "Appointment confirmend!", "Dr. " + docFname+ " "+ docLname+" confirmend your Appointment on " + _appDate.toString());
 
     }
 
