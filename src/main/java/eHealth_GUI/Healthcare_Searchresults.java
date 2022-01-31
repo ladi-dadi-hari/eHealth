@@ -57,11 +57,13 @@ public class Healthcare_Searchresults extends JFrame {
 
 		for (i = 0; i < doctors.size(); i++){
 			String docResult = String.valueOf(doctors.get(i));
+			
+			//remove brackets:
 			docResult = docResult.replace("[", "");
 			docResult = docResult.replace("]", "");
 			neu[i] = String.valueOf(docResult);
 		}
-		System.out.println(doctors.size());
+		
 
 		JList list = new JList(neu);
 		list.setBounds(71, 71, 300, 211);
@@ -82,8 +84,7 @@ public class Healthcare_Searchresults extends JFrame {
 				chosenDocMail =chosenDocMail.trim();
 				AppointmentGUI appointment= new AppointmentGUI(patient, chosenDocMail);
 				appointment.frmAppointment.setVisible(true);
-				System.out.println(chosenDocMail);
-				System.out.println("Test");
+				
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
