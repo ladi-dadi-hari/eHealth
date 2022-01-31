@@ -9,7 +9,7 @@ import java.awt.event.*;
 /**
  * This is the Class that build the system tray icon to access the eHealth application in sleep mode
  * This makes the whole application able to stay active and keep the reminder running without disturbing the user,
- * while still being able to be managed by the user.
+ * while still being able to be accessed by the user with this icon.
  *
  * @author Can Dechert
  */
@@ -33,7 +33,7 @@ public class Healthcare_Tray_Icon {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Healthcare_Entry second = new Healthcare_Entry(patient);
-                second.setVisible(true);    // WHICH WINDOW SHOULD OPEN?
+                second.setVisible(true);
             }
         });
 
