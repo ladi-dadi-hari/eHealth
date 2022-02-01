@@ -228,7 +228,17 @@ public class Edit_Profile extends JFrame {
         cancelbutton.setFont(new Font("Tahoma", Font.PLAIN, 15));
         cancelbutton.setBounds(400, 520, 127, 34);
         frame_edit.getContentPane().add(cancelbutton);
-        cancelbutton.addActionListener(e -> frame_edit.dispose());
+
+        cancelbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                frame_edit.dispose();
+                Healthcare_Entry entry = new Healthcare_Entry(patient);
+                entry.setVisible(true);
+
+            }
+        });
 
         rdbtnPrivate.addActionListener(e -> {
             if(rdbtnPrivate.isSelected())

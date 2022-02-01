@@ -33,7 +33,7 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="****";
+    static final String AUTH_STRING ="rootadmin";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
@@ -200,6 +200,45 @@ public class Connect {
             System.out.println(e);
         }
 
+    }
+
+    /**
+     * Function deletes Patient from Database.
+     * Needed for editing profile.
+     *
+     * @param _patient_username
+     * @throws SQLException
+     *
+     * @author: Harris Nuhanovic
+     */
+
+    public static void deletePatient(String _patient_username) throws SQLException {
+
+
+        String patient_username = _patient_username;
+
+
+
+
+        try {
+            System.out.println(patient_username);
+
+            String SQL_DELETE = "DELETE FROM Users.patient WHERE patient_username = ? ";
+
+            Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+
+            PreparedStatement deleteUser = con.prepareStatement(SQL_DELETE);
+
+            deleteUser.setString(1, patient_username);
+
+            deleteUser.executeUpdate();
+
+            System.out.println("User"+_patient_username+"got deleted from Database");
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     /**

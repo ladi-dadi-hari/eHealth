@@ -77,6 +77,26 @@ public class Healthcare_User_Profile extends JFrame {
 		healthInfo_label.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		healthInfo_label.setBounds(274, 150, 250, 39);
 		contentPane.add(healthInfo_label);
+
+		JButton cancelbutton = new JButton("Cancel");
+		cancelbutton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		cancelbutton.setBounds(194, 439, 114, 39);
+		contentPane.add(cancelbutton);
+
+
+		cancelbutton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Healthcare_User_Profile.this.dispose();
+
+				Healthcare_Entry entry = new Healthcare_Entry(patient);
+				entry.setVisible(true);
+
+			}
+		});
+
+
 		
 		JButton exportPDFbtn = new JButton("Export Info");
 		exportPDFbtn.addActionListener(new ActionListener() {
@@ -91,7 +111,7 @@ public class Healthcare_User_Profile extends JFrame {
 		});
 
 		exportPDFbtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		exportPDFbtn.setBounds(194, 366, 114, 39);
+		exportPDFbtn.setBounds(194, 365, 114, 39);
 		contentPane.add(exportPDFbtn);
 
 
@@ -115,7 +135,7 @@ public class Healthcare_User_Profile extends JFrame {
 			}
 		});
 		editBtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		editBtn.setBounds(194, 439, 114, 39);
+		editBtn.setBounds(194, 402, 114, 39);
 		contentPane.add(editBtn);
 	}
 
