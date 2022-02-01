@@ -22,7 +22,8 @@ public class Healthcare_Entry extends JFrame {
 	String username;
 
 	/**
-	 * Launch the application.
+	 * <p>This is the code for the Entry Window that is displayed, when the user logs in as "patient".</p>
+	 * @author Sidra Abbasi
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -38,7 +39,7 @@ public class Healthcare_Entry extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * @param patient takes the object Patient that is created at the time of logging in
 	 */
 	public Healthcare_Entry(Patient patient) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

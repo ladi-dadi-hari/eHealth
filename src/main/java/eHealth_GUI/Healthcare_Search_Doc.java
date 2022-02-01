@@ -69,7 +69,9 @@ public class Healthcare_Search_Doc extends JFrame {
 	String specF;
 
 	/**
-	 * Launch the application.
+	 * <p>This is the code for the GUI in which the patient enters their health problems to find a doctor in the
+	 * selected distance of search<p/>
+	 * @author Sidra Abbasi
 	 */
 	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -82,11 +84,12 @@ public class Healthcare_Search_Doc extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
-	 * Create the frame.
+	 *  <p>@param patients takes the object Patient that was created at login</p>
 	 */
+
 	public Healthcare_Search_Doc(Patient patient) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 331, 510);

@@ -25,7 +25,9 @@ public class Healthcare_Searchresults extends JFrame {
 	int i = 0;
 
 	/**
-	 * Launch the application.
+	 * <p>In this GUI, the search results of the doctor search are displayed as a list</p>
+	 * @author GUI: Sidra Abbasi
+	 * @author functions: Max Endres, Maximilian Rabe
 	 */
 
 /*	public static void main(String[] args) {

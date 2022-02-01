@@ -18,7 +18,8 @@ public class Healthcare_User_Profile extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
+	 * <p>This is the GUI in which the user who is logged in can see the information that they entered at registering
+	 * @author GUI: Sidra Abbasi</p>>
 	 */
 	//public static void main(String[] args) {
 	//	EventQueue.invokeLater(new Runnable() {
@@ -34,7 +35,7 @@ public class Healthcare_User_Profile extends JFrame {
 	//}
 
 	/**
-	 * Create the frame.
+	 * <p>The function takes the parameter patient from the object Patient which is created at login</p>>
 	 */
 	public Healthcare_User_Profile(Patient patient) {
 		setBounds(100, 100, 517, 550);
@@ -96,7 +97,10 @@ public class Healthcare_User_Profile extends JFrame {
 			}
 		});
 
-
+/**
+ * <p>If the user presses the button Export, his profile information will be exported as PDF
+ * @author Can Dechert</p>
+ */
 		
 		JButton exportPDFbtn = new JButton("Export Info");
 		exportPDFbtn.addActionListener(new ActionListener() {

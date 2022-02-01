@@ -26,7 +26,8 @@ public class Healthcare_Login extends JFrame {
 	private JTextField password_field;
 
 	/**
-	 * Launch the application.
+	 * <p>This is the code that creates the Login Window for the Patient user and the Doctor User
+	 * @author Sidra Abbasi</p>
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -45,15 +46,12 @@ public class Healthcare_Login extends JFrame {
 	}
 
 	/**
-	 * Create the application.
+	 * <p>The function initialize() displays the login window </p>>
 	 */
 	public Healthcare_Login() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	/*
 	-> Braucht patienten email, reminder datum
 
@@ -79,6 +77,11 @@ public class Healthcare_Login extends JFrame {
 		frame.setBounds(100, 100, 531, 467);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+
+		JLabel lblEnterLogin = new JLabel("Enter your Login Data:");
+		lblEnterLogin.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblEnterLogin.setBounds(167, 54, 182, 34);
+		frame.getContentPane().add(lblEnterLogin);
 		
 		JLabel lblNewLabel = new JLabel("Username:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -109,12 +112,18 @@ public class Healthcare_Login extends JFrame {
 		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		registerButton.setBounds(200, 340, 127, 34);
 		frame.getContentPane().add(registerButton);
+
+
+		/**
+		 * <p>When the Login Button is clicked, the Entries from the Patient and Doctor Databases are fetched.</p>
+		 * @author ???
+		 */
 		
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0)
 			{
 				// An der Stelle Daten aus der Datenbank ziehen
-				// Beispiel Werte:
+
 				String u_username= username.getText();
 				String u_pwd= password_field.getText();
 				boolean exists_patient = false;
@@ -146,7 +155,7 @@ public class Healthcare_Login extends JFrame {
 				{
 					JOptionPane.showMessageDialog(frame, "Login als Patient erfolgreich");
 
-					//�ffne Eingangsfenster
+					//oeffne Eingangsfenster
 					try {
 						ResultSet rs = Connect.getPatient(u_username);
 						if(rs.next()) {
