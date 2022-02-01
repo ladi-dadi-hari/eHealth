@@ -176,11 +176,11 @@ public class Doctor extends Users.User {
     enum Specialfield {
     Pediatrician,
     General,
-    Cardiologist,
+    Allergist,
     Pulmonologist,
     Orthopedist,
     Dentist,
-    Physiotherapist;
+    Dermatologist;
 }
     private Specialfield specF = null;
 }

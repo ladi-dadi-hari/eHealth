@@ -258,11 +258,19 @@ public class Healthcare_Search_Doc extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 
-				if(dropDownIndex<= 9)
+				if(dropDownIndex<= generalIssues.length)
 				{
 					specF = "General";
 				}
-
+				else if(dropDownIndex>generalIssues.length && dropDownIndex<= (generalIssues.length + skinIssues.length)){
+					specF="Dermatologist";
+				}
+				else if(dropDownIndex > (generalIssues.length+ skinIssues.length) && dropDownIndex<= (generalIssues.length + skinIssues.length + jointIssues.length)){
+					specF="Orthopedist";
+				}
+				else {
+					specF="Allergist";
+				}
 				try {
 					List<List<String>> doctors = Connect.AvailDoc(specF, distance, patient.getLatitude(), patient.getLongitude());
 					Healthcare_Searchresults results = new Healthcare_Searchresults(patient, doctors);

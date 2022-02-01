@@ -203,7 +203,9 @@ public class Healthcare_Registration extends JFrame
             Pulmonologist,
             Orthopedist,
             Dentist,
-            Physiotherapist}
+            Physiotherapist,
+            Allergist,
+            Dermatologist,}
 
         lblspeF = new Label("Specification");
         lblspeF.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -348,9 +350,12 @@ public class Healthcare_Registration extends JFrame
                             break;
                         case 6:
                             specialField = "Physiotherapist";
+                        case 7:
+                            specialField ="Allergist";
+                        case 8:
+                            specialField = "Dermatologist";
                         default:
                             break;
-
                     }
                     try
                     {
