@@ -26,14 +26,14 @@ import static java.sql.ResultSet.CONCUR_READ_ONLY;
  * To run these methods properly on a local machine, the String "AUTH_STRING" needs to be set to the individual
  * password of the local database.
  *
- * @author: Harris Nuhanovic, Max Endres
+ * @author: Harris Nuhanovic, Max Endres, Maximilian Rabe
  */
 
 public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="****";
+    static final String AUTH_STRING ="TokyoGhoul^^123";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
@@ -42,9 +42,37 @@ public class Connect {
     }
 
 
-    public static List<List<String>> AvailDoc(String specF, int distance, float pat_lat, float pat_lng) throws SQLException {
+    /**
+     * <h1>AvailDoc</h1>
+     * This method (AvailDoc) returns a nested list of the type string,
+     * which contains the available doctors in a set radius,
+     * that fit the given health problem of the patient.
+     * The constructor receives the specification of the doctor as a String (health problems are mapped onto the specification),
+     * the given radius from the patient as an int and the latitude and longitude of the patients location, which are taken from the database.
+     *
+     * The method then searches in the database for doctors, who have the specification, which has been passed into the constructor.
+     * The doctors, who have the searched specification, are then selected and returned as a result set.
+     * After the result set has been returned, we take the longitude and the latitude of the first doctor, wich have been returned as part of the result set
+     * and calculate the distance with our method getDistance, by passing the longitude and latitude of the patient, aswell as the doctor's longitude and latitude.
+     *
+     * The method getDistance then returns the distance between the doctor and the patient as kilometers.
+     * AvailDoc then takes the given radius and the calculated distance and compares them.
+     * If the distance is less or equal to the radius, the doctor (with some additional information) gets added to a new list.
+     * The list then gets added to the doc list, which is getting returned.
+     * If the distance is greater than the radius, the doctor doesn't get added to the list.
+     * @param specF
+     * @param radius
+     * @param pat_lat
+     * @param pat_lng
+     * @return
+     * @throws SQLException
+     *
+     * @author Maximilian Rabe
+     */
 
-        float dis;
+    public static List<List<String>> AvailDoc(String specF, int radius, float pat_lat, float pat_lng) throws SQLException {
+
+        float distance;
         List<List<String>> doc = new ArrayList();
 
 
@@ -60,9 +88,9 @@ public class Connect {
             float lat = rs.getFloat(11);
             float lng = rs.getFloat(10);
 
-            dis = location.getDistance(pat_lat, pat_lng, lat,lng);
+            distance = location.getDistance(pat_lat, pat_lng, lat,lng);
 
-            if(dis <= distance)
+            if(distance <= radius)
             {
                 List<String> empty = new ArrayList<>();
                 empty.add(rs.getString(2));
@@ -76,6 +104,18 @@ public class Connect {
         return doc;
     }
 
+
+    /**
+     * <h1>usernameOrEmailExists</h1>
+     * The method usernameOrEmailExists checks the database (both the doctor table and the patient table), if the given username and/or eMail-Address already exists.
+     * It is only used for the registration, so there can't be two different users with the same credentials.
+     *
+     * @param _username
+     * @param _email
+     * @return
+     *
+     * @author: Maximilian Rabe
+     */
 
     public static boolean usernameOrEmailExists(String _username, String _email)
     {
@@ -218,8 +258,6 @@ public class Connect {
         String patient_username = _patient_username;
 
 
-
-
         try {
             System.out.println(patient_username);
 
@@ -239,6 +277,33 @@ public class Connect {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public static void deleteDoctor(String _doctor_username){
+
+        String patient_username = _doctor_username;
+
+
+        try {
+            System.out.println(patient_username);
+
+            String SQL_DELETE = "DELETE FROM Users.doctor WHERE doctor_username = ? ";
+
+            Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+
+            PreparedStatement deleteUser = con.prepareStatement(SQL_DELETE);
+
+            deleteUser.setString(1, patient_username);
+
+            deleteUser.executeUpdate();
+
+            System.out.println("User"+patient_username+"got deleted from Database");
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 
     /**
@@ -423,6 +488,22 @@ public class Connect {
         }
         finally {System.out.println("Table appointment created");
         }
+    }
+
+    public static List<String> getAllUsers(String docorpat) throws SQLException {
+
+        List<String> doctors = new ArrayList<>();
+
+        Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+        String sql_statement = docorpat;
+        PreparedStatement getallDocs = con.prepareStatement(sql_statement);
+        ResultSet rs = getallDocs.executeQuery();
+
+        while(rs.next()){
+            doctors.add(rs.getString(1));
+        }
+
+        return doctors;
     }
 
     public static ResultSet getPatient(String username) throws SQLException {

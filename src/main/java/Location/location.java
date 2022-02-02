@@ -5,12 +5,9 @@ import com.google.maps.GeocodingApi;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.GeocodingResult;
 
-
 import java.io.IOException;
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**<h1> Location Search</h1>
  * This class provides all functionalities to search for location of an address (Longitude and Latitude),
@@ -58,19 +55,18 @@ public class location {
 
     }*/
 
-
-    static final String DB_URL = "jdbc:mysql://localhost:3306/users";
-    static final String USER = "root";
-    static final String AUTH_STRING ="TokyoGhoul^^123";
     final private String key = "AIzaSyCuFtEOQhiW5_JlW0J2IE3YX6_sh3LwCbw";
+    /*
     Scanner scan = new Scanner(System.in);
+    */
 
 
-    /**
+
+  /*  /**
      * This method
      * @return
      */
-    public String getAddress()
+   /* public String getAddress()
     {
         String loc = "";
         try
@@ -90,14 +86,17 @@ public class location {
             e.printStackTrace();
         }
         return loc;
-    }
+    }*/
 
 
     /**
-     * This method (checkUmlaut) checks, if a mutated vowel exists in the given address, replaces that mutated vowel and returns the paraphased address.
+     * <h1>checkUmlaut</h1>
+     * This method (checkUmlaut) checks, if a mutated vowel exists in the given address, replaces that mutated vowel and returns the paraphrased address.
      * It is used especially for the search of the location's longitude and latitude, since the Google API, we use, doesn't recognize mutated vowels.
      * @param addresse
      * @return
+     *
+     * @author Maximilian Rabe
      */
 
     public static String checkUmlaut(String addresse)
@@ -126,6 +125,8 @@ public class location {
      * @throws InterruptedException
      * @throws ApiException
      * @return
+     *
+     * @author Maximilian Rabe
      */
 
     public List<Float> getLocInfo(String address) throws IOException, InterruptedException, ApiException {
@@ -163,16 +164,15 @@ public class location {
     {
         final int earth_radius = 6371;
 
-        double distance_lat = Math.toRadians(doc_lat - lat);
-        double distance_lng = Math.toRadians(doc_lng - lng);
-        double a = Math.sin(distance_lat / 2) * Math.sin(distance_lat / 2)
-                + Math.cos(Math.toRadians(lat)) * Math.cos(Math.toRadians(doc_lat))
-                * Math.sin(distance_lng / 2) * Math.sin(distance_lng / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double distance = earth_radius * c; // convert to meters
-
-
-        distance = Math.pow(distance, 2);
+        double distance_lat = Math.toRadians(doc_lat - lat);                            //conversion into radiants (earth isnt flat)
+        double distance_lng = Math.toRadians(doc_lng - lng);                            //conversion into radiants (earth isnt flat)
+        double radiants_doclat = Math.toRadians(doc_lat);                               //doctor lat to radiants
+        double radiants_patlat = Math.toRadians(lat);                                   //patient lat to radiants
+        double a = Math.sin(distance_lat / 2) * Math.sin(distance_lat / 2)              //
+                + Math.cos(radiants_patlat) * Math.cos(radiants_doclat)                 //
+                * Math.sin(distance_lng / 2) * Math.sin(distance_lng / 2);              // Harversine Formula
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));                      //
+        double distance = earth_radius * c;                                             // convert into kilometers
 
         return (float) Math.sqrt(distance);
 
