@@ -25,6 +25,7 @@ public class Healthcare_Searchresults extends JFrame {
 	int i = 0;
 
 	/**
+	 *
 	 * <p>In this GUI, the search results of the doctor search are displayed as a list</p>
 	 * @author GUI: Sidra Abbasi
 	 * @author functions: Max Endres, Maximilian Rabe
@@ -73,7 +74,7 @@ public class Healthcare_Searchresults extends JFrame {
 
 		JLabel lblResults = new JLabel("Search Results:");
 		lblResults.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblResults.setBounds(124, 33, 104, 30);
+		lblResults.setBounds(166, 33, 104, 30);
 		contentPane.add(lblResults);
 
 
@@ -90,7 +91,7 @@ public class Healthcare_Searchresults extends JFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton.setBounds(108, 351, 150, 30);
+		btnNewButton.setBounds(143, 351, 150, 30);
 		contentPane.add(btnNewButton);
 
 

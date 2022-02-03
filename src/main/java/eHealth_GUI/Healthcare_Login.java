@@ -26,6 +26,7 @@ public class Healthcare_Login extends JFrame {
 	private JTextField password_field;
 
 	/**
+	 * <h1>The Login GUI</h1>
 	 * <p>This is the code that creates the Login Window for the Patient user and the Doctor User
 	 * @author Sidra Abbasi</p>
 	 */

@@ -17,7 +17,7 @@ public class Healthcare_User_Profile extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
+	/**<h1>The User Profile GUI</h1>
 	 * <p>This is the GUI in which the user who is logged in can see the information that they entered at registering
 	 * @author GUI: Sidra Abbasi</p>>
 	 */

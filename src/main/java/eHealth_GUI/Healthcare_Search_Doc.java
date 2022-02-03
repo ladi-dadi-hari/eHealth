@@ -69,6 +69,7 @@ public class Healthcare_Search_Doc extends JFrame {
 	String specF;
 
 	/**
+	 * <h1>The search GUI </h1>
 	 * <p>This is the code for the GUI in which the patient enters their health problems to find a doctor in the
 	 * selected distance of search<p/>
 	 * @author Sidra Abbasi

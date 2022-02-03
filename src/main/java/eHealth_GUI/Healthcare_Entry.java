@@ -22,6 +22,7 @@ public class Healthcare_Entry extends JFrame {
 	String username;
 
 	/**
+	 * <h1>The User Start Page</h1>
 	 * <p>This is the code for the Entry Window that is displayed, when the user logs in as "patient".</p>
 	 * @author Sidra Abbasi
 	 */
