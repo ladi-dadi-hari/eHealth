@@ -350,10 +350,13 @@ public class Healthcare_Registration extends JFrame
                             break;
                         case 6:
                             specialField = "Physiotherapist";
+                            break;
                         case 7:
                             specialField ="Allergist";
+                            break;
                         case 8:
                             specialField = "Dermatologist";
+                            break;
                         default:
                             break;
                     }
