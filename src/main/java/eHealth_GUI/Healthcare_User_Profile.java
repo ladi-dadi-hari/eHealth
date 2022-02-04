@@ -108,7 +108,7 @@ public class Healthcare_User_Profile extends JFrame {
 
 				// Aufruf der Funktion, die für das Exportieren zuständig ist
 
-				PDF_Functionality.CreatePDF(patient.getHealthInfo());
+				PDF_Functionality.CreatePDF("Your health information:\n" + patient.getHealthInfo());
 				JOptionPane.showMessageDialog(contentPane,"PDF exported succesfully");
 
 			}

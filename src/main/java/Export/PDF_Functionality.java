@@ -1,13 +1,12 @@
 package Export;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 /**
  * <h1>PDF create class</h1>
@@ -37,13 +36,9 @@ public class PDF_Functionality
             document.close();
             writer.close();
         }
-        catch(DocumentException e)
+        catch(DocumentException | FileNotFoundException e)
         {
             e.printStackTrace();
-        }
-        catch(FileNotFoundException f)
-        {
-            f.printStackTrace();
         }
     }
 }
