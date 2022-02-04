@@ -1,6 +1,7 @@
 package eHealth_GUI;
 
 import Export.PDF_Functionality;
+import Export.TXT_Functionality;
 import Users.Patient;
 
 import java.awt.EventQueue;
@@ -10,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 
 @SuppressWarnings("serial")
@@ -98,15 +100,15 @@ public class Healthcare_User_Profile extends JFrame {
 		});
 
 /**
- * <p>If the user presses the button Export, his profile information will be exported as PDF
+ * <p>If the user presses the button PDF Export or TXT Export, his profile information will be exported as PDF or TXT
  * @author Can Dechert</p>
  */
 		
-		JButton exportPDFbtn = new JButton("Export Info");
+		JButton exportPDFbtn = new JButton("PDF Export");
 		exportPDFbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				// Aufruf der Funktion, die für das Exportieren zuständig ist
+				// Aufruf der Funktion, die für das PDF Exportieren zuständig ist:
 
 				PDF_Functionality.CreatePDF("Your health information:\n" + patient.getHealthInfo());
 				JOptionPane.showMessageDialog(contentPane,"PDF exported succesfully");
@@ -114,9 +116,29 @@ public class Healthcare_User_Profile extends JFrame {
 			}
 		});
 
-		exportPDFbtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		exportPDFbtn.setBounds(194, 365, 114, 39);
+		exportPDFbtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		exportPDFbtn.setBounds(194, 327, 114, 39);
 		contentPane.add(exportPDFbtn);
+
+		JButton exportTXTbtn = new JButton("TXT Export");
+		exportTXTbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				// Aufruf der Funktion, die für das TXT Exportieren zuständig ist:
+
+				try {
+					TXT_Functionality.CreateTXT("Your health information:\n" + patient.getHealthInfo());
+				} catch (IOException ex) {
+					ex.printStackTrace();
+				}
+				JOptionPane.showMessageDialog(contentPane,"TXT exported succesfully");
+
+			}
+		});
+
+		exportTXTbtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		exportTXTbtn.setBounds(194, 365, 114, 39);
+		contentPane.add(exportTXTbtn);
 
 
 		/**
