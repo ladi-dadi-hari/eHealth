@@ -69,7 +69,7 @@ public class Healthcare_Login extends JFrame {
             }
         };
 
-        timer.schedule(task, delay); <- muss nochmal berechnet werden mit der neuen datums differenz
+        timer.schedule(task, delay);
 	 */
 
 
@@ -175,6 +175,8 @@ public class Healthcare_Login extends JFrame {
 
 							Healthcare_Entry second = new Healthcare_Entry(patient);
 							Healthcare_Tray_Icon third = new Healthcare_Tray_Icon();
+
+							third.Tray_Icon(patient);
 							second.setVisible(true);
 							frame.dispose();
 							return;
