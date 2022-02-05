@@ -57,7 +57,7 @@ public class Doctor extends Users.User {
 
             this.firstName = fName;
             this.lastName  = lName;
-            this.mailAdress = mailAdd;
+            this.mailAddress = mailAdd;
             this.pw = Hashing.doHashing(pw, salt);
             this.location = loc;
             this.specF = sF;
@@ -86,10 +86,6 @@ public class Doctor extends Users.User {
 
     public String getlName () {
         return this.lastName;
-    }
-
-    public String getMailAdd() {
-        return this.mailAdress;
     }
 
     public String getLocation () {
@@ -122,10 +118,6 @@ public class Doctor extends Users.User {
         this.lastName = _ln;
     }
 
-    public void setMailAdd(String _mail) {
-        this.mailAdress = _mail;
-    }
-
     public void setLocation (String _loc) {
         this.location = _loc;
     }
@@ -156,11 +148,7 @@ public class Doctor extends Users.User {
 
 
     //Attributes
-    private String firstName = null;
-    private String lastName = null;
-    private String mailAdress = null;
-    private String username = null;
-    private String location = null;
+
     private int isDoc = 1;
     private String[] specString = new String[5];
     private String healthproblem = null;

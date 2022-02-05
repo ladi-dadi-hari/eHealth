@@ -19,6 +19,7 @@ public abstract class User {
     protected String location = null;
     protected String mailAddress = null;
     protected String pw = null;
+    protected String username = null;
 
 
 

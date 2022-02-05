@@ -23,7 +23,6 @@ public class Patient extends Users.User {
     private String insurance = null;
     private String insuranceType = null;
     private int isDoc = 0;
-    private String username = null;
     private float longitude = 0;
     private float latitude = 0;
 
