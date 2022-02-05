@@ -1,6 +1,7 @@
 package eHealth_GUI;
 
 import JDBC.Connect;
+import Users.Patient;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -9,6 +10,8 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.CookieHandler;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -132,63 +135,97 @@ public class Admin_Page extends JFrame {
         deleteProfile.setBounds(200, 400, 100, 50);
         frame_admin.getContentPane().add(deleteProfile);
 
-        patientList.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting())
+        patientList.addListSelectionListener(e ->
+        {
+            if (!e.getValueIsAdjusting())
+            {
+                if (!change)
                 {
-                    if (!change)
-                    {
-                        change = true;
-                        doctorList.clearSelection();
-                        result = patientList.getSelectedValue().toString();
-                        System.out.println(result);
-                        change = false;
-                    }
+                    change = true;
+                    doctorList.clearSelection();
+                    result = patientList.getSelectedValue().toString();
+                    System.out.println(result);
+                    change = false;
 
+                    deleteProfile.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            Connect.deleteDoctor(result);
+                        }
+                    });
+
+
+                    editProfile.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            try {
+                                Patient patient = null;
+                                ResultSet rs = Connect.getPatient(result);
+                                if(rs.next())
+                                {
+                                    String _firstname = rs.getString(2);
+                                    String _lastName = rs.getString(3);
+                                    String _loc = rs.getString(9);
+                                    String _birthday = rs.getString(5);
+                                    String _healthinfo = rs.getString(10);
+                                    String _insurance = rs.getString(11);
+                                    String _insuranceType = rs.getString(12);
+                                    String _mailAddress = rs.getString(5);
+                                    float _lng = rs.getFloat(13);
+                                    float _lat = rs.getFloat(14);
+                                    String _pw = "";
+                                    patient = new Patient(_firstname, _lastName, _loc, _birthday, _healthinfo, _mailAddress, _pw, _insurance, _insuranceType, _lng, _lat);
+                                }
+
+                                Edit_Profile pat = new Edit_Profile(patient);
+                                pat.frame_edit.setVisible(true);
+
+                            } catch (SQLException ex) {
+                                ex.printStackTrace();
+                            }
+
+                        }
+                    });
                 }
-        }
-        });
-
-        doctorList.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                    if (!change) {
-                        change = true;
-                        patientList.clearSelection();
-                        result = doctorList.getSelectedValue().toString();
-                        System.out.println(result);
-                        change = false;
-                    }
-                }
-                deleteProfile.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        Connect.deleteDoctor(result);
-                    }
-                });
-            }
-        });
-
-        deleteProfile.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Connect.deletePatient(result);
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
-
-        editProfile.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
 
             }
+
         });
+
+        doctorList.addListSelectionListener(e ->
+        {
+            if (!e.getValueIsAdjusting()) {
+                if (!change) {
+                    change = true;
+                    patientList.clearSelection();
+                    result = doctorList.getSelectedValue().toString();
+
+                    deleteProfile.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            Connect.deleteDoctor(result);
+                        }
+                    });
+
+
+                    editProfile.addActionListener(e1 -> {
+                        try {
+                            ResultSet rs = Connect.getDoctor(result);
+                            while(rs.next()){
+                                System.out.println(rs);}
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+
+                    });
+
+                    System.out.println(result);
+                    change = false;
+                }
+            }
+
+        });
+
 
     }
 }
