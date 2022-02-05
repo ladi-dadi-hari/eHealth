@@ -85,8 +85,13 @@ public class Healthcare_Searchresults extends JFrame {
 				chosenDocMail = chosenDocMail.substring(chosenDocMail.indexOf(",")+1);
 				chosenDocMail = chosenDocMail.substring(chosenDocMail.indexOf(",")+1);
 				chosenDocMail =chosenDocMail.trim();
-				AppointmentGUI appointment= new AppointmentGUI(patient, chosenDocMail);
-				appointment.frmAppointment.setVisible(true);
+				try {
+					AppointmentGUI appointment = new AppointmentGUI(patient, chosenDocMail);
+					appointment.frmAppointment.setVisible(true);
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+
 				
 			}
 		});

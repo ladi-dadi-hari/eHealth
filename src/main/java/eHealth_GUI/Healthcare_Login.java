@@ -198,6 +198,8 @@ public class Healthcare_Login extends JFrame {
 						doc.setMailAdd(rs.getString(7));
 						doc.setFirstName(rs.getString(2));
 						doc.setLastName(rs.getString(3));
+						doc.setOpeningHour(rs.getInt(12));
+						doc.setClosingHour(rs.getInt(13));
 						Manage_Appointment_doc doctor_profile_page = new Manage_Appointment_doc(doc);
 
 						doctor_profile_page.setVisible(true);

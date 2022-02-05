@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import Users.Patient;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -27,6 +29,9 @@ import java.sql.Time;
 import java.util.Timer;
 import Users.Doctor;
 import javax.swing.JComboBox;
+import JDBC.Connect;
+
+import static JDBC.Connect.getDoctorByMail;
 
 /**
  * <h1> Graphical user interface for making an appointment</h1>
@@ -75,7 +80,7 @@ public class AppointmentGUI {
      * Create the application.
      * patient_mail + Doc_Mail for constructor to initialize
      */
-    public AppointmentGUI(Patient patient, String docMail) {
+    public AppointmentGUI(Patient patient, String docMail) throws SQLException {
         initialize(patient, docMail);
     }
 
@@ -83,12 +88,13 @@ public class AppointmentGUI {
      * Initialize the contents of the frame.
      * This method is called in the constructor, defining the behavior of this window when opened.
      */
-    public void initialize(Patient patient, String docMail) {
-
-
+    public void initialize(Patient patient, String docMail) throws SQLException {
+        ResultSet rs = getDoctorByMail(docMail);
+        Doctor doc = new Doctor();
+        doc.setOpeningHour(rs.getInt(12));
+        doc.setClosingHour(rs.getInt(13));
         frmAppointment.setTitle("Appointment");
         frmAppointment.setBounds(100, 100, 394, 326);
-        //frmAppointment.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmAppointment.getContentPane().setLayout(null);
 
         Date heute = new Date();
@@ -171,8 +177,11 @@ public class AppointmentGUI {
         lbReminder.setBounds(217, 150, 75, 13);
         frmAppointment.getContentPane().add(lbReminder);
 
-        setHourMaximum(20);
-        setHourMinimum(10);
+        /**
+         * Set values of the JSpinField to the opening and closing hour of the chosen doctor
+         */
+        setHourMaximum(doc.getClosingHour());
+        setHourMinimum(doc.getOpeningHour());
 
         setMinuteMaximum(59);
         setMinuteMinimum(00);
@@ -191,16 +200,12 @@ public class AppointmentGUI {
         btnSend.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-
-                //Send Appointment()
-
                 date = dateChooser.getDate();
 
                 time = LocalTime.of(hour.getValue(), minute.getValue());
                 LocalDate pickedDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 java.sql.Date sqlDate = java.sql.Date.valueOf(pickedDate);
                 Time sqlTime = Time.valueOf(time);
-                //(Time _time, Date _date, String _patientMail, String _doctorMail
 
                 try {
                     Connect.insertAppointment(sqlTime, sqlDate, patient.getFirstName(), patient.getLastName(), patient.getMailAddress(), docMail, patient.getHealthInfo());
@@ -212,15 +217,11 @@ public class AppointmentGUI {
                 System.out.println(date);
                 System.out.println(time);
 
-
-
                 pickedDateTime = LocalDateTime.of(pickedDate.getYear(), pickedDate.getMonth(), pickedDate.getDayOfMonth(), time.getHour(), time.getMinute());
                 Appointment appCreatet = new Appointment(pickedDateTime, dropDownIndex, patient);
 
             }
         });
-
-
     }
 
 
@@ -244,14 +245,7 @@ public class AppointmentGUI {
         dateChooser.setDateFormatString(dateFormatString);
     }
 
-    /**
-     * get the Hour entered into the JSpinField
-     * @return Integer Returns the hour
-     */
-    public int getHourMaximum() {
 
-        return hour.getMaximum();
-    }
 
     /**
      * sets the maximum value of the JSpinField "Hour".

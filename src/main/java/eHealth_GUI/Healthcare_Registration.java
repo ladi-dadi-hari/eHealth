@@ -199,13 +199,9 @@ public class Healthcare_Registration extends JFrame
 
         enum spec {Pediatrician,
             General,
-            Cardiologist,
-            Pulmonologist,
+            Dermatologist,
             Orthopedist,
-            Dentist,
-            Physiotherapist,
-            Allergist,
-            Dermatologist,}
+            Allergist};
 
         lblspeF = new Label("Specification");
         lblspeF.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -331,31 +327,16 @@ public class Healthcare_Registration extends JFrame
                 {
                     switch (combobox_specificationF.getSelectedIndex()){
                         case 0:
-                            specialField = "Pediatrician";
-                            break;
-                        case 1:
                             specialField = "General";
                             break;
+                        case 1:
+                            specialField = "Dermatologist";
+                            break;
                         case 2:
-                            specialField = "Cardiologist";
-                            break;
-                        case 3:
-                            specialField = "Pulmonologist";
-                            break;
-                        case 4:
                             specialField = "Orthopedist";
                             break;
-                        case 5:
-                            specialField ="Dentist";
-                            break;
-                        case 6:
-                            specialField = "Physiotherapist";
-                            break;
-                        case 7:
-                            specialField ="Allergist";
-                            break;
-                        case 8:
-                            specialField = "Dermatologist";
+                        case 3:
+                            specialField = "Allergist";
                             break;
                         default:
                             break;

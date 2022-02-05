@@ -33,7 +33,7 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="****";
+    static final String AUTH_STRING ="*****";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
@@ -152,7 +152,7 @@ public class Connect {
 
 
     /**
-     * This class allows inserting a new patient in the Database.
+     * This method allows inserting a new patient in the Database.
      * The parameters get passed in from the GUI and written into the local database.
      *
      *
@@ -389,9 +389,20 @@ public class Connect {
         return false;
     }
 
+    /**
+     * This method can be used by the doctor to confirm an appointment.
+     * It sends an Email as well to inform the corresponding patient about the confirmation.
+     * @param docFname
+     * @param docLname
+     * @param _patMail
+     * @param _appDate
+     * @throws SQLException
+     * @throws MessagingException
+     * @author Max Endres
+     */
     public static void confirmAppointment(String docFname, String docLname, String _patMail, Date _appDate) throws SQLException, MessagingException {
 
-        //Send Confirm-Mail to _patMail
+
 
         Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
         PreparedStatement confirmApp = con.prepareStatement("UPDATE Users.appointment SET confirmend = ? WHERE patientMail = ? AND date = ? ");
@@ -400,11 +411,22 @@ public class Connect {
         confirmApp.setDate(3, _appDate );
         confirmApp.execute();
 
-        SendEmail(_patMail, "Appointment confirmend!", "Dr. " + docFname+ " "+ docLname+" confirmend your Appointment on " + _appDate.toString());
+        SendEmail(_patMail, "Appointment confirmend!",  docFname+ " "+ docLname+" confirmend your Appointment on " + _appDate.toString());
 
     }
 
-    public static void cancelAppointment(String _patMail, Date _appDate) throws SQLException {
+    /**
+     * This method can be used by the doctor to cancel an appointment.
+     * It sends an Email as well to the corresponding patient to inform him about the cancel.
+     * @param docFname
+     * @param docLname
+     * @param _patMail
+     * @param _appDate
+     * @throws SQLException
+     * @throws MessagingException
+     * @author Max Endres
+     */
+    public static void cancelAppointment(String docFname, String docLname, String _patMail, Date _appDate) throws SQLException, MessagingException {
 
         //Send Confirm-Mail to _patMail
 
@@ -414,6 +436,7 @@ public class Connect {
         confirmApp.setString(2, _patMail);
         confirmApp.setDate(3, _appDate );
 
+        SendEmail(_patMail, "Appointment canceled!",  docFname+ " "+ docLname+" canceled your Appointment on " + _appDate.toString());
 
         confirmApp.execute();
     }
@@ -459,6 +482,13 @@ public class Connect {
         System.out.println("Appoint insert successfull!");
     }
 
+    /**
+     * This method is called when the doctor is logged in to get all the corresponding appointments.
+     * @param docMail
+     * @return rs
+     * @throws SQLException
+     * @author Max Endres
+     */
     public static ResultSet getAppointments(String docMail) throws SQLException {
         String sql_statement = "SELECT * FROM Users.Appointment WHERE doctorMail =? ";
         Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
@@ -517,11 +547,36 @@ public class Connect {
         return rs;
     }
 
+    /**
+     * This method is used when a doctor logs in successfully. The returned ResultSet is used to for the setter methods of the created doctor.
+     * @param username
+     * @return rs
+     * @throws SQLException
+     * @author Max Endres
+     */
     public static ResultSet getDoctor(String username) throws SQLException {
         String sql_Select = "SELECT * FROM Users.doctor WHERE doctor_username = ?";
         Connection conn = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
         PreparedStatement getDoc = conn.prepareStatement(sql_Select);
         getDoc.setString(1, username);
+
+        ResultSet rs = getDoc.executeQuery();
+
+        return rs;
+    }
+
+    /**
+     * This method is called after the patient has chosen a doctor. The returned ResultSet is used to set the opening and closing hour in the JSpinField
+     * @param doc_Mail
+     * @return rs
+     * @throws SQLException
+     * @author Max Endres
+     */
+    public static ResultSet getDoctorByMail(String doc_Mail) throws SQLException {
+        String sql_Select = "SELECT * FROM Users.doctor WHERE doctor_mailAddress = ?";
+        Connection conn = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+        PreparedStatement getDoc = conn.prepareStatement(sql_Select);
+        getDoc.setString(1, doc_Mail);
 
         ResultSet rs = getDoc.executeQuery();
 

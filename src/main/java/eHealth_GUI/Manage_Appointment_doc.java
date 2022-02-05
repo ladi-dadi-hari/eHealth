@@ -180,6 +180,7 @@ public class Manage_Appointment_doc extends JFrame {
                             setCheckBox1Selected(true);
                         } catch (SQLException | MessagingException ex) {
                             ex.printStackTrace();
+                            System.out.println("\n User not found or invalid mailaddress!");
                         }
                     }
                 });
@@ -192,10 +193,14 @@ public class Manage_Appointment_doc extends JFrame {
 
                         try {
                             appointments.absolute(1);
-                            cancelAppointment(appointments.getString(7), appointments.getDate(2));
+                            cancelAppointment(_doc.getfName(), _doc.getLastName(), appointments.getString(7), appointments.getDate(2));
                             setCheckBox1Selected(false);
                         } catch (SQLException ex) {
                             ex.printStackTrace();
+                            System.out.println("\n User not found or invalid mailaddress!");;
+                        } catch (MessagingException ex) {
+                            ex.printStackTrace();
+                            System.out.println("\n User not found or invalid mailaddress!");
                         }
                     }
                 });
@@ -256,6 +261,7 @@ public class Manage_Appointment_doc extends JFrame {
                                 setCheckBox2Selected(true);
                             } catch (SQLException | MessagingException ex) {
                                 ex.printStackTrace();
+                                System.out.println("\n User not found or invalid mailaddress!");
                             }
                         }
                     });
@@ -268,10 +274,14 @@ public class Manage_Appointment_doc extends JFrame {
 
                             try {
                                 appointments.absolute(2);
-                                cancelAppointment(appointments.getString(7), appointments.getDate(2));
+                                cancelAppointment(_doc.getfName(), _doc.getLastName(), appointments.getString(7), appointments.getDate(2));
                                 setCheckBox2Selected(false);
                             } catch (SQLException ex) {
                                 ex.printStackTrace();
+                                System.out.println("\n User not found or invalid mailaddress!");
+                            } catch (MessagingException ex) {
+                                ex.printStackTrace();
+                                System.out.println("\n User not found or invalid mailaddress!");
                             }
                         }
                     });
@@ -333,6 +343,7 @@ public class Manage_Appointment_doc extends JFrame {
                                 setCheckBox3Selected(true);
                             } catch (SQLException | MessagingException ex) {
                                 ex.printStackTrace();
+                                System.out.println("\n User not found or invalid mailaddress!");
                             }
                         }
                     });
@@ -345,10 +356,14 @@ public class Manage_Appointment_doc extends JFrame {
 
                             try {
                                 appointments.absolute(3);
-                                cancelAppointment(appointments.getString(7), appointments.getDate(2));
+                                cancelAppointment(_doc.getfName(), _doc.getLastName(), appointments.getString(7), appointments.getDate(2));
                                 setCheckBox3Selected(false);
                             } catch (SQLException ex) {
                                 ex.printStackTrace();
+                                System.out.println("\n User not found or invalid mailaddress!");
+                            } catch (MessagingException ex) {
+                                ex.printStackTrace();
+                                System.out.println("\n User not found or invalid mailaddress!");
                             }
                         }
                     });
@@ -412,6 +427,7 @@ public class Manage_Appointment_doc extends JFrame {
 
                             } catch (SQLException | MessagingException ex) {
                                 ex.printStackTrace();
+                                System.out.println("\n User not found or invalid mailaddress!");
                             }
                         }
                     });
@@ -424,10 +440,14 @@ public class Manage_Appointment_doc extends JFrame {
 
                             try {
                                 appointments.absolute(4);
-                                cancelAppointment(appointments.getString(7), appointments.getDate(2));
+                                cancelAppointment(_doc.getfName(), _doc.getLastName(), appointments.getString(7), appointments.getDate(2));
                                 setCheckBox4Selected(false);
                             } catch (SQLException ex) {
                                 ex.printStackTrace();
+                                System.out.println("\n User not found or invalid mailaddress!");
+                            } catch (MessagingException ex) {
+                                ex.printStackTrace();
+                                System.out.println("\n User not found or invalid mailaddress!");
                             }
                         }
                     });

@@ -256,7 +256,12 @@ public class Healthcare_Search_Doc extends JFrame {
 				}
 			}
 		});
-
+		/**
+		 * Even though a switch-case is faster than an if-else branch, we decided for an if-else branch in this case.
+		 * The length of each special field container is calculated dynamically, so we can add new special fields in the future without having to change too much parts of the code.
+		 *
+		 * @author Max Endres
+		 */
 		btnSearchNow.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
