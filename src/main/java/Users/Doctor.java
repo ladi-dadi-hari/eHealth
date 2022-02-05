@@ -92,6 +92,8 @@ public class Doctor extends Users.User {
         return this.location;
     }
 
+    public String getMailAdd() {return this.mailAddress; }
+
     public int getID() {
         return this.id;
     }
@@ -129,6 +131,8 @@ public class Doctor extends Users.User {
     public void setUsername(String uname){
         this.username = uname;
     }
+
+    public void setMailAdd (String mailAdd) { this.mailAddress = mailAdd;}
 
     public void setOpeningHour(int opH)
     {
