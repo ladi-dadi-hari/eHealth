@@ -26,14 +26,14 @@ import static java.sql.ResultSet.CONCUR_READ_ONLY;
  * To run these methods properly on a local machine, the String "AUTH_STRING" needs to be set to the individual
  * password of the local database.
  *
- * @author: Harris Nuhanovic, Max Endres, Maximilian Rabe
+ * @author Harris Nuhanovic, Max Endres, Maximilian Rabe
  */
 
 public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="****";
+    static final String AUTH_STRING ="rootadmin";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
@@ -170,7 +170,7 @@ public class Connect {
      * @throws InterruptedException
      * @throws ApiException
      *
-     * @author: Harris Nuhanovic
+     * @author Harris Nuhanovic
      */
 
 
@@ -233,7 +233,7 @@ public class Connect {
 
             createNewUser.executeUpdate();
 
-            System.out.println("Insertion of user succesfull");
+            System.out.println("Insertion of patient succesfull");
         }
 
         catch (SQLException e) {
@@ -249,7 +249,7 @@ public class Connect {
      * @param _patient_username
      * @throws SQLException
      *
-     * @author: Harris Nuhanovic
+     * @author Harris Nuhanovic
      */
 
     public static void deletePatient(String _patient_username) throws SQLException {
@@ -320,7 +320,7 @@ public class Connect {
      * @return
      * @throws SQLException
      *
-     * @author: Harris Nuhanovic
+     * @author Harris Nuhanovic
      */
 
     public static boolean validateData (String mailAdress, String password, String _sqlFetchHash, String _sqlFetchSalt) throws SQLException {

@@ -1,26 +1,54 @@
 package Users;
 
 import Hashing.Hashing;
-import JDBC.Connect;
-import eHealth_GUI.Healthcare_Login;
+
+
+/**
+ * <h1> Patient class <h1/>
+ *
+ * Patient class is a child class of the superclass User. This class extends the User class and adds several necessary functions and attributes, seen below.
+ *
+ * @author Harris Nuhanovic
+ */
+
 
 public class Patient extends Users.User {
 
+
+
     // Attributes
 
-    private String birthday = null; // Implement Date type?
-
-
-
+    private String birthday = null;
     private String healthInfo = null;
-    private String insurance = null; // Enum?
-    private String insuranceType = null; // Enum?
+    private String insurance = null;
+    private String insuranceType = null;
     private int isDoc = 0;
     private String username = null;
     private float longitude = 0;
     private float latitude = 0;
 
+
+    /* Login Constructor */
+
     public Patient(String firstName, String lastName, String location, String birthday, String healthInfo, String mailAddress, String pw, String insurance, String insuranceType, float longitude, float latitude) {
+
+        /**
+         * The user inputs the data via the Healthcare_Login screen.
+         *
+         *
+         *
+         * @param birthday String
+         * @param healthInfo String
+         * @param insurance String
+         * @param insuranceType String
+         * @param isDoc int
+         * @param username String
+         * @param longitude float
+         * @param latitude float
+         *
+         *
+         * @author Harris Nuhanovic
+         */
 
         String salt = Hashing.getSalt();
 
@@ -35,15 +63,14 @@ public class Patient extends Users.User {
         this.insuranceType = insuranceType;
         this.latitude = latitude;
         this.longitude = longitude;
-        //this.health_info1 = health_info1;
-       // Connect.insertNewPatient(this.firstName,this.lastName,this.location,this.birthday,this.healthInfo,this.mailAddress, salt, this.pw,this.insurance,this.insuranceType, this.isDoc);
 
     }
 
     public Patient(){}
 
     /**
-     * When calling this function, the object patient gets deleted and logged out.
+     * When calling this function, all attributes in the patient object get set to NULL.
+     * Afterwards the garbage collector gets called. Through this,
      *
      * @param patient
      * @author: Harris Nuhanovic
@@ -61,10 +88,12 @@ public class Patient extends Users.User {
         patient.setInsurance(null);
         patient.setInsuranceType(null);
 
-        System.gc();
-        System.out.println("patient is logged out and object deleted");
+        System.out.println("object patient deleted");
 
     }
+
+
+    /* getters & setters */
 
     public void setMailAddress(String mail){
         this.mailAddress = mail;
@@ -81,32 +110,48 @@ public class Patient extends Users.User {
         this.latitude = latitude;
     }
 
-    public String getBirthday() {return birthday;}
+    public String getBirthday() {
+        return birthday;
+    }
 
-    public void setBirthday(String birthday) {this.birthday = birthday;}
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
 
-    public String getHealthInfo() {return healthInfo;}
+    public String getHealthInfo() {
+        return healthInfo;
+    }
 
-    public void setHealthInfo(String healthInfo) {this.healthInfo = healthInfo;}
+    public void setHealthInfo(String healthInfo) {
+        this.healthInfo = healthInfo;
+    }
 
-    public String getInsurance() {return insurance;}
+    public String getInsurance() {
+        return insurance;
+    }
 
-    public void setInsurance(String insurance) {this.insurance = insurance;}
+    public void setInsurance(String insurance) {
+        this.insurance = insurance;
+    }
 
-    public String getInsuranceType() {return insuranceType;}
+    public void setInsuranceType(String insuranceType) {
+        this.insuranceType = insuranceType;
+    }
 
-    public void setInsuranceType(String insuranceType) {this.insuranceType = insuranceType;}
+    public String getMailAddress() {
+        return mailAddress;
+    }
 
-    public int getIsDoc() {return isDoc;}
+    public String getUsername() {
+        return username;
+    }
 
-    public void setIsDoc(int isDoc) {this.isDoc = isDoc;}
+    public float getLatitude() {
+        return latitude;
+    }
 
-    public String getMailAddress() {return mailAddress;}
-
-    public String getUsername() {return username;}
-
-    public float getLatitude() {return latitude;}
-
-    public float getLongitude() {return longitude;}
+    public float getLongitude() {
+        return longitude;
+    }
 
 }
