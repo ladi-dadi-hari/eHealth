@@ -6,7 +6,7 @@ import Hashing.Hashing;
 /**
  * <h1> Patient class <h1/>
  *
- * Patient class is a child class of the superclass User. This class extends the User class and adds several necessary functions and attributes, seen below.
+ * Patient class is a child class of the superclass User. The derived class extends the User class and adds several necessary functions and attributes, seen below.
  *
  * @author Harris Nuhanovic
  */
