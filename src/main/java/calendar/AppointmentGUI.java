@@ -91,8 +91,10 @@ public class AppointmentGUI {
     public void initialize(Patient patient, String docMail) throws SQLException {
         ResultSet rs = getDoctorByMail(docMail);
         Doctor doc = new Doctor();
-        doc.setOpeningHour(rs.getInt(12));
-        doc.setClosingHour(rs.getInt(13));
+        if(rs.next()) {
+            doc.setOpeningHour(rs.getInt(12));
+            doc.setClosingHour(rs.getInt(13));
+        }
         frmAppointment.setTitle("Appointment");
         frmAppointment.setBounds(100, 100, 394, 326);
         frmAppointment.getContentPane().setLayout(null);
