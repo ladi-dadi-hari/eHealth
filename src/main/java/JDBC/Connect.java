@@ -26,7 +26,7 @@ import static java.sql.ResultSet.CONCUR_READ_ONLY;
  * To run these methods properly on a local machine, the String "AUTH_STRING" needs to be set to the individual
  * password of the local database.
  *
- * @author: Harris Nuhanovic, Max Endres, Maximilian Rabe
+ * @author Harris Nuhanovic, Max Endres, Maximilian Rabe
  */
 
 public class Connect {

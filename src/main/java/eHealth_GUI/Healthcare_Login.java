@@ -222,7 +222,7 @@ public class Healthcare_Login extends JFrame {
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(frame, "Login fehlgeschlagen");
+					JOptionPane.showMessageDialog(frame, "Login not possible, try again");
 				}
 			}
 		});

@@ -44,7 +44,7 @@ public class Hashing {
             byte[] bytehashedpassword = md.digest();
 
 
-            // Stringbuilder coverts the byte-array to String
+            // Stringbuilder converts the byte-array to String
             StringBuilder sb = new StringBuilder();
 
 
