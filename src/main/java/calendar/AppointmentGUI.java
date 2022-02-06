@@ -210,7 +210,7 @@ public class AppointmentGUI {
                 Time sqlTime = Time.valueOf(time);
 
                 try {
-                    Connect.insertAppointment(sqlTime, sqlDate, patient.getFirstName(), patient.getLastName(), patient.getMailAddress(), docMail, patient.getHealthInfo(), dropDownIndex);
+                    Connect.insertAppointment(sqlTime, sqlDate, patient.getFirstName(), patient.getLastName(), patient.getMailAddress(), docMail, patient.getHealthInfo());
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }

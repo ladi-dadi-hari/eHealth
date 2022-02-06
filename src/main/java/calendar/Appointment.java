@@ -79,7 +79,7 @@ public class Appointment {
             @Override
             public void run() {
                 try {
-                    SendEmail(_patient.getMailAddress(), "Appointment Reminder", "You have an Appointment one the " + _appDate + " at ");
+                    SendEmail(_patient.getMailAddress(), "Appointment Reminder", "You have an Appointment one the " + _appDate);
                 } catch (MessagingException e) {
                     e.printStackTrace();
                 }

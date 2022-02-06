@@ -13,8 +13,10 @@ import javax.swing.JPasswordField;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -52,26 +54,6 @@ public class Healthcare_Login extends JFrame {
 	public Healthcare_Login() {
 		initialize();
 	}
-
-	/*
-	-> Braucht patienten email, reminder datum
-
-		Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    SendEmail("can.dechert@gmx.de", "Appointment Reminder", "You have an Appointment one the " + _appDate + " at ");
-                } catch (MessagingException e) {
-                    e.printStackTrace();
-                }
-                this.cancel();
-            }
-        };
-
-        timer.schedule(task, delay);
-	 */
-
 
 	private void initialize() {
 		frame = new JFrame();
@@ -155,6 +137,7 @@ public class Healthcare_Login extends JFrame {
 				if(exists_patient)
 				{
 					JOptionPane.showMessageDialog(frame, "Login als Patient erfolgreich");
+
 
 					//oeffne Eingangsfenster
 					try {
