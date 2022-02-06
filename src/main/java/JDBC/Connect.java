@@ -454,7 +454,7 @@ public class Connect {
      *
      * @author: Max Endres
      */
-    public static void insertAppointment(Time _time, Date _date,String firstname, String lastname, String _patientMail, String _doctorMail, String _healthprob) throws Exception {
+    public static void insertAppointment(Time _time, Date _date,String firstname, String lastname, String _patientMail, String _doctorMail, String _healthprob, int _index) throws Exception {
         //Time time = Time.valueOf(LocalTime)
 
 
@@ -462,7 +462,7 @@ public class Connect {
         Date date = _date;
         String patMail = _patientMail;
         String docMail = _doctorMail;
-        String sql_insert = "INSERT INTO appointment (date, time, patientMail, doctorMail,  healthproblem, first_name, confirmend, last_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql_insert = "INSERT INTO appointment (date, time, patientMail, doctorMail,  healthproblem, first_name, confirmend, last_name, index) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
 
@@ -476,6 +476,7 @@ public class Connect {
         insertApp.setString(6, firstname);
         insertApp.setBoolean(7, false);
         insertApp.setString(8, lastname);
+        insertApp.setInt(9, _index);
 
         insertApp.executeUpdate();
 
