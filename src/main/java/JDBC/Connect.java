@@ -415,6 +415,27 @@ public class Connect {
 
     }
 
+    public static void cancelByPatient(String _patMail, Date _appDate ) throws SQLException {
+        Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+        PreparedStatement cancelApp = con.prepareStatement("UPDATE Users.appointment SET confirmend = ? WHERE patientMail = ? AND date = ? ");
+        cancelApp.setBoolean(1, false);
+        cancelApp.setString(2, _patMail);
+        cancelApp.setDate(3, _appDate );
+
+        cancelApp.execute();
+    }
+
+    public static void shiftAppointment(Date _newDate, Time _newTime, String _patMail, Date _oldDate) throws SQLException {
+        Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+        PreparedStatement shiftApp = con.prepareStatement("UPDATE Users.appointment SET date = ?, time = ? WHERE patientMail = ? AND date = ? ");
+        shiftApp.setDate(1, _newDate);
+        shiftApp.setTime(2, _newTime);
+        shiftApp.setString(3, _patMail);
+        shiftApp.setDate(4, _oldDate);
+
+        shiftApp.execute();
+    }
+
     /**
      * This method can be used by the doctor to cancel an appointment.
      * It sends an Email as well to the corresponding patient to inform him about the cancel.
@@ -431,15 +452,16 @@ public class Connect {
         //Send Confirm-Mail to _patMail
 
         Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
-        PreparedStatement confirmApp = con.prepareStatement("UPDATE Users.appointment SET confirmend = ? WHERE patientMail = ? AND date = ? ");
-        confirmApp.setBoolean(1, false);
-        confirmApp.setString(2, _patMail);
-        confirmApp.setDate(3, _appDate );
+        PreparedStatement cancelApp = con.prepareStatement("UPDATE Users.appointment SET confirmend = ? WHERE patientMail = ? AND date = ? ");
+        cancelApp.setBoolean(1, false);
+        cancelApp.setString(2, _patMail);
+        cancelApp.setDate(3, _appDate );
 
         SendEmail(_patMail, "Appointment canceled!",  docFname+ " "+ docLname+" canceled your Appointment on " + _appDate.toString());
 
-        confirmApp.execute();
+        cancelApp.execute();
     }
+
     /**
      * This method inserts the created appointment into the table "appointment".
      * The parameter values are provided by the user over the GUI.
@@ -454,15 +476,13 @@ public class Connect {
      *
      * @author: Max Endres, Can Dechert
      */
-    public static void insertAppointment(Time _time, Date _date,String firstname, String lastname, String _patientMail, String _doctorMail, String _healthprob) throws Exception {
-        //Time time = Time.valueOf(LocalTime)
-
+    public static void insertAppointment(Time _time, Date _date,String firstname, String lastname, String _patientMail, String _doctorMail, String _healthprob, String docFname, String docLname) throws Exception {
 
         Time time = _time;
         Date date = _date;
         String patMail = _patientMail;
         String docMail = _doctorMail;
-        String sql_insert = "INSERT INTO appointment (date, time, patientMail, doctorMail,  healthproblem, first_name, confirmend, last_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql_insert = "INSERT INTO appointment (date, time, patientMail, doctorMail,  healthproblem, first_name, confirmend, last_name, docFName, docLName) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
 
@@ -476,6 +496,8 @@ public class Connect {
         insertApp.setString(6, firstname);
         insertApp.setBoolean(7, false);
         insertApp.setString(8, lastname);
+        insertApp.setString(9, docFname);
+        insertApp.setString(10, docLname);
 
         insertApp.executeUpdate();
 
@@ -489,7 +511,7 @@ public class Connect {
      * @throws SQLException
      * @author Max Endres
      */
-    public static ResultSet getAppointments(String docMail) throws SQLException {
+    public static ResultSet getAppointmentByDoc(String docMail) throws SQLException {
         String sql_statement = "SELECT * FROM Users.Appointment WHERE doctorMail =? ";
         Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
         PreparedStatement select_app = con.prepareStatement(sql_statement,ResultSet.TYPE_SCROLL_INSENSITIVE, CONCUR_READ_ONLY);
@@ -499,7 +521,16 @@ public class Connect {
         ResultSet rs = select_app.executeQuery();
         return rs;
     }
+    public static ResultSet getAppointmentByPatient(String _patMail) throws SQLException {
+        String sql_statement = "SELECT * FROM Users.Appointment WHERE patientMail =? ";
+        Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
+        PreparedStatement select_app = con.prepareStatement(sql_statement,ResultSet.TYPE_SCROLL_INSENSITIVE, CONCUR_READ_ONLY);
+        select_app.setString(1, _patMail);
 
+
+        ResultSet rs = select_app.executeQuery();
+        return rs;
+    }
     /**
      * This method creates the table "appointment" where all information regarding appointments are stored.
      * It is called every time a new appointment is created to check if the table exists.
@@ -511,7 +542,7 @@ public class Connect {
 
         try {
             Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
-            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS appointment(ID int NOT NULL AUTO_INCREMENT, date DATE, time TIME,first_name VARCHAR(30), last_name VARCHAR(50), healthproblem VARCHAR(255), patientMail VARCHAR(255), confirmend TINYINT, doctorMail VARCHAR(255),  PRIMARY KEY (ID))");
+            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS appointment(ID int NOT NULL AUTO_INCREMENT, date DATE, time TIME,first_name VARCHAR(30), last_name VARCHAR(50), healthproblem VARCHAR(255), patientMail VARCHAR(255), confirmend TINYINT, doctorMail VARCHAR(255), docFName VARCHAR(255), docLName VARCHAR(255),  PRIMARY KEY (ID))");
             create.executeUpdate();
 
         }catch(Exception e) {System.out.println(e);

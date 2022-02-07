@@ -11,6 +11,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
+
 import Users.Patient;
 
 
@@ -59,7 +61,7 @@ public class Healthcare_Entry extends JFrame {
 		contentPane.add(lblNewJgoodiesTitle);
 
 
-		JLabel lbluser = new JLabel("You are logged in as:" + patient.getUsername());
+		JLabel lbluser = new JLabel("You are logged in as: " + patient.getUsername());
 		lbluser.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lbluser.setBounds(99, 29, 143, 58);
 		contentPane.add(lbluser);
@@ -108,8 +110,28 @@ public class Healthcare_Entry extends JFrame {
 			}
 		});
 		btnMyProfile.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnMyProfile.setBounds(99, 278, 143, 39);
+		btnMyProfile.setBounds(15, 278, 150, 39);
 		contentPane.add(btnMyProfile);
+
+		JButton btnMyAppointments = new JButton("My Appointments");
+		btnMyAppointments.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Manage_Appointment_Patient appointments = new Manage_Appointment_Patient(patient);
+					appointments.setVisible(true);
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+
+
+				dispose();
+
+			}
+		});
+		btnMyAppointments.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnMyAppointments.setBounds(175, 278, 150, 39);
+		contentPane.add(btnMyAppointments);
 
 
 		JButton btnLogout = new JButton("Logout");

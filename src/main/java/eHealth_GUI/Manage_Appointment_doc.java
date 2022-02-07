@@ -1,28 +1,21 @@
 package eHealth_GUI;
 
-import JDBC.Connect;
+
 import Users.Doctor;
 import org.jetbrains.annotations.NotNull;
-
-
 import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.mail.MessagingException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
-import javax.swing.table.TableModel;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
-
 import static JDBC.Connect.cancelAppointment;
 import static JDBC.Connect.confirmAppointment;
 
@@ -31,54 +24,38 @@ public class Manage_Appointment_doc extends JFrame {
     private JPanel contentPane;
     private JLabel lbDate;
     private JLabel lbDate1;
-    private JLabel lbTime1;
-    private JLabel lbName1;
-    private JLabel lbHealthP1;
-    private JLabel lbMail1;
     private JLabel lbDate2;
     private JLabel lbDate3;
     private JLabel lbDate4;
+    private JLabel lbTime1;
     private JLabel lbTime2;
     private JLabel lbTime3;
     private JLabel lbTime4;
+    private JLabel lbName1;
     private JLabel lbName2;
     private JLabel lbName3;
     private JLabel lbName4;
+    private JLabel lbHealthP1;
     private JLabel lbHealthP2;
     private JLabel lbHealthP3;
     private JLabel lbHealthP4;
-    private JCheckBox checkBox4;
     private JCheckBox checkBox1;
     private JCheckBox checkBox2;
     private JCheckBox checkBox3;
+    private JCheckBox checkBox4;
+    private JLabel lbMail1;
     private JLabel lbMail2;
     private JLabel lbMail3;
     private JLabel lbMail4;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    //Manage_Appointment_doc frame = new Manage_Appointment_doc();
-                    //frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+
 
     /**
      * Create the frame.
      */
     public Manage_Appointment_doc(@NotNull Doctor _doc) throws SQLException {
 
-            ResultSet appointments = JDBC.Connect.getAppointments(_doc.getMailAdd());
-
-
+            ResultSet appointments = JDBC.Connect.getAppointmentByDoc(_doc.getMailAddress());
 
                 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 setBounds(100, 100, 859, 421);
@@ -459,159 +436,82 @@ public class Manage_Appointment_doc extends JFrame {
 
             }
     }
-    public String getLbDateText() {
-        return lbDate.getText();
-    }
-    public void setLbDateText(String text) {
-        lbDate.setText(text);
-    }
-    public String getLbDate1Text() {
-        return lbDate1.getText();
-    }
+
     public void setLbDate1Text(String text_1) {
         lbDate1.setText(text_1);
     }
 
-    public String getLbTime1Text() {
-        return lbTime1.getText();
-    }
+
     public void setLbTime1Text(String text_2) {
         lbTime1.setText(text_2);
     }
-    public String getLbName1Text() {
-        return lbName1.getText();
-    }
+
     public void setLbName1Text(String text_3) {
         lbName1.setText(text_3);
     }
-    public String getLblNewLabel_3Text() {
-        return lbHealthP1.getText();
-    }
-    public void setLblNewLabel_3Text(String text_4) {
-        lbHealthP1.setText(text_4);
-    }
-    public String getLbMail1Text() {
-        return lbMail1.getText();
-    }
+
+
     public void setLbMail1Text(String text_5) {
         lbMail1.setText(text_5);
     }
-    public String getLbDate2Text() {
-        return lbDate2.getText();
-    }
+
     public void setLbDate2Text(String text_6) {
         lbDate2.setText(text_6);
     }
-    public String getLbDate3Text() {
-        return lbDate3.getText();
-    }
+
     public void setLbDate3Text(String text_7) {
         lbDate3.setText(text_7);
-    }
-    public String getLbDate4Text() {
-        return lbDate4.getText();
     }
     public void setLbDate4Text(String text_8) {
         lbDate4.setText(text_8);
     }
-    public String getLbTime2Text() {
-        return lbTime2.getText();
-    }
     public void setLbTime2Text(String text_9) {
         lbTime2.setText(text_9);
-    }
-    public String getLbTime3Text() {
-        return lbTime3.getText();
     }
     public void setLbTime3Text(String text_10) {
         lbTime3.setText(text_10);
     }
-    public String getLbTime4Text() {
-        return lbTime4.getText();
-    }
     public void setLbTime4Text(String text_11) {
         lbTime4.setText(text_11);
-    }
-    public String getLbName2Text() {
-        return lbName2.getText();
     }
     public void setLbName2Text(String text_12) {
         lbName2.setText(text_12);
     }
-    public String getLbName3Text() {
-        return lbName3.getText();
-    }
     public void setLbName3Text(String text_13) {
         lbName3.setText(text_13);
-    }
-    public String getLbName4Text() {
-        return lbName4.getText();
     }
     public void setLbName4Text(String text_14) {
         lbName4.setText(text_14);
     }
-    public String getLbHealthP1Text() {
-        return lbHealthP1.getText();
-    }
     public void setLbHealthP1Text(String text_15) {
         lbHealthP1.setText(text_15);
-    }
-    public String getLbHealthP2Text() {
-        return lbHealthP2.getText();
     }
     public void setLbHealthP2Text(String text_16) {
         lbHealthP2.setText(text_16);
     }
-    public String getLbHealthP3Text() {
-        return lbHealthP3.getText();
-    }
     public void setLbHealthP3Text(String text_17) {
         lbHealthP3.setText(text_17);
-    }
-    public String getLbHealthP4Text() {
-        return lbHealthP4.getText();
     }
     public void setLbHealthP4Text(String text_18) {
         lbHealthP4.setText(text_18);
     }
-    public boolean getCheckBox1Selected() {
-        return checkBox1.isSelected();
-    }
     public void setCheckBox1Selected(boolean selected) {
         checkBox1.setSelected(selected);
-    }
-    public boolean getCheckBox2Selected() {
-        return checkBox2.isSelected();
     }
     public void setCheckBox2Selected(boolean selected_1) {
         checkBox2.setSelected(selected_1);
     }
-    public boolean getCheckBox3Selected() {
-        return checkBox3.isSelected();
-    }
     public void setCheckBox3Selected(boolean selected_2) {
         checkBox3.setSelected(selected_2);
-    }
-    public boolean getCheckBox4Selected() {
-        return checkBox4.isSelected();
     }
     public void setCheckBox4Selected(boolean selected_3) {
         checkBox4.setSelected(selected_3);
     }
-    public String getLbMail2Text() {
-        return lbMail2.getText();
-    }
     public void setLbMail2Text(String text_19) {
         lbMail2.setText(text_19);
     }
-    public String getLbMail3Text() {
-        return lbMail3.getText();
-    }
     public void setLbMail3Text(String text_20) {
         lbMail3.setText(text_20);
-    }
-    public String getLbMail4Text() {
-        return lbMail4.getText();
     }
     public void setLbMail4Text(String text_21) {
         lbMail4.setText(text_21);

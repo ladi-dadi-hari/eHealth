@@ -3,21 +3,15 @@ package eHealth_GUI;
 import JDBC.Connect;
 import Users.Doctor;
 import Users.Patient;
-
 import java.awt.*;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
-
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -178,7 +172,7 @@ public class Healthcare_Login extends JFrame {
 					if(rs.next()) {
 						Doctor doc = new Doctor();
 						doc.setUsername(u_username);
-						doc.setMailAdd(rs.getString(7));
+						doc.setMailAddress(rs.getString(7));
 						doc.setFirstName(rs.getString(2));
 						doc.setLastName(rs.getString(3));
 						doc.setOpeningHour(rs.getInt(12));

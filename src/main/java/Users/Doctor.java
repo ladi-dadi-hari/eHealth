@@ -17,21 +17,6 @@ import java.time.temporal.ChronoField;
  * @author: Max Endres
  */
 public class Doctor extends Users.User {
-
-    public static void main(String[] args) throws Exception {
-        //creates the table 'user'
-        //Connect.createTableDoctor();
-
-        //Constructor calls methods "Connect.insertNewDoc" and "createTableTimeslot"
-        //Values like 'name' should be passed in from GUI
-        //Doctor a = new Doctor("Doc14", "NachName11213", "mail5@Mailing.con","1234567", "München", Specialfield.General,"Headache", 10, 16);
-        Doctor a = new Doctor();
-        a.setfName("Hallo");
-        System.out.println(a.getfName());
-    }
-
-
-
     /**
      * Login constructor
      */
@@ -92,7 +77,6 @@ public class Doctor extends Users.User {
         return this.location;
     }
 
-    public String getMailAdd() {return this.mailAddress; }
 
     public int getID() {
         return this.id;
@@ -112,27 +96,17 @@ public class Doctor extends Users.User {
 
 
     //Set
-    public void setfName(String _fn) {
-        this.firstName = _fn;
-    }
 
-    public void setlName (String _ln) {
-        this.lastName = _ln;
-    }
 
-    public void setLocation (String _loc) {
-        this.location = _loc;
-    }
 
-    public void setID(int _id) {
-        this.id = _id;
-    }
+
+
+
+
 
     public void setUsername(String uname){
         this.username = uname;
     }
-
-    public void setMailAdd (String mailAdd) { this.mailAddress = mailAdd;}
 
     public void setOpeningHour(int opH)
     {
@@ -166,12 +140,9 @@ public class Doctor extends Users.User {
  *
  */
     enum Specialfield {
-    Pediatrician,
     General,
     Allergist,
-    Pulmonologist,
     Orthopedist,
-    Dentist,
     Dermatologist;
 }
     private Specialfield specF = null;
