@@ -8,16 +8,13 @@ import com.toedter.components.JSpinField;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.IOException;
 import java.util.Objects;
 
 /**
- * <h1>Registration GUI</h1>
- * This class provides the registration interface for our patients, aswell as our doctors.
+ * <h1>Registration GUI + Functionality</h1>
+ * This class provides the registration GUI for our patients, aswell as our doctors.
  * @author Maximilian Rabe
- *
- *
  */
 
 
@@ -261,8 +258,14 @@ public class Healthcare_Registration extends JFrame
         cancelbutton.addActionListener(e -> frame_register.dispose());
 
 
-
-
+        /**
+         * To change the view of the user, depending on what type of user account he wants store create, we used a comboBox.
+         * If the user selects to be a patient, the frame sets all of the additional JLabel's and JTextField's visibility
+         * to true and the other components for the doctor to false.
+         * If doctor is selected from the comboBox the same happens, except the patient's component visibility gets turned to false
+         * and the doctor's component visibility to true.
+         * @author Maximilian Rabe
+         */
        comboBox.addActionListener(e -> {
            if(Objects.requireNonNull(comboBox.getSelectedItem()).toString().equals("Patient"))
            {
@@ -299,7 +302,15 @@ public class Healthcare_Registration extends JFrame
            }
            }
        );
-
+        /**
+         *  This method adds an actionListener to the registerButton.
+         *  The entered username and eMail address are not allowed to already exist, nor equal to the String admin,
+         *  since we don't want multiple user with the same credentials.
+         *  If they dont exists, not equal to the string admin, the patient or doctor,
+         *  depending on which type of user was selected beforehand, gets added to the database, with all their given information.
+         *  The frame then gets disposed at the end of the function.
+         * @author Maximilian Rabe
+         */
         registerButton.addActionListener(arg0 -> {
 
         if(!username.getText().equals("admin") && !password.getText().equals("admin")){
