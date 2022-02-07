@@ -93,7 +93,7 @@ public class Healthcare_Login extends JFrame {
 
 		/**
 		 * <p>When the Login Button is clicked, the Entries from the Patient and Doctor Databases are fetched.</p>
-		 * @author ???
+		 * @author Maximilian Rabe
 		 */
 		
 		loginButton.addActionListener(new ActionListener() {
@@ -191,7 +191,7 @@ public class Healthcare_Login extends JFrame {
 
 				else if(u_username.equals("admin") && u_pwd.equals("admin"))
 				{
-					JOptionPane.showMessageDialog(frame, "Login als Admin erfolgreich");
+					JOptionPane.showMessageDialog(frame, "Login as Admin successfully");
 					Admin_Page admin = new Admin_Page();
 					admin.frame_admin.setVisible(true);
 					frame.dispose();

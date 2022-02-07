@@ -47,26 +47,16 @@ public class location {
 
         System.out.println(distance);
 
-        /*if(distance <= radius)
+        if(distance <= radius)
         {
 
         }
 
 
-    }*/
+    }
 
-    final private String key = "AIzaSyCuFtEOQhiW5_JlW0J2IE3YX6_sh3LwCbw";
     /*
-    Scanner scan = new Scanner(System.in);
-    */
-
-
-
-  /*  /**
-     * This method
-     * @return
-     */
-   /* public String getAddress()
+    public String getAddress()
     {
         String loc = "";
         try
@@ -87,10 +77,10 @@ public class location {
         }
         return loc;
     }*/
-
+    final private String key = "AIzaSyCuFtEOQhiW5_JlW0J2IE3YX6_sh3LwCbw";
 
     /**
-     * <h1>checkUmlaut</h1>
+     * checkUmlaut
      * This method (checkUmlaut) checks, if a mutated vowel exists in the given address, replaces that mutated vowel and returns the paraphrased address.
      * It is used especially for the search of the location's longitude and latitude, since the Google API, we use, doesn't recognize mutated vowels.
      * @param addresse
@@ -111,12 +101,13 @@ public class location {
     }
 
     /**
+     * getLocInfo
      * The method getLocInfo takes a string containing the users address and
      * returns the longitude and latitude for the given address in a list of the type float.
      * By building a package of information, containing the predefined API Key (taken from the Google API website) and the address string,
      * and using the GeocodingAPI method to send this package to the Google Service, we receive a GeocodingResults Array.
      * The GeocodingResults Array contains all sorts of information about the address,
-     * for example the place_id given by Google or ..., but for us, only the values for the latitude and the longitude are of use.
+     * for example the place_id given by Google, what sort of establishment it is and more, but for us, only the values for the latitude and the longitude are of use.
      * We then store both values into a list of the data type float called lat_lng and return that list.
      *
      * @param address
@@ -148,10 +139,11 @@ public class location {
     }
 
     /**
+     * getDistance (Haversine Formula for distance)
      * This method calculates the distance between two points using the haversine formula.
      * getDistance receives four float values, first the latitude, second the longitude, both belonging to the patient,
      * third another latitude and fourth another longitude, both belonging to the doctor.
-     * The method then
+     * It then returns the calculated distance between both points as a float variable.
      *
      * @param lat
      * @param lng

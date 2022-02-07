@@ -226,6 +226,11 @@ public class Healthcare_Search_Doc extends JFrame {
 		btnSearchNow.setBounds(88, 405, 140, 39);
 		contentPane.add(btnSearchNow);
 
+		/**
+		 * Through the comboBox, the patient can choose in what radius should be searched for a doctor.
+		 * @author Maximilian Rabe
+		 */
+
 		comboBox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
