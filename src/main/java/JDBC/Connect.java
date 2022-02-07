@@ -2,6 +2,7 @@ package JDBC;
 
 import Location.location;
 import Hashing.Hashing;
+import Users.Patient;
 import com.google.maps.errors.ApiException;
 
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.List;
 
+import Email.SendEmailClass;
 
 import javax.mail.MessagingException;
 
@@ -31,7 +33,7 @@ public class Connect {
 
     static final String DB_URL = "jdbc:mysql://localhost:3306/Users";
     static final String USER = "root";
-    static final String AUTH_STRING ="rootadmin";
+    static final String AUTH_STRING ="****";
 
     public static void main(String[] args) throws Exception {
         createTableDoctor();
@@ -148,50 +150,6 @@ public class Connect {
         return true;
     }
 
-
-    /**
-     * <h1>emailExists<h1/>
-     *
-     * Checks if the Email is already in the Database.
-     * If it is already existent, it returns a false true.
-     * If it isn't, it returns a false value.
-     *
-     * @param _email
-     * @return
-     *
-     * @author Harris Nuhanovic
-     * main work: Maximilian Rabe
-     */
-
-    public static boolean emailExists(String _email)
-    {
-        String sql_select = "SELECT patient_mailAddress FROM Users.patient WHERE patient_mailAddress=?";
-        try
-        {
-            Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
-            PreparedStatement getEmailandUsername = con.prepareStatement(sql_select);
-
-            getEmailandUsername.setString(1, _email);
-
-
-
-            ResultSet rs = getEmailandUsername.executeQuery();
-
-            if(rs.next())
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        catch(SQLException e)
-        {
-            e.printStackTrace();
-        }
-        return true;
-    }
 
     /**
      * This method allows inserting a new patient in the Database.
@@ -516,7 +474,7 @@ public class Connect {
      * @param _healthprob
      * @throws Exception
      *
-     * @author: Max Endres, Can Dechert
+     * @author: Max Endres
      */
     public static void insertAppointment(Time _time, Date _date,String firstname, String lastname, String _patientMail, String _doctorMail, String _healthprob, String docFname, String docLname) throws Exception {
 
