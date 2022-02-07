@@ -120,12 +120,13 @@ public class Healthcare_Entry extends JFrame {
 				try {
 					Manage_Appointment_Patient appointments = new Manage_Appointment_Patient(patient);
 					appointments.setVisible(true);
+					dispose();
 				} catch (SQLException ex) {
 					ex.printStackTrace();
 				}
 
 
-				dispose();
+
 
 			}
 		});
