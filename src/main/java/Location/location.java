@@ -168,13 +168,13 @@ public class location {
         double distance_lng = Math.toRadians(doc_lng - lng);                            //conversion into radiants (earth isnt flat)
         double radiants_doclat = Math.toRadians(doc_lat);                               //doctor lat to radiants
         double radiants_patlat = Math.toRadians(lat);                                   //patient lat to radiants
-        double a = Math.sin(distance_lat / 2) * Math.sin(distance_lat / 2)              //
+        double x = Math.sin(distance_lat / 2) * Math.sin(distance_lat / 2)              //
                 + Math.cos(radiants_patlat) * Math.cos(radiants_doclat)                 //
                 * Math.sin(distance_lng / 2) * Math.sin(distance_lng / 2);              // Harversine Formula
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));                      //
-        double distance = earth_radius * c;                                             // convert into kilometers
+        double distance = 2 * earth_radius * Math.asin(Math.sqrt(x)) ;                         //
 
-        return (float) Math.sqrt(distance);
+
+        return (float) distance;
 
     }
 
