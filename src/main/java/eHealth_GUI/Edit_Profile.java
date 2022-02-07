@@ -53,7 +53,7 @@ public class Edit_Profile extends JFrame {
 
 
 
-    private JTextField username;
+    //private JTextField username;
     private JTextField firstName;
     private JTextField lastName;
     private JTextField address;
@@ -92,16 +92,10 @@ public class Edit_Profile extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 
-        JLabel lblusername = new JLabel("Username");
+        JLabel lblusername = new JLabel("Username: " + patient.getUsername());
         lblusername.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lblusername.setBounds(50, 10, 81, 52);
+        lblusername.setBounds(50, 20, 300, 52);
         frame_edit.getContentPane().add(lblusername);
-
-        username = new JTextField(patient.getUsername());
-        username.setBounds(50, 50, 250, 25);
-        frame_edit.getContentPane().add(username);
-        username.setColumns(10);
-        Objects.requireNonNull(username);
 
 
         JLabel lblfirstName = new JLabel("First Name");
@@ -218,6 +212,12 @@ public class Edit_Profile extends JFrame {
         preIll.setColumns(10);
         preIll.setVisible(true);
 
+        lblpreIll = new Label("Pre-existing illness");
+        lblpreIll.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lblpreIll.setBounds(400, 90, 150, 52);
+        frame_edit.getContentPane().add(lblpreIll);
+        lblpreIll.setVisible(true);
+
 
         JButton editButton = new JButton("Edit Profile");
         editButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -266,65 +266,101 @@ public class Edit_Profile extends JFrame {
                     frame_edit.setVisible(true);
                     return;
 
-                }
-
-                else if (!Objects.equals(password1.getText(), password2.getText())) {
+                } else if (!Objects.equals(password1.getText(), password2.getText())) {
 
                     JOptionPane.showMessageDialog(frame_edit, "Passwords do not match!");
                     frame_edit.setVisible(true);
                     return;
 
-                }
-
-                else if ((username.getText().length() == 0 ) || (firstName.getText().length() == 0)  || (lastName.getText().length() == 0)  || (address.getText().length() == 0) || (mailAddress.getText().length() == 0) || (birthday.getText().length() == 0) || (preIll.getText().length() == 0) || (nameofinsurance.getText().length() == 0)) {
+                } else if ((firstName.getText().length() == 0) || (lastName.getText().length() == 0) || (address.getText().length() == 0) || (mailAddress.getText().length() == 0) || (birthday.getText().length() == 0) || (nameofinsurance.getText().length() == 0)) {
 
                     JOptionPane.showMessageDialog(frame_edit, "All fields have to be filled out!");
                     frame_edit.setVisible(true);
                     return;
 
-                }
+                } else if (Connect.emailExists(mailAddress.getText()) && (Objects.equals(patient.getMailAddress(), mailAddress.getText()))) {
 
-                else if (!username.getText().equals("admin") && !password1.getText().equals("admin")) {
+                    frame_edit.setVisible(false);
+
+                    //Check_PW check = new Check_PW();
+                    //check.frame_checkPW.setVisible(true);
+
                     try {
-                        if((Objects.equals(username.getText(), patient.getUsername())) || (Objects.equals(mailAddress.getText(), patient.getMailAddress()))  ){
-
-                            frame_edit.setVisible(false);
-
-                            //Check_PW check = new Check_PW();
-                            //check.frame_checkPW.setVisible(true);
-
-                            Connect.deletePatient(patient.getUsername());
-
-                            Connect.insertnewPatient(firstName.getText(), lastName.getText(), username.getText(), location.checkUmlaut(address.getText()), birthday.getText(), preIll.getText(), mailAddress.getText(), password1.getText(), nameofinsurance.getText(), typeOfInsurance);
-                            frame_edit.dispose();
-
-                            patient.logOutPat(patient);
-
-                            JOptionPane.showMessageDialog(frame_edit, "Account information edited. Login with your new credentials.");
-
-                            Healthcare_Login login = new Healthcare_Login();
-                            login.frame.setVisible(true);
-
-                            return;
-
-                        }
-
-                        else if (Connect.usernameOrEmailExists(username.getText(), mailAddress.getText())) {
-
-                            Connect.insertnewPatient(firstName.getText(), lastName.getText(), username.getText(), location.checkUmlaut(address.getText()), birthday.getText(), preIll.getText(), mailAddress.getText(), password1.getText(), nameofinsurance.getText(), typeOfInsurance);
-                            frame_edit.dispose();
-                        } else {
-                            JOptionPane.showMessageDialog(frame_edit, "Username or Email already exists.");
-                        }
-                    } catch (IOException | InterruptedException | ApiException | SQLException a) {
-                        a.printStackTrace();
+                        Connect.deletePatient(patient.getUsername());
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
                     }
 
+                    try {
+                        Connect.insertnewPatient(firstName.getText(), lastName.getText(), patient.getUsername(), location.checkUmlaut(address.getText()), birthday.getText(), preIll.getText(), mailAddress.getText(), password1.getText(), nameofinsurance.getText(), typeOfInsurance);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    } catch (ApiException ex) {
+                        ex.printStackTrace();
+                    }
+                    frame_edit.dispose();
+
+                    patient.logOutPat(patient);
+
+                    JOptionPane.showMessageDialog(frame_edit, "Account information edited. Login with your new credentials.");
+
+                    Healthcare_Login login = new Healthcare_Login();
+                    login.frame.setVisible(true);
+
+                    return;
+
+                } else if (Connect.emailExists(mailAddress.getText())) {
+
+                    JOptionPane.showMessageDialog(frame_edit, "This mail address already exists. Please try another one");
+                    frame_edit.setVisible(true);
+                    return;
+
+                } else {
+
+                    frame_edit.setVisible(false);
+
+                    //Check_PW check = new Check_PW();
+                    //check.frame_checkPW.setVisible(true);
+
+                    try {
+                        Connect.deletePatient(patient.getUsername());
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+
+                    try {
+                        Connect.insertnewPatient(firstName.getText(), lastName.getText(), patient.getUsername(), location.checkUmlaut(address.getText()), birthday.getText(), preIll.getText(), mailAddress.getText(), password1.getText(), nameofinsurance.getText(), typeOfInsurance);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    } catch (ApiException ex) {
+                        ex.printStackTrace();
+                    }
+                    frame_edit.dispose();
+
+                    patient.logOutPat(patient);
+
+                    JOptionPane.showMessageDialog(frame_edit, "Account information edited. Login with your new credentials.");
+
+                    Healthcare_Login login = new Healthcare_Login();
+                    login.frame.setVisible(true);
+
+                    return;
+
                 }
 
+
             }
+
+
         });
     }
-}
+
+
+    }
+
 
 

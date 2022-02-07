@@ -74,18 +74,18 @@ public class Healthcare_Search_Doc extends JFrame {
 	 * selected distance of search<p/>
 	 * @author Sidra Abbasi
 	 */
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Healthcare_Search_Doc frame = new Healthcare_Search_Doc();
+					Healthcare_Search_Doc frame = new Healthcare_Search_Doc(new Patient());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}*/
+	}
 
 	/**
 	 *  <p>@param patients takes the object Patient that was created at login</p>
