@@ -350,39 +350,39 @@ public class Connect {
 
 
 
-                if (rs.next()) {
+            if (rs.next()) {
 
                     String pw = rs.getString("password");
                     passwordHash = pw;
 
-                }
-                else{return false;}
+            }
+            else{return false;}
 
-                ResultSet rs1 = stSalt.executeQuery();
+            ResultSet rs1 = stSalt.executeQuery();
 
-                if (rs1.next()) {
+            if (rs1.next()) {
 
-                    salt = rs1.getString("salt");
+                salt = rs1.getString("salt");
 
-                }
+            }
 
-                inputPassword = Hashing.doHashing(inputPassword, salt);
-
-
-                // print hashed user-input pw and hashed stored pw
-                System.out.println(inputPassword);
-                System.out.println(passwordHash);
+            inputPassword = Hashing.doHashing(inputPassword, salt);
 
 
-                //if user-input hashed pw equals stored hashed pw return true
-                //if user-input hashed pw does not equal stored hashed pw return false
-                if (passwordHash.equals(inputPassword)) {
+            // print hashed user-input pw and hashed stored pw
+            System.out.println(inputPassword);
+            System.out.println(passwordHash);
 
-                    return true;
 
-                } else {
-                    return false;
-                }
+            //if user-input hashed pw equals stored hashed pw return true
+            //if user-input hashed pw does not equal stored hashed pw return false
+            if (passwordHash.equals(inputPassword)) {
+
+                return true;
+
+            } else {
+                return false;
+            }
 
 
         }
