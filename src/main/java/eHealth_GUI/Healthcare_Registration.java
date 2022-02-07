@@ -197,7 +197,7 @@ public class Healthcare_Registration extends JFrame
         group_prv.add(rdbtnPrivate);
         rdbtnPrivate.setVisible(false);
 
-        enum spec {Pediatrician,
+        enum spec {
             General,
             Dermatologist,
             Orthopedist,
