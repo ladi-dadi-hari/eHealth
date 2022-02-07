@@ -2,7 +2,7 @@ package eHealth_GUI;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import Users.Patient;
 import com.toedter.calendar.JDateChooser;
@@ -18,9 +18,7 @@ import java.awt.event.ActionEvent;
 import com.toedter.calendar.JMonthChooser;
 import com.toedter.calendar.JCalendar;
 import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+
 import com.toedter.components.JSpinField;
 import java.awt.Font;
 import JDBC.Connect;
@@ -28,7 +26,6 @@ import java.sql.Connection;
 import java.sql.Time;
 import java.util.Timer;
 import Users.Doctor;
-import javax.swing.JComboBox;
 import JDBC.Connect;
 
 import static JDBC.Connect.getDoctorByMail;
@@ -46,7 +43,7 @@ import static JDBC.Connect.getDoctorByMail;
 public class Shift_Appointment {
 
     public JFrame frmAppointment = new JFrame();
-    ;
+
     private JDateChooser dateChooser;
     private JSpinField hour;
     private JSpinField minute;
@@ -54,9 +51,7 @@ public class Shift_Appointment {
     private JLabel lbHour;
     private JLabel lblNewLabel;
     private Date date;
-    private int dropDownIndex;
     private LocalTime time;
-    private LocalDateTime pickedDateTime;
 
 
     /**
@@ -136,11 +131,6 @@ public class Shift_Appointment {
         btnSend.setBounds(32, 224, 85, 21);
         frmAppointment.getContentPane().add(btnSend);
 
-        JLabel lbReminder = new JLabel("Choose Reminder");
-        lbReminder.setFont(new Font("Tahoma", Font.ITALIC, 8));
-        lbReminder.setBounds(217, 150, 75, 13);
-        frmAppointment.getContentPane().add(lbReminder);
-
         /**
          * Set values of the JSpinField to the opening and closing hour of the chosen doctor
          */
@@ -167,8 +157,15 @@ public class Shift_Appointment {
                 java.sql.Date sqlDate = java.sql.Date.valueOf(pickedDate);
                 Time sqlTime = Time.valueOf(time);
 
+
                 try {
+                    frmAppointment.setVisible(false);
+                    JOptionPane.showMessageDialog(frmAppointment, "Appointment shifted!");
                     Connect.shiftAppointment(sqlDate, sqlTime, patient.getMailAddress(), (java.sql.Date) _oldDate);
+                    Healthcare_Entry entry = new Healthcare_Entry(patient);
+                    entry.setVisible(true);
+
+                    return;
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }

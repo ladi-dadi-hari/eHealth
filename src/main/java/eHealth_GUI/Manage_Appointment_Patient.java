@@ -8,15 +8,10 @@ import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.mail.MessagingException;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
 
 import static JDBC.Connect.*;
 
@@ -76,7 +71,7 @@ public class Manage_Appointment_Patient extends JFrame {
 
         ResultSet appointments = JDBC.Connect.getAppointmentByPatient(_patient.getMailAddress());
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 859, 421);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -86,7 +81,10 @@ public class Manage_Appointment_Patient extends JFrame {
         JButton btnExit = new JButton("Exit");
         btnExit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                Manage_Appointment_Patient.this.dispose();
+                Healthcare_Entry entry = new Healthcare_Entry(_patient);
+                entry.setVisible(true);
+
             }
         });
         btnExit.setBounds(750, 332, 85, 21);
@@ -174,6 +172,7 @@ public class Manage_Appointment_Patient extends JFrame {
                         appointments.absolute(1);
                        Shift_Appointment shift = new Shift_Appointment(_patient, appointments.getDate(2));
                        shift.frmAppointment.setVisible(true);
+                       dispose();
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                         System.out.println("\n User not found or invalid mailaddress!");
@@ -190,6 +189,10 @@ public class Manage_Appointment_Patient extends JFrame {
                     try {
                         appointments.absolute(1);
                         cancelByPatient(_patient.getMailAddress(),appointments.getDate(2));
+                        Manage_Appointment_Patient.this.dispose();
+                        JOptionPane.showMessageDialog(Manage_Appointment_Patient.this, "Appointment canceled!");
+                        Healthcare_Entry entry = new Healthcare_Entry(_patient);
+                        entry.setVisible(true);
                     setCheckBox1Selected(false);
                     } catch (SQLException ex) {
                         ex.printStackTrace();
@@ -252,6 +255,7 @@ public class Manage_Appointment_Patient extends JFrame {
                             appointments.absolute(2);
                             Shift_Appointment shift = new Shift_Appointment(_patient, appointments.getDate(2));
                             shift.frmAppointment.setVisible(true);
+                            dispose();
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                             System.out.println("\n User not found or invalid mailaddress!");
@@ -269,6 +273,10 @@ public class Manage_Appointment_Patient extends JFrame {
                             appointments.absolute(2);
                             cancelByPatient(_patient.getMailAddress(),appointments.getDate(2));
                             setCheckBox2Selected(false);
+                            Manage_Appointment_Patient.this.dispose();
+                            JOptionPane.showMessageDialog(Manage_Appointment_Patient.this, "Appointment canceled!");
+                            Healthcare_Entry entry = new Healthcare_Entry(_patient);
+                            entry.setVisible(true);
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                             System.out.println("\n User not found or invalid mailaddress!");
@@ -331,6 +339,7 @@ public class Manage_Appointment_Patient extends JFrame {
                             appointments.absolute(3);
                             Shift_Appointment shift = new Shift_Appointment(_patient, appointments.getDate(2));
                             shift.frmAppointment.setVisible(true);
+                            dispose();
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                             System.out.println("\n User not found or invalid mailaddress!");
@@ -348,6 +357,10 @@ public class Manage_Appointment_Patient extends JFrame {
                             appointments.absolute(3);
                             cancelByPatient(_patient.getMailAddress(),appointments.getDate(2));
                             setCheckBox3Selected(false);
+                            Manage_Appointment_Patient.this.dispose();
+                            JOptionPane.showMessageDialog(Manage_Appointment_Patient.this, "Appointment canceled!");
+                            Healthcare_Entry entry = new Healthcare_Entry(_patient);
+                            entry.setVisible(true);
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                             System.out.println("\n User not found or invalid mailaddress!");
@@ -411,6 +424,7 @@ public class Manage_Appointment_Patient extends JFrame {
                             setCheckBox4Selected(true);
                             Shift_Appointment shift = new Shift_Appointment(_patient, appointments.getDate(2));
                             shift.frmAppointment.setVisible(true);
+                            dispose();
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                             System.out.println("\n User not found or invalid mailaddress!");
@@ -428,6 +442,12 @@ public class Manage_Appointment_Patient extends JFrame {
                             appointments.absolute(4);
                             cancelByPatient(_patient.getMailAddress(),appointments.getDate(2));
                             setCheckBox4Selected(false);
+                            Manage_Appointment_Patient.this.dispose();
+                            JOptionPane.showMessageDialog(Manage_Appointment_Patient.this, "Appointment canceled!");
+
+
+                            Healthcare_Entry entry = new Healthcare_Entry(_patient);
+                            entry.setVisible(true);
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                             System.out.println("\n User not found or invalid mailaddress!");
