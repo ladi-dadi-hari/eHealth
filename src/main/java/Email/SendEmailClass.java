@@ -7,7 +7,8 @@ import javax.mail.internet.*;
 
 /**
  * <h1>Email sending class</h1>
- * Sends an email using the javax.mail library
+ * Sends an email using the javax.mail library with an external provider, GMX in this case.
+ * Takes three Strings as an input, one for the email of the recipient, and two for header and text of the email.
  *
  * @author Can Dechert
  */

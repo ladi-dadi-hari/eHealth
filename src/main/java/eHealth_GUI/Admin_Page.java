@@ -1,6 +1,7 @@
 package eHealth_GUI;
 
 import JDBC.Connect;
+import Users.Doctor;
 import Users.Patient;
 
 import javax.swing.*;
@@ -232,6 +233,7 @@ public class Admin_Page extends JFrame {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             Connect.deleteDoctor(result);
+
                         }
                     });
 

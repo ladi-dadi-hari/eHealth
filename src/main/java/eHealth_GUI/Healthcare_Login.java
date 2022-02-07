@@ -130,7 +130,7 @@ public class Healthcare_Login extends JFrame {
 				}
 				if(exists_patient)
 				{
-					JOptionPane.showMessageDialog(frame, "Login als Patient erfolgreich");
+					JOptionPane.showMessageDialog(frame, "Login as patient successfully");
 
 
 					//oeffne Eingangsfenster
@@ -166,7 +166,7 @@ public class Healthcare_Login extends JFrame {
 				}
 				else if(exists_doc)
 				{
-					JOptionPane.showMessageDialog(frame, "Login als Doctor erfolgreich");
+					JOptionPane.showMessageDialog(frame, "Login as doctor successfully");
 					try {
 					ResultSet rs = Connect.getDoctor(u_username);
 					if(rs.next()) {
@@ -191,7 +191,7 @@ public class Healthcare_Login extends JFrame {
 
 				else if(u_username.equals("admin") && u_pwd.equals("admin"))
 				{
-					JOptionPane.showMessageDialog(frame, "Login as Admin successfully");
+					JOptionPane.showMessageDialog(frame, "Login as admin successfully");
 					Admin_Page admin = new Admin_Page();
 					admin.frame_admin.setVisible(true);
 					frame.dispose();
