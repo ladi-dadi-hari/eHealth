@@ -23,7 +23,8 @@ public class Doctor extends Users.User {
     public Doctor(){}
 
     /**
-     * The constructor parameter values are provided throug user input via the GUI.
+     * Registration constructor.
+     * The constructor parameter values are provided through user input via the GUI.
      * They are instantly assigned to the created object and even the password is never saved in plain text since it gets directly hashed before saving it.
      *
      * @param fName String First Name

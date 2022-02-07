@@ -31,11 +31,8 @@ import JDBC.Connect;
 import static JDBC.Connect.getDoctorByMail;
 
 /**
- * <h1> Graphical user interface for making an appointment</h1>
- * This class provides the GUI for making an appointment. Using an OpenSource library for picking a certain Date (com.toedter.calendar.JDateChooser) and two JSpinField (com.toedter.components.JSpinField) objects to choose the hour and time.
- * In addition, the user can choose from a drop down menu, displayed by a JComboBox, four different reminder times.
- * After clicking the button "Send", an object from the class "Appointment" will be created, calling the constructor with the parameters chosen from the GUI.
- *
+ * <h1> Graphical user interface for shifting or canceling an appointment as a patient</h1>
+ *This class is used to enter a new date and time, when a an appointment is going to be shifted by a patient.
  * @author Max Endres
  *
  */

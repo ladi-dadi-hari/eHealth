@@ -415,6 +415,13 @@ public class Connect {
 
     }
 
+    /**
+     * This method is called when the patient wants to cancel a ceratin appointment. It sets the boolean inside the database to false.
+     * @param _patMail Patient mailaddress, used as identifier in database.
+     * @param _appDate appointment date, used as identifier in database
+     * @throws SQLException
+     * @author Max Endres
+     */
     public static void cancelByPatient(String _patMail, Date _appDate ) throws SQLException {
         Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
         PreparedStatement cancelApp = con.prepareStatement("UPDATE Users.appointment SET confirmend = ? WHERE patientMail = ? AND date = ? ");
@@ -425,6 +432,16 @@ public class Connect {
         cancelApp.execute();
     }
 
+    /**
+     * This method is called when a patient has chosen a new date for a certain appointment.
+     * @param _newDate New appointment date
+     * @param _newTime New appointment time
+     * @param _patMail Mailaddress of the patient to identify him/her in the database
+     * @param _oldDate Old appointment date, used as a bonus identifier.
+     * @throws SQLException
+     *
+     * @author Max Endres
+     */
     public static void shiftAppointment(Date _newDate, Time _newTime, String _patMail, Date _oldDate) throws SQLException {
         Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
         PreparedStatement shiftApp = con.prepareStatement("UPDATE Users.appointment SET date = ?, time = ? WHERE patientMail = ? AND date = ? ");
@@ -439,10 +456,10 @@ public class Connect {
     /**
      * This method can be used by the doctor to cancel an appointment.
      * It sends an Email as well to the corresponding patient to inform him about the cancel.
-     * @param docFname
-     * @param docLname
-     * @param _patMail
-     * @param _appDate
+     * @param docFname First Name of the doctor; used in the default E-Mail text.
+     * @param docLname Last Name of the docotor; used in the default E-Mail text.
+     * @param _patMail Patient mailaddress; where the email is sent to.
+     * @param _appDate Appointment date; inform patient about which appointment has been canceled.
      * @throws SQLException
      * @throws MessagingException
      * @author Max Endres
@@ -506,8 +523,8 @@ public class Connect {
 
     /**
      * This method is called when the doctor is logged in to get all the corresponding appointments.
-     * @param docMail
-     * @return rs
+     * @param docMail Identify the doctor by his/her mailaddress
+     * @return rs ResultSet with all the values for this certain doctor.
      * @throws SQLException
      * @author Max Endres
      */
@@ -521,6 +538,15 @@ public class Connect {
         ResultSet rs = select_app.executeQuery();
         return rs;
     }
+
+    /**
+     * This method provides the funcitonality to display the appointments of a certain patient.
+     * @param _patMail Used as identifier in database
+     * @return rs ResultSet with all the appointments of this patient.
+     * @throws SQLException
+     *
+     * @author Max Endres
+     */
     public static ResultSet getAppointmentByPatient(String _patMail) throws SQLException {
         String sql_statement = "SELECT * FROM Users.Appointment WHERE patientMail =? ";
         Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
@@ -617,13 +643,13 @@ public class Connect {
      * This method is called when a new doctor registers in our system.
      * It takes the parameter values from the GUI and passes them to an SQL statement.
      * This statement then stores the data in the database and returns the latest created ID Key to this object.
-     * @param _fName
-     * @param _lName
-     * @param _username
-     * @param _address
-     * @param _specF
-     * @param _mailAdd
-     * @param _pw
+     * @param _fName First name
+     * @param _lName last name
+     * @param _username username
+     * @param _address address
+     * @param _specF chosen specialfield
+     * @param _mailAdd mailaddress
+     * @param _pw password; never saved in plain text. Straight hashed.
      * @return id Int
      * @throws Exception
      *
@@ -722,8 +748,9 @@ public class Connect {
     /**
      * This method creates 12 tables, one for each month.
      * The amount of time slots is calculated by using the opening and closing time the specific doctor. Each time slot has the length of 30 minutes.
+     * In the first months of our project, we thought about giving the doctor a time scheduler from where the patient can choose a time slot.
      * @throws Exception
-     *
+     * @deprecated not suitable for current architecture
      * @author: Max Endres
      */
     public void createTableTimeslot(int closingHour, int openingHour) throws Exception{

@@ -7,13 +7,19 @@ import org.jetbrains.annotations.NotNull;
 import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.mail.MessagingException;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import static JDBC.Connect.*;
+
+/**
+ * <h1> Manage_Appointment_Patient </h1>
+ * This class provides the functionalities for patient to manage his/her appointments. He/She can cancel or shift the appointments and see wether the doctor has confirmed the appointment already.
+ * Up to four rows with appointments will be displayed dynamically.
+ *
+ * @author Max Endres
+ */
 
 public class Manage_Appointment_Patient extends JFrame {
 
@@ -44,27 +50,9 @@ public class Manage_Appointment_Patient extends JFrame {
     private JLabel lbMail3;
     private JLabel lbMail4;
 
-    /**
-     * Launch the application.
-     */
-    /*
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    //Manage_Appointment_doc frame = new Manage_Appointment_doc();
-                    //frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-     */
 
     /**
-     * Create the frame.
+     * Constructor does the work.
      */
 
     public Manage_Appointment_Patient(@NotNull Patient _patient) throws SQLException {
