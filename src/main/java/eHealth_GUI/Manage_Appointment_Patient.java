@@ -108,7 +108,7 @@ public class Manage_Appointment_Patient extends JFrame {
         lbName.setBounds(192, 24, 75, 13);
         contentPane.add(lbName);
 
-        JLabel lbHealthProblem = new JLabel("??");
+        JLabel lbHealthProblem = new JLabel("Healthproblems");
         lbHealthProblem.setFont(new Font("Tahoma", Font.BOLD, 13));
         lbHealthProblem.setBounds(277, 24, 112, 13);
         contentPane.add(lbHealthProblem);
