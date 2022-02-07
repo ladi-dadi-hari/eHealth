@@ -286,7 +286,7 @@ public class Connect {
 
     /**
      * Function deletes Patient from Database.
-     * Needed for editing profile.
+     * Mandatory for editing profile.
      *
      * @param _patient_username
      * @throws SQLException
@@ -411,9 +411,13 @@ public class Connect {
                 inputPassword = Hashing.doHashing(inputPassword, salt);
 
 
+                // print hashed user-input pw and hashed stored pw
                 System.out.println(inputPassword);
                 System.out.println(passwordHash);
 
+
+                //if user-input hashed pw equals stored hashed pw return true
+                //if user-input hashed pw does not equal stored hashed pw return false
                 if (passwordHash.equals(inputPassword)) {
 
                     return true;
