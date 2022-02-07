@@ -13,33 +13,15 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
-import javax.swing.JTextArea;
+
 
 /*imports for the appointment gui*/
 
-import com.toedter.calendar.JDateChooser;
-
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.util.Date;
-import com.toedter.calendar.JMonthChooser;
-import com.toedter.components.JSpinField;
-import com.toedter.calendar.JCalendar;
-import java.sql.Time;
-import java.util.List;
-import java.util.Timer;
-import Users.Doctor;
-import com.toedter.components.JSpinField;
 
-import javax.swing.JComboBox;
+import java.util.List;
 
 
 
@@ -47,7 +29,6 @@ public class Healthcare_Search_Doc extends JFrame {
 
 
 	private JPanel contentPane;
-	private JTextField textField;
 
 	/*For the reminder*/
 	int dropDownIndex;
@@ -55,17 +36,7 @@ public class Healthcare_Search_Doc extends JFrame {
 	JComboBox skinIssuesdropDown;
 	JComboBox jointIssuesdropDown;
 	JComboBox chronicIssuesdropDown;
-	JComboBox reminderdropDown;
 	int distance;
-	JDateChooser dateChooser;
-	JSpinField hour;
-	JSpinField minute;
-	JLabel lbTime;
-	JLabel lbHour;
-	JLabel lblNewLabel;
-	Date date;
-	LocalTime time;
-	LocalDateTime pickedDateTime;
 	String specF;
 
 	/**

@@ -93,6 +93,7 @@ public class Healthcare_Registration extends JFrame
         username.setBounds(50, 50, 250, 25);
         frame_register.getContentPane().add(username);
         username.setColumns(10);
+        Objects.requireNonNull(username);
 
 
         JLabel lblfirstName = new JLabel("First Name");
@@ -103,7 +104,7 @@ public class Healthcare_Registration extends JFrame
         firstName = new JTextField();
         firstName.setBounds(50, 130, 250, 25);
         frame_register.getContentPane().add(firstName);
-        firstName.setColumns(10);
+
 
         JLabel lbllastName = new JLabel("Last Name");
         lbllastName.setFont(new Font("Tahoma", Font.PLAIN, 15));

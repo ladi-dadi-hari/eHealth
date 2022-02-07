@@ -111,11 +111,10 @@ public class location {
      * We then store both values into a list of the data type float called lat_lng and return that list.
      *
      * @param address
-     * @return
      * @throws IOException
      * @throws InterruptedException
      * @throws ApiException
-     * @return
+     * @return List of data type Float, containing latitude and longitude of address
      *
      * @author Maximilian Rabe
      */
