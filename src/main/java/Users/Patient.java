@@ -87,7 +87,7 @@ public class Patient extends Users.User {
         patient.setInsurance(null);
         patient.setInsuranceType(null);
 
-        System.out.println("object patient deleted");
+        System.out.println("object patient is null");
 
     }
 

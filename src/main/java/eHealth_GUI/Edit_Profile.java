@@ -304,7 +304,7 @@ public class Edit_Profile extends JFrame {
 
                     patient.logOutPat(patient);
 
-                    JOptionPane.showMessageDialog(frame_edit, "Account information edited. Login with your new credentials.");
+                    JOptionPane.showMessageDialog(frame_edit, "Account information edited. Please login again.");
 
                     Healthcare_Login login = new Healthcare_Login();
                     login.frame.setVisible(true);
@@ -321,8 +321,6 @@ public class Edit_Profile extends JFrame {
 
                     frame_edit.setVisible(false);
 
-                    //Check_PW check = new Check_PW();
-                    //check.frame_checkPW.setVisible(true);
 
                     try {
                         Connect.deletePatient(patient.getUsername());
