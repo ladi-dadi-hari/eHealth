@@ -20,11 +20,6 @@ import java.util.Objects;
  * On this page the user can edit his profile information.
  * To write it to the database, the user has to validate his password.
  *
- * TODO:
- * Change password page
- *
- *
- *
  * @author  logic: Harris Nuhanovic
  *          GUI: mainly Maximilian Rabe (see Healthcare_Registration.java)
  *
