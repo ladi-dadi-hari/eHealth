@@ -25,33 +25,72 @@ public abstract class User {
 
     /* Getters & setters */
 
+    /**
+     * <h1> getFirstName <h1/>
+     * @return
+     */
     public String getFirstName() {
         return firstName;
     }
+
+    /**
+     * <h1> setFirstName <h1/>
+     * @param firstName
+     */
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    /**
+     * <h1> getLastName <h1/>
+     * @return
+     */
+
     public String getLastName() {
         return lastName;
     }
+
+    /**
+     * <h1> setLastName <h1/>
+     * @param lastName
+     */
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    /**
+     * <h1> getLocation <h1/>
+     * @return
+     */
+
     public String getLocation() {
         return location;
     }
+
+    /**
+     * <h1> setLocation <h1/>
+     * @param location
+     */
 
     public void setLocation(String location) {
         this.location = location;
     }
 
+    /**
+     * <h1> getMailAdress <h1/>
+     * @return
+     */
+
     public String getMailAddress() {
         return mailAddress;
     }
+
+    /**
+     * <h1> setMailAddress <h1/>
+     * @param mailAddress
+     */
 
     public void setMailAddress(String mailAddress) {
         this.mailAddress = mailAddress;
