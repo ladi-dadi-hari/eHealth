@@ -419,6 +419,12 @@ public class Connect {
 
     }
 
+    /**
+     * This Method is called when a patient wants to cancel an appointment.
+     * @param _patMail Patient mailaddress; used to identify the appointment
+     * @param _appDate  Appointment date;  used to identify the appointment
+     * @throws SQLException
+     */
     public static void cancelByPatient(String _patMail, Date _appDate ) throws SQLException {
         Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
         PreparedStatement cancelApp = con.prepareStatement("UPDATE Users.appointment SET confirmend = ? WHERE patientMail = ? AND date = ? ");
@@ -429,6 +435,14 @@ public class Connect {
         cancelApp.execute();
     }
 
+    /**
+     * This method is called when a patient wants to shift an appointment to a new date/time.
+     * @param _newDate New Date of the appointment.
+     * @param _newTime New Time of the appointment
+     * @param _patMail Patient mailaddress;  used to identify the appointment
+     * @param _oldDate Appointment date before changes;  used to identify the appointment
+     * @throws SQLException
+     */
     public static void shiftAppointment(Date _newDate, Time _newTime, String _patMail, Date _oldDate) throws SQLException {
         Connection con = DriverManager.getConnection(DB_URL, USER, AUTH_STRING);
         PreparedStatement shiftApp = con.prepareStatement("UPDATE Users.appointment SET date = ?, time = ? WHERE patientMail = ? AND date = ? ");
