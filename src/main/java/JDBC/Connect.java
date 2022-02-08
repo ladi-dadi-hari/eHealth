@@ -345,33 +345,36 @@ public class Connect {
             stHash.setString(1, mailAdress);
             stSalt.setString(1, mailAdress);
 
-
             ResultSet rs = stHash.executeQuery();
 
-
-
+            // fetch stored pw hash from db
             if (rs.next()) {
 
                     String pw = rs.getString("password");
                     passwordHash = pw;
 
             }
-            else{return false;}
+            else{
+                return false;
+            }
+
 
             ResultSet rs1 = stSalt.executeQuery();
 
+            // fetch stored salt from db
             if (rs1.next()) {
 
                 salt = rs1.getString("salt");
 
             }
 
+            // hash the user-input pw 
             inputPassword = Hashing.doHashing(inputPassword, salt);
 
 
             // print hashed user-input pw and hashed stored pw
-            System.out.println(inputPassword);
-            System.out.println(passwordHash);
+            // System.out.println(inputPassword);
+            // System.out.println(passwordHash);
 
 
             //if user-input hashed pw equals stored hashed pw return true
