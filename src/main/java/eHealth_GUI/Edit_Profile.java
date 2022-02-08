@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 /**
- * <h1>Edit Profile page<h1/>
+ * <h1>Edit Profile page</h1>
  *
  * On this page the user can edit his profile information.
  * To write it to the database, the user has to validate his password.

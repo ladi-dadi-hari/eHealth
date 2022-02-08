@@ -151,7 +151,7 @@ public class Connect {
     }
 
     /**
-     * <h1>emailExists<h1/>
+     * <h1>emailExists</h1>
      *
      * Checks if the Email is already in the Database.
      * If it is already existent, it returns a false true.
@@ -182,8 +182,7 @@ public class Connect {
             {
                 return true;
             }
-            else
-            {
+            else {
                 return false;
             }
         }
@@ -197,6 +196,8 @@ public class Connect {
 
 
     /**
+     *
+     * <h1>insertnewPatient</h1>
      * This method allows inserting a new patient in the Database.
      * The parameters get passed in from the GUI and written into the local database.
      *
@@ -288,6 +289,8 @@ public class Connect {
     }
 
     /**
+     *
+     * <h1>deletePatient</h1>
      * Function deletes Patient from Database.
      * Mandatory for editing profile.
      *
@@ -352,6 +355,8 @@ public class Connect {
     }
 
     /**
+     * <h1>validateData</h1>
+     *
      * The validateData function takes the input username and password from the GUI.
      * According to the role of the user, the matching sql statement for fetching the hash and the salt get passed in the function.
      * When the return is true, the function has found a matching account in the database,
