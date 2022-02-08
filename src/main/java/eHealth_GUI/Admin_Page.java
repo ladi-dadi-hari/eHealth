@@ -19,6 +19,7 @@ import java.util.List;
  * This class contains all of the GUI elements and funtionalities used by the admin.
  * The admin is able to select every single user in our system, select him/her and delete or edit the selected user.
  * The selection is done through two JLists, one for the doctor and one for the patients, since there aren't any other user types, except the admin himself/herself.
+ * @author Maximilian Rabe
  */
 
 
@@ -46,6 +47,7 @@ public class Admin_Page extends JFrame {
      * Since we didn't implement a way to differentiate between patient and doctor, after they have been
      * returned as an ResultSet from the database, we simply split the methods into two one for all doctors and one for all patients.
      * @return String Array with every doctor found in our database
+     * @author Maximilian Rabe
      */
 
     public String[] doctorResults() {
@@ -74,6 +76,7 @@ public class Admin_Page extends JFrame {
     /**
      * This method has the same functionality as the doctorResults method above, but for the patients.
      * @return String Array containing all patients in our database.
+     * @Author Maximilian Rabe
      */
     public String[] patientsResults(){
 
@@ -125,6 +128,7 @@ public class Admin_Page extends JFrame {
      * The method initialize contains all our GUI elements used for the admin page.
      * It displays all existing user in our system, split into two JLists. One JList contains all patients and the other one contains all doctors.
      * The admin can then select one user, and press either the JButton editProfile or the other JButton deleteProfile.
+     * @author Maximilian Rabe
      */
 
     private void initilaize() {
@@ -163,6 +167,7 @@ public class Admin_Page extends JFrame {
          * This happens, because the ListSelectionListener has two call ups, when something is selected from a JLIst.
          * One happens, when the admin clicks on a user, the name of the user gets stored and the other one happens when the press of the mouse is released.
          * The other boolean call up gets shared between both JLists, so there can't be two selected users at the same time.
+         * @author Maximilian Rabe
          */
         patientList.addListSelectionListener(e ->
         {
@@ -220,6 +225,13 @@ public class Admin_Page extends JFrame {
             }
 
         });
+
+        /**
+         * This method adds an actionListener to the doctorList and adds the exact same functionalities
+         * as the other actionListern has added to the patientList.
+         *
+         * @author Maximilian Rabe
+         */
 
         doctorList.addListSelectionListener(e ->
         {

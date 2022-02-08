@@ -387,6 +387,9 @@ public class Edit_Profile extends JFrame {
 
 
     /**
+     * This method uses another constructor to initialize the Jframe frame_edit,
+     * since it was needed to split the edit_profile functionality between the doctor and the patient.
+     * The functionality stays the same as in the other initialize method in the edit_profile class.
      *
      * @param first
      * @param last
@@ -396,6 +399,7 @@ public class Edit_Profile extends JFrame {
      * @param mail
      * @param opening
      * @param closing
+     * @author Maximilian Rabe
      */
 
     private void initialize(String first, String last, String username,  String add, String specF, String mail, int opening, int closing) {
