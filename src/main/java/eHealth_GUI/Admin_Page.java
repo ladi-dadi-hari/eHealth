@@ -240,9 +240,8 @@ public class Admin_Page extends JFrame {
 
                     editProfile.addActionListener(e1 -> {
                         try {
-                            ResultSet rs = Connect.getDoctor(result);
-                            while(rs.next()){
-                                System.out.println(rs);}
+                            Edit_Profile doc_edit = new Edit_Profile(result);
+                            doc_edit.frame_edit.setVisible(true);
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                         }
