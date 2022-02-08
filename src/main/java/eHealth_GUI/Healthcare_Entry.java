@@ -45,7 +45,7 @@ public class Healthcare_Entry extends JFrame {
 	 * @param patient takes the object Patient that is created at the time of logging in
 	 */
 	public Healthcare_Entry(Patient patient) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 355, 461);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
