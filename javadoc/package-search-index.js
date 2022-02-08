@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"calendar"},{"l":"eHealth_GUI"},{"l":"Email"},{"l":"Export"},{"l":"Hashing"},{"l":"JDBC"},{"l":"Location"},{"l":"Users"}];updateSearchResults();

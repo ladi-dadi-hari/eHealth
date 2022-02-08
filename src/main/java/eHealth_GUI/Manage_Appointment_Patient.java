@@ -104,10 +104,10 @@ public class Manage_Appointment_Patient extends JFrame {
         lbMail.setBounds(428, 24, 105, 13);
         contentPane.add(lbMail);
 
-        JLabel lbConfirmend = new JLabel("Confirmend");
-        lbConfirmend.setFont(new Font("Tahoma", Font.PLAIN, 9));
-        lbConfirmend.setBounds(589, 24, 60, 13);
-        contentPane.add(lbConfirmend);
+        JLabel lbConfirmed = new JLabel("Confirmed");
+        lbConfirmed.setFont(new Font("Tahoma", Font.PLAIN, 9));
+        lbConfirmed.setBounds(589, 24, 60, 13);
+        contentPane.add(lbConfirmed);
 
         //Move to first row in ResultSet
         if (appointments.next()) {

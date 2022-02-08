@@ -12,7 +12,7 @@ import java.time.temporal.ChronoField;
 /**
  * <h1> Doctor Account</h1>
  * This class has functionality to insert a new registered Doctor into the database with all required informations (mail, specialField, PW ...).
- *
+ * All necessary set and get methods are included as well.
  *
  * @author: Max Endres
  */
@@ -66,31 +66,57 @@ public class Doctor extends Users.User {
     //Methods
     //Get
 
+    /**
+     *
+     * @return firstName Returns first name as String
+     */
     public String getfName() {
         return this.firstName;
     }
 
+    /**
+     *
+     * @return lastName Returns last name as String
+     */
     public String getlName () {
         return this.lastName;
     }
 
+    /**
+     *
+     * @return location Returns location as String.
+     */
     public String getLocation () {
         return this.location;
     }
 
-
+    /**
+     *
+     * @return id Returns the id as int
+     */
     public int getID() {
         return this.id;
     }
 
+    /**
+     *
+     * @return username Returns the username as String
+     */
     public String getUname(){
         return this.username;
     }
 
+    /**
+     *
+     * @return openingHour Returns the opening hour of the doctor as int
+     */
     public int getOpeningHour(){
         return this.openingHour;
     }
-
+    /**
+     *
+     * @return closingHour Returns the closing hour of the doctor as int
+     */
     public int getClosingHour(){
         return this.closingHour;
     }
@@ -98,22 +124,25 @@ public class Doctor extends Users.User {
 
     //Set
 
-
-
-
-
-
-
-
+    /**
+     * Sets the username of the specific doctor
+     * @param uname Username to be set
+     */
     public void setUsername(String uname){
         this.username = uname;
     }
-
+    /**
+     * Sets the opening hour of the specific doctor
+     * @param opH OpeningHour
+     */
     public void setOpeningHour(int opH)
     {
         this.openingHour = opH;
     }
-
+    /**
+     * Sets the closing hour of the specific doctor
+     * @param clH closing Hour to be set
+     */
     public void setClosingHour(int clH){
         this.closingHour = clH;
     }
