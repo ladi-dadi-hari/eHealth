@@ -24,6 +24,8 @@ public class Healthcare_Login extends JFrame {
 	/**
 	 * <h1>The Login GUI</h1>
 	 * <p>This is the code that creates the Login Window for the Patient user and the Doctor User
+	 * at starting the program, first the tables for the Patient, Doctor and Appointments are created
+	 * in case they do not exist
 	 * @author Sidra Abbasi</p>
 	 */
 	public static void main(String[] args) {
@@ -130,7 +132,7 @@ public class Healthcare_Login extends JFrame {
 				}
 				if(exists_patient)
 				{
-					JOptionPane.showMessageDialog(frame, "Login as patient successfully");
+					JOptionPane.showMessageDialog(frame, "Logged in as: patient");
 
 
 					//oeffne Eingangsfenster
@@ -166,7 +168,7 @@ public class Healthcare_Login extends JFrame {
 				}
 				else if(exists_doc)
 				{
-					JOptionPane.showMessageDialog(frame, "Login as doctor successfully");
+					JOptionPane.showMessageDialog(frame, "Logged in as: Doctor");
 					try {
 					ResultSet rs = Connect.getDoctor(u_username);
 					if(rs.next()) {
@@ -191,7 +193,7 @@ public class Healthcare_Login extends JFrame {
 
 				else if(u_username.equals("admin") && u_pwd.equals("admin"))
 				{
-					JOptionPane.showMessageDialog(frame, "Login as admin successfully");
+					JOptionPane.showMessageDialog(frame, "Logged in as: Admin");
 					Admin_Page admin = new Admin_Page();
 					admin.frame_admin.setVisible(true);
 					frame.dispose();

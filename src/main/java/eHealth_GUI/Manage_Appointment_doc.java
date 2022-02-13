@@ -67,7 +67,10 @@ public class Manage_Appointment_doc extends JFrame {
                 JButton btnExit = new JButton("Exit");
                 btnExit.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        System.exit(0);
+                        Healthcare_Login login = new Healthcare_Login();
+                        login.frame.setVisible(true);
+                        dispose();
+                        //System.exit(0);
                     }
                 });
                 btnExit.setBounds(750, 332, 85, 21);

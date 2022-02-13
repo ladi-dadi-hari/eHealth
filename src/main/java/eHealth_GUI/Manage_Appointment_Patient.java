@@ -160,7 +160,7 @@ public class Manage_Appointment_Patient extends JFrame {
                         appointments.absolute(1);
                        Shift_Appointment shift = new Shift_Appointment(_patient, appointments.getDate(2));
                        shift.frmAppointment.setVisible(true);
-                       dispose();
+                       //dispose();
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                         System.out.println("\n User not found or invalid mailaddress!");
@@ -243,7 +243,7 @@ public class Manage_Appointment_Patient extends JFrame {
                             appointments.absolute(2);
                             Shift_Appointment shift = new Shift_Appointment(_patient, appointments.getDate(2));
                             shift.frmAppointment.setVisible(true);
-                            dispose();
+                            //dispose();
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                             System.out.println("\n User not found or invalid mailaddress!");
@@ -327,7 +327,7 @@ public class Manage_Appointment_Patient extends JFrame {
                             appointments.absolute(3);
                             Shift_Appointment shift = new Shift_Appointment(_patient, appointments.getDate(2));
                             shift.frmAppointment.setVisible(true);
-                            dispose();
+                            //dispose();
                         } catch (SQLException ex) {
                             ex.printStackTrace();
                             System.out.println("\n User not found or invalid mailaddress!");
