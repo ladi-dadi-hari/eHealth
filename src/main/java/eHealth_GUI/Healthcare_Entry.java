@@ -54,7 +54,7 @@ public class Healthcare_Entry extends JFrame {
 
 		/*Introduction*/
 
-		JLabel lblNewJgoodiesTitle = DefaultComponentFactory.getInstance().createTitle("Welcome to JavaDocs!");
+		JLabel lblNewJgoodiesTitle = DefaultComponentFactory.getInstance().createTitle("Welcome!");
 		lblNewJgoodiesTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewJgoodiesTitle.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewJgoodiesTitle.setBounds(27, 11, 286, 45);
